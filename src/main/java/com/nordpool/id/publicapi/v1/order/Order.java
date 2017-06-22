@@ -16,7 +16,6 @@ import java.util.Objects;
 
 public class Order {
     private String orderId;
-    private String contractId;
     private Long deliveryAreaId;
     private long price;
     private long qty;
@@ -45,14 +44,6 @@ public class Order {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
-    }
-
-    public String getContractId() {
-        return contractId;
-    }
-
-    public void setContractId(String contractId) {
-        this.contractId = contractId;
     }
 
     public Long getDeliveryAreaId() {
@@ -112,7 +103,6 @@ public class Order {
                 qty == order.qty &&
                 deleted == order.deleted &&
                 Objects.equals(orderId, order.orderId) &&
-                Objects.equals(contractId, order.contractId) &&
                 Objects.equals(deliveryAreaId, order.deliveryAreaId) &&
                 Objects.equals(createdAt, order.createdAt) &&
                 Objects.equals(updatedAt, order.updatedAt);
@@ -120,14 +110,13 @@ public class Order {
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, contractId, deliveryAreaId, price, qty, createdAt, updatedAt, deleted);
+        return Objects.hash(orderId, deliveryAreaId, price, qty, createdAt, updatedAt, deleted);
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "orderId='" + orderId + '\'' +
-                ", contractId='" + contractId + '\'' +
                 ", deliveryAreaId=" + deliveryAreaId +
                 ", price=" + price +
                 ", qty=" + qty +
