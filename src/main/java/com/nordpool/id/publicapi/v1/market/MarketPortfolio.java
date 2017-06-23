@@ -10,7 +10,6 @@ import java.util.Objects;
 
 public class MarketPortfolio {
     private String marketId;
-    private String portfolioId;
 
     public MarketPortfolio() {
     }
@@ -23,33 +22,24 @@ public class MarketPortfolio {
         this.marketId = marketId;
     }
 
-    public String getPortfolioId() {
-        return portfolioId;
-    }
-
-    public void setPortfolioId(String portfolioId) {
-        this.portfolioId = portfolioId;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof MarketPortfolio)) return false;
         MarketPortfolio that = (MarketPortfolio) o;
-        return Objects.equals(marketId, that.marketId) &&
-                Objects.equals(portfolioId, that.portfolioId);
+        return Objects.equals(marketId, that.marketId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(marketId, portfolioId);
+        return Objects.hash(marketId);
     }
 
     @Override
     public String toString() {
         return "MarketPortfolio{" +
                 "marketId='" + marketId + '\'' +
-                ", portfolioId='" + portfolioId + '\'' +
                 '}';
     }
 }
