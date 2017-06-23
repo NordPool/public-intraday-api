@@ -8,7 +8,7 @@ package com.nordpool.id.publicapi.v1.order.error;
 
 public enum ErrorCode {
     MISSING_REQUIRED_FIELD,
-    ILLEGAL_CONTRACT_ID,
+    ILLEGAL_FIELD,
     FIELD_OUT_OF_RANGE,
     FIELD_FORMAT_INVALID,
     ITEM_NOT_FOUND,
