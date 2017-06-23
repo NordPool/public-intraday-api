@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.nordpool.id.publicapi.v1.serialize.DateDeserializer;
 import com.nordpool.id.publicapi.v1.serialize.DateSerializer;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -61,18 +60,9 @@ public class OrderExecutionEntry {
     private Long clipPriceChange;
     private Long remainingQuantity;
     private List<Error> errors;
-    private Boolean deleted;
 
 
     public OrderExecutionEntry() {
-    }
-
-    public Boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
     }
 
     public long getEventSequenceNo() {
@@ -287,73 +277,38 @@ public class OrderExecutionEntry {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof OrderExecutionEntry)) return false;
-
         OrderExecutionEntry that = (OrderExecutionEntry) o;
-
-        if (eventSequenceNo != that.eventSequenceNo) return false;
-        if (revisionNo != that.revisionNo) return false;
-        if (deliveryAreaId != that.deliveryAreaId) return false;
-        if (unitPrice != that.unitPrice) return false;
-        if (quantity != that.quantity) return false;
-        if (tenantId != null ? !tenantId.equals(that.tenantId) : that.tenantId != null) return false;
-        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
-        if (orderId != null ? !orderId.equals(that.orderId) : that.orderId != null) return false;
-        if (previousOrderId != null ? !previousOrderId.equals(that.previousOrderId) : that.previousOrderId != null)
-            return false;
-        if (originalOrderId != null ? !originalOrderId.equals(that.originalOrderId) : that.originalOrderId != null)
-            return false;
-        if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
-        if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
-        if (clientOrderId != null ? !clientOrderId.equals(that.clientOrderId) : that.clientOrderId != null)
-            return false;
-        if (portfolioId != null ? !portfolioId.equals(that.portfolioId) : that.portfolioId != null) return false;
-        if (contractIds != null ? !contractIds.equals(that.contractIds) : that.contractIds != null) return false;
-        if (side != that.side) return false;
-        if (orderType != that.orderType) return false;
-        if (timeInForce != that.timeInForce) return false;
-        if (expireTime != null ? !expireTime.equals(that.expireTime) : that.expireTime != null) return false;
-        if (text != null ? !text.equals(that.text) : that.text != null) return false;
-        if (state != that.state) return false;
-        if (action != that.action) return false;
-        if (clipSize != null ? !clipSize.equals(that.clipSize) : that.clipSize != null) return false;
-        if (clipPriceChange != null ? !clipPriceChange.equals(that.clipPriceChange) : that.clipPriceChange != null)
-            return false;
-        if (remainingQuantity != null ? !remainingQuantity.equals(that.remainingQuantity) : that.remainingQuantity != null)
-            return false;
-        if (errors != null ? !errors.equals(that.errors) : that.errors != null) return false;
-        return deleted != null ? deleted.equals(that.deleted) : that.deleted == null;
+        return eventSequenceNo == that.eventSequenceNo &&
+                revisionNo == that.revisionNo &&
+                deliveryAreaId == that.deliveryAreaId &&
+                unitPrice == that.unitPrice &&
+                quantity == that.quantity &&
+                Objects.equals(tenantId, that.tenantId) &&
+                Objects.equals(userId, that.userId) &&
+                Objects.equals(orderId, that.orderId) &&
+                Objects.equals(previousOrderId, that.previousOrderId) &&
+                Objects.equals(originalOrderId, that.originalOrderId) &&
+                Objects.equals(createdAt, that.createdAt) &&
+                Objects.equals(updatedAt, that.updatedAt) &&
+                Objects.equals(clientOrderId, that.clientOrderId) &&
+                Objects.equals(portfolioId, that.portfolioId) &&
+                Objects.equals(contractIds, that.contractIds) &&
+                side == that.side &&
+                orderType == that.orderType &&
+                timeInForce == that.timeInForce &&
+                Objects.equals(expireTime, that.expireTime) &&
+                Objects.equals(text, that.text) &&
+                state == that.state &&
+                action == that.action &&
+                Objects.equals(clipSize, that.clipSize) &&
+                Objects.equals(clipPriceChange, that.clipPriceChange) &&
+                Objects.equals(remainingQuantity, that.remainingQuantity) &&
+                Objects.equals(errors, that.errors);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (eventSequenceNo ^ (eventSequenceNo >>> 32));
-        result = 31 * result + (tenantId != null ? tenantId.hashCode() : 0);
-        result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (orderId != null ? orderId.hashCode() : 0);
-        result = 31 * result + (int) (revisionNo ^ (revisionNo >>> 32));
-        result = 31 * result + (previousOrderId != null ? previousOrderId.hashCode() : 0);
-        result = 31 * result + (originalOrderId != null ? originalOrderId.hashCode() : 0);
-        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
-        result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
-        result = 31 * result + (clientOrderId != null ? clientOrderId.hashCode() : 0);
-        result = 31 * result + (portfolioId != null ? portfolioId.hashCode() : 0);
-        result = 31 * result + (contractIds != null ? contractIds.hashCode() : 0);
-        result = 31 * result + (int) (deliveryAreaId ^ (deliveryAreaId >>> 32));
-        result = 31 * result + (side != null ? side.hashCode() : 0);
-        result = 31 * result + (orderType != null ? orderType.hashCode() : 0);
-        result = 31 * result + (int) (unitPrice ^ (unitPrice >>> 32));
-        result = 31 * result + (int) (quantity ^ (quantity >>> 32));
-        result = 31 * result + (timeInForce != null ? timeInForce.hashCode() : 0);
-        result = 31 * result + (expireTime != null ? expireTime.hashCode() : 0);
-        result = 31 * result + (text != null ? text.hashCode() : 0);
-        result = 31 * result + (state != null ? state.hashCode() : 0);
-        result = 31 * result + (action != null ? action.hashCode() : 0);
-        result = 31 * result + (clipSize != null ? clipSize.hashCode() : 0);
-        result = 31 * result + (clipPriceChange != null ? clipPriceChange.hashCode() : 0);
-        result = 31 * result + (remainingQuantity != null ? remainingQuantity.hashCode() : 0);
-        result = 31 * result + (errors != null ? errors.hashCode() : 0);
-        result = 31 * result + (deleted != null ? deleted.hashCode() : 0);
-        return result;
+        return Objects.hash(eventSequenceNo, tenantId, userId, orderId, revisionNo, previousOrderId, originalOrderId, createdAt, updatedAt, clientOrderId, portfolioId, contractIds, deliveryAreaId, side, orderType, unitPrice, quantity, timeInForce, expireTime, text, state, action, clipSize, clipPriceChange, remainingQuantity, errors);
     }
 
     @Override
@@ -385,7 +340,6 @@ public class OrderExecutionEntry {
                 ", clipPriceChange=" + clipPriceChange +
                 ", remainingQuantity=" + remainingQuantity +
                 ", errors=" + errors +
-                ", deleted=" + deleted +
                 '}';
     }
 }
