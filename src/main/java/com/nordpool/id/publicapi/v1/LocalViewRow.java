@@ -6,14 +6,9 @@
 
 package com.nordpool.id.publicapi.v1;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.nordpool.id.publicapi.v1.base.BaseRow;
 import com.nordpool.id.publicapi.v1.order.Order;
-import com.nordpool.id.publicapi.v1.serialize.DateDeserializer;
-import com.nordpool.id.publicapi.v1.serialize.DateSerializer;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,9 +18,6 @@ public class LocalViewRow extends BaseRow {
 
     private String contractId;
 
-    @JsonSerialize(using = DateSerializer.class)
-    @JsonDeserialize(using = DateDeserializer.class)
-    private ZonedDateTime createdAt;
     private Long deliveryAreaId;
     private String orderExecutionRestriction;
 
@@ -56,14 +48,6 @@ public class LocalViewRow extends BaseRow {
         this.contractId = contractId;
     }
 
-    public ZonedDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(ZonedDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public Long getDeliveryAreaId() {
         return deliveryAreaId;
     }
@@ -89,14 +73,13 @@ public class LocalViewRow extends BaseRow {
         return Objects.equals(buyOrders, that.buyOrders) &&
                 Objects.equals(sellOrders, that.sellOrders) &&
                 Objects.equals(contractId, that.contractId) &&
-                Objects.equals(createdAt, that.createdAt) &&
                 Objects.equals(deliveryAreaId, that.deliveryAreaId) &&
                 Objects.equals(orderExecutionRestriction, that.orderExecutionRestriction);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), buyOrders, sellOrders, contractId, createdAt, deliveryAreaId, orderExecutionRestriction);
+        return Objects.hash(super.hashCode(), buyOrders, sellOrders, contractId, deliveryAreaId, orderExecutionRestriction);
     }
 
     @Override
@@ -105,7 +88,6 @@ public class LocalViewRow extends BaseRow {
                 "buyOrders=" + buyOrders +
                 ", sellOrders=" + sellOrders +
                 ", contractId='" + contractId + '\'' +
-                ", createdAt=" + createdAt +
                 ", deliveryAreaId=" + deliveryAreaId +
                 ", orderExecutionRestriction='" + orderExecutionRestriction + '\'' +
                 "} " + super.toString();
