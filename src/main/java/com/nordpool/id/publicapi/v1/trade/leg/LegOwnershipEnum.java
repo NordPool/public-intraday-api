@@ -4,17 +4,12 @@
  * Please send feedback to idapi@nordpoolgroup.com.
  */
 
-package com.nordpool.id.publicapi.v1.order.error;
+package com.nordpool.id.publicapi.v1.trade.leg;
 
-public enum ErrorCode {
-    MISSING_REQUIRED_FIELD,
-    ILLEGAL_FIELD,
-    FIELD_OUT_OF_RANGE,
-    FIELD_FORMAT_INVALID,
-    ITEM_NOT_FOUND,
-    ACCESS_MODE_VIOLATION,
-    THIRD_PARTY;
-
-    private ErrorCode() {
-    }
+public enum LegOwnershipEnum {
+    OWN_BUY,
+    OWN_SELL,
+    COMPANY_BUY,
+    COMPANY_SELL,
+    OTHER
 }

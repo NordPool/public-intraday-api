@@ -11,7 +11,6 @@ import java.util.Objects;
 public class MarketPortfolio {
     private String marketId;
 
-
     public MarketPortfolio() {
     }
 
@@ -24,13 +23,12 @@ public class MarketPortfolio {
     }
 
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof MarketPortfolio)) return false;
         MarketPortfolio that = (MarketPortfolio) o;
-        return Objects.equals(marketId, that.marketId) ;
+        return Objects.equals(marketId, that.marketId);
     }
 
     @Override
@@ -41,7 +39,7 @@ public class MarketPortfolio {
     @Override
     public String toString() {
         return "MarketPortfolio{" +
-                "marketId='" + marketId + '\''+
+                "marketId='" + marketId + '\'' +
                 '}';
     }
 }
