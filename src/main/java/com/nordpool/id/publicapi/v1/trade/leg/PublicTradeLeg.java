@@ -6,7 +6,32 @@
 
 package com.nordpool.id.publicapi.v1.trade.leg;
 
+import java.util.Objects;
+
 public class PublicTradeLeg extends BaseTradeLeg {
+    private LegOwnershipEnum ownership;
+
     public PublicTradeLeg() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PublicTradeLeg)) return false;
+        if (!super.equals(o)) return false;
+        PublicTradeLeg that = (PublicTradeLeg) o;
+        return ownership == that.ownership;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), ownership);
+    }
+
+    @Override
+    public String toString() {
+        return "PublicTradeLeg{" +
+                "ownership=" + ownership +
+                "} " + super.toString();
     }
 }
