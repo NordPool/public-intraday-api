@@ -16,8 +16,11 @@ import java.util.Objects;
 
 public class Order {
     private String orderId;
+    private String contractId;
     private Long deliveryAreaId;
     private long price;
+    private String portfolioId;
+    private String userId;
     private long qty;
     @JsonSerialize(
             using = DateSerializer.class
@@ -46,6 +49,14 @@ public class Order {
         this.orderId = orderId;
     }
 
+    public String getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(String contractId) {
+        this.contractId = contractId;
+    }
+
     public Long getDeliveryAreaId() {
         return deliveryAreaId;
     }
@@ -60,6 +71,22 @@ public class Order {
 
     public void setPrice(long price) {
         this.price = price;
+    }
+
+    public String getPortfolioId() {
+        return portfolioId;
+    }
+
+    public void setPortfolioId(String portfolioId) {
+        this.portfolioId = portfolioId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public long getQty() {
@@ -103,22 +130,28 @@ public class Order {
                 qty == order.qty &&
                 deleted == order.deleted &&
                 Objects.equals(orderId, order.orderId) &&
+                Objects.equals(contractId, order.contractId) &&
                 Objects.equals(deliveryAreaId, order.deliveryAreaId) &&
+                Objects.equals(portfolioId, order.portfolioId) &&
+                Objects.equals(userId, order.userId) &&
                 Objects.equals(createdAt, order.createdAt) &&
                 Objects.equals(updatedAt, order.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, deliveryAreaId, price, qty, createdAt, updatedAt, deleted);
+        return Objects.hash(orderId, contractId, deliveryAreaId, price, portfolioId, userId, qty, createdAt, updatedAt, deleted);
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "orderId='" + orderId + '\'' +
+                ", contractId='" + contractId + '\'' +
                 ", deliveryAreaId=" + deliveryAreaId +
                 ", price=" + price +
+                ", portfolioId='" + portfolioId + '\'' +
+                ", userId='" + userId + '\'' +
                 ", qty=" + qty +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
