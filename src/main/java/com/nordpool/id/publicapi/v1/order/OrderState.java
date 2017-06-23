@@ -7,6 +7,7 @@
 package com.nordpool.id.publicapi.v1.order;
 
 public enum OrderState {
+    PENDING,
     ACTI,
     HIBE,
     IACT,
