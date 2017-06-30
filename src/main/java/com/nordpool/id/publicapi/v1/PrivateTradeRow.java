@@ -49,14 +49,14 @@ public class PrivateTradeRow extends BaseTradeRow<PrivateTradeLeg> {
         if (!(o instanceof PrivateTradeRow)) return false;
         if (!super.equals(o)) return false;
         PrivateTradeRow that = (PrivateTradeRow) o;
-        return Objects.equals(getCancellationFee(), that.getCancellationFee()) &&
-                Objects.equals(getCancellationDeadLine(), that.getCancellationDeadLine()) &&
-                Objects.equals(getRevisionNo(), that.getRevisionNo());
+        return Objects.equals(cancellationFee, that.cancellationFee) &&
+                Objects.equals(cancellationDeadLine, that.cancellationDeadLine) &&
+                Objects.equals(revisionNo, that.revisionNo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getCancellationFee(), getCancellationDeadLine(), getRevisionNo());
+        return Objects.hash(super.hashCode(), cancellationFee, cancellationDeadLine, revisionNo);
     }
 
     @Override
