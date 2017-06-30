@@ -14,6 +14,7 @@ import java.util.Objects;
 public class PrivateTradeRow extends BaseTradeRow<PrivateTradeLeg> {
     private Long cancellationFee;
     private String cancellationDeadLine;
+    private Long revisionNo;
 
     public PrivateTradeRow() {
     }
@@ -34,19 +35,28 @@ public class PrivateTradeRow extends BaseTradeRow<PrivateTradeLeg> {
         this.cancellationDeadLine = cancellationDeadLine;
     }
 
+    public Long getRevisionNo() {
+        return revisionNo;
+    }
+
+    public void setRevisionNo(Long revisionNo) {
+        this.revisionNo = revisionNo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof PrivateTradeRow)) return false;
         if (!super.equals(o)) return false;
         PrivateTradeRow that = (PrivateTradeRow) o;
-        return Objects.equals(cancellationFee, that.cancellationFee) &&
-                Objects.equals(cancellationDeadLine, that.cancellationDeadLine);
+        return Objects.equals(getCancellationFee(), that.getCancellationFee()) &&
+                Objects.equals(getCancellationDeadLine(), that.getCancellationDeadLine()) &&
+                Objects.equals(getRevisionNo(), that.getRevisionNo());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), cancellationFee, cancellationDeadLine);
+        return Objects.hash(super.hashCode(), getCancellationFee(), getCancellationDeadLine(), getRevisionNo());
     }
 
     @Override
@@ -54,6 +64,7 @@ public class PrivateTradeRow extends BaseTradeRow<PrivateTradeLeg> {
         return "PrivateTradeRow{" +
                 "cancellationFee=" + cancellationFee +
                 ", cancellationDeadLine='" + cancellationDeadLine + '\'' +
+                ", revisionNo=" + revisionNo +
                 "} " + super.toString();
     }
 }
