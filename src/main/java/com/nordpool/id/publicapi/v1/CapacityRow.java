@@ -16,7 +16,7 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 public class CapacityRow extends BaseRow {
-    private int eventSequenceNo;
+    private Integer eventSequenceNo;
     private boolean internal;
     @JsonSerialize(
             using = DateSerializer.class
@@ -25,21 +25,21 @@ public class CapacityRow extends BaseRow {
             using = DateDeserializer.class
     )
     private ZonedDateTime publicationTime;
-    private long marketAreaFrom;
-    private long marketAreaTo;
-    private long deliveryStart;
-    private long deliveryEnd;
-    private int inCapacity;
-    private int outCapacity;
+    private Long marketAreaFrom;
+    private Long marketAreaTo;
+    private Long deliveryStart;
+    private Long deliveryEnd;
+    private Integer inCapacity;
+    private Integer outCapacity;
 
     public CapacityRow() {
     }
 
-    public int getEventSequenceNo() {
+    public Integer getEventSequenceNo() {
         return eventSequenceNo;
     }
 
-    public void setEventSequenceNo(int eventSequenceNo) {
+    public void setEventSequenceNo(Integer eventSequenceNo) {
         this.eventSequenceNo = eventSequenceNo;
     }
 
@@ -59,51 +59,51 @@ public class CapacityRow extends BaseRow {
         this.publicationTime = publicationTime;
     }
 
-    public long getMarketAreaFrom() {
+    public Long getMarketAreaFrom() {
         return marketAreaFrom;
     }
 
-    public void setMarketAreaFrom(long marketAreaFrom) {
+    public void setMarketAreaFrom(Long marketAreaFrom) {
         this.marketAreaFrom = marketAreaFrom;
     }
 
-    public long getMarketAreaTo() {
+    public Long getMarketAreaTo() {
         return marketAreaTo;
     }
 
-    public void setMarketAreaTo(long marketAreaTo) {
+    public void setMarketAreaTo(Long marketAreaTo) {
         this.marketAreaTo = marketAreaTo;
     }
 
-    public long getDeliveryStart() {
+    public Long getDeliveryStart() {
         return deliveryStart;
     }
 
-    public void setDeliveryStart(long deliveryStart) {
+    public void setDeliveryStart(Long deliveryStart) {
         this.deliveryStart = deliveryStart;
     }
 
-    public long getDeliveryEnd() {
+    public Long getDeliveryEnd() {
         return deliveryEnd;
     }
 
-    public void setDeliveryEnd(long deliveryEnd) {
+    public void setDeliveryEnd(Long deliveryEnd) {
         this.deliveryEnd = deliveryEnd;
     }
 
-    public int getInCapacity() {
+    public Integer getInCapacity() {
         return inCapacity;
     }
 
-    public void setInCapacity(int inCapacity) {
+    public void setInCapacity(Integer inCapacity) {
         this.inCapacity = inCapacity;
     }
 
-    public int getOutCapacity() {
+    public Integer getOutCapacity() {
         return outCapacity;
     }
 
-    public void setOutCapacity(int outCapacity) {
+    public void setOutCapacity(Integer outCapacity) {
         this.outCapacity = outCapacity;
     }
 
@@ -113,15 +113,15 @@ public class CapacityRow extends BaseRow {
         if (!(o instanceof CapacityRow)) return false;
         if (!super.equals(o)) return false;
         CapacityRow that = (CapacityRow) o;
-        return eventSequenceNo == that.eventSequenceNo &&
-                internal == that.internal &&
-                marketAreaFrom == that.marketAreaFrom &&
-                marketAreaTo == that.marketAreaTo &&
-                deliveryStart == that.deliveryStart &&
-                deliveryEnd == that.deliveryEnd &&
-                inCapacity == that.inCapacity &&
-                outCapacity == that.outCapacity &&
-                Objects.equals(publicationTime, that.publicationTime);
+        return internal == that.internal &&
+                Objects.equals(eventSequenceNo, that.eventSequenceNo) &&
+                Objects.equals(publicationTime, that.publicationTime) &&
+                Objects.equals(marketAreaFrom, that.marketAreaFrom) &&
+                Objects.equals(marketAreaTo, that.marketAreaTo) &&
+                Objects.equals(deliveryStart, that.deliveryStart) &&
+                Objects.equals(deliveryEnd, that.deliveryEnd) &&
+                Objects.equals(inCapacity, that.inCapacity) &&
+                Objects.equals(outCapacity, that.outCapacity);
     }
 
     @Override

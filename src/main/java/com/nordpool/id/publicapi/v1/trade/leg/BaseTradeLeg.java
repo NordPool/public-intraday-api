@@ -13,9 +13,9 @@ import java.util.Objects;
 public abstract class BaseTradeLeg {
     private String contractId;
     private OrderSide side;
-    private long unitPrice;
-    private long quantity;
-    private long deliveryAreaId;
+    private Long unitPrice;
+    private Long quantity;
+    private Long deliveryAreaId;
 
     public BaseTradeLeg() {
     }
@@ -36,27 +36,27 @@ public abstract class BaseTradeLeg {
         this.side = side;
     }
 
-    public long getUnitPrice() {
+    public Long getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(long unitPrice) {
+    public void setUnitPrice(Long unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public long getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(long quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
-    public long getDeliveryAreaId() {
+    public Long getDeliveryAreaId() {
         return deliveryAreaId;
     }
 
-    public void setDeliveryAreaId(long deliveryAreaId) {
+    public void setDeliveryAreaId(Long deliveryAreaId) {
         this.deliveryAreaId = deliveryAreaId;
     }
 
@@ -65,11 +65,11 @@ public abstract class BaseTradeLeg {
         if (this == o) return true;
         if (!(o instanceof BaseTradeLeg)) return false;
         BaseTradeLeg that = (BaseTradeLeg) o;
-        return unitPrice == that.unitPrice &&
-                quantity == that.quantity &&
-                deliveryAreaId == that.deliveryAreaId &&
-                Objects.equals(contractId, that.contractId) &&
-                side == that.side;
+        return Objects.equals(contractId, that.contractId) &&
+                side == that.side &&
+                Objects.equals(unitPrice, that.unitPrice) &&
+                Objects.equals(quantity, that.quantity) &&
+                Objects.equals(deliveryAreaId, that.deliveryAreaId);
     }
 
     @Override

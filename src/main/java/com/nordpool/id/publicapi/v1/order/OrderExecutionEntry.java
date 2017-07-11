@@ -16,11 +16,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class OrderExecutionEntry {
-    private long eventSequenceNo;
+    private Long eventSequenceNo;
     private String tenantId;
     private String userId;
     private String orderId;
-    private long revisionNo;
+    private Long revisionNo;
     private String previousOrderId;
     private String originalOrderId;
     @JsonSerialize(
@@ -40,11 +40,11 @@ public class OrderExecutionEntry {
     private String clientOrderId;
     private String portfolioId;
     private List<String> contractIds;
-    private long deliveryAreaId;
+    private Long deliveryAreaId;
     private OrderSide side;
     private OrderType orderType;
-    private long unitPrice;
-    private long quantity;
+    private Long unitPrice;
+    private Long quantity;
     private TimeInForce timeInForce;
     @JsonSerialize(
             using = DateSerializer.class
@@ -65,11 +65,11 @@ public class OrderExecutionEntry {
     public OrderExecutionEntry() {
     }
 
-    public long getEventSequenceNo() {
+    public Long getEventSequenceNo() {
         return eventSequenceNo;
     }
 
-    public void setEventSequenceNo(long eventSequenceNo) {
+    public void setEventSequenceNo(Long eventSequenceNo) {
         this.eventSequenceNo = eventSequenceNo;
     }
 
@@ -97,11 +97,11 @@ public class OrderExecutionEntry {
         this.orderId = orderId;
     }
 
-    public long getRevisionNo() {
+    public Long getRevisionNo() {
         return revisionNo;
     }
 
-    public void setRevisionNo(long revisionNo) {
+    public void setRevisionNo(Long revisionNo) {
         this.revisionNo = revisionNo;
     }
 
@@ -161,11 +161,11 @@ public class OrderExecutionEntry {
         this.contractIds = contractIds;
     }
 
-    public long getDeliveryAreaId() {
+    public Long getDeliveryAreaId() {
         return deliveryAreaId;
     }
 
-    public void setDeliveryAreaId(long deliveryAreaId) {
+    public void setDeliveryAreaId(Long deliveryAreaId) {
         this.deliveryAreaId = deliveryAreaId;
     }
 
@@ -185,19 +185,19 @@ public class OrderExecutionEntry {
         this.orderType = orderType;
     }
 
-    public long getUnitPrice() {
+    public Long getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(long unitPrice) {
+    public void setUnitPrice(Long unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public long getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(long quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
@@ -278,14 +278,11 @@ public class OrderExecutionEntry {
         if (this == o) return true;
         if (!(o instanceof OrderExecutionEntry)) return false;
         OrderExecutionEntry that = (OrderExecutionEntry) o;
-        return eventSequenceNo == that.eventSequenceNo &&
-                revisionNo == that.revisionNo &&
-                deliveryAreaId == that.deliveryAreaId &&
-                unitPrice == that.unitPrice &&
-                quantity == that.quantity &&
+        return Objects.equals(eventSequenceNo, that.eventSequenceNo) &&
                 Objects.equals(tenantId, that.tenantId) &&
                 Objects.equals(userId, that.userId) &&
                 Objects.equals(orderId, that.orderId) &&
+                Objects.equals(revisionNo, that.revisionNo) &&
                 Objects.equals(previousOrderId, that.previousOrderId) &&
                 Objects.equals(originalOrderId, that.originalOrderId) &&
                 Objects.equals(createdAt, that.createdAt) &&
@@ -293,8 +290,11 @@ public class OrderExecutionEntry {
                 Objects.equals(clientOrderId, that.clientOrderId) &&
                 Objects.equals(portfolioId, that.portfolioId) &&
                 Objects.equals(contractIds, that.contractIds) &&
+                Objects.equals(deliveryAreaId, that.deliveryAreaId) &&
                 side == that.side &&
                 orderType == that.orderType &&
+                Objects.equals(unitPrice, that.unitPrice) &&
+                Objects.equals(quantity, that.quantity) &&
                 timeInForce == that.timeInForce &&
                 Objects.equals(expireTime, that.expireTime) &&
                 Objects.equals(text, that.text) &&
