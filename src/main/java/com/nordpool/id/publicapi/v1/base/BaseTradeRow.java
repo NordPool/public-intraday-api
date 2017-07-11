@@ -27,7 +27,7 @@ public abstract class BaseTradeRow<LEG extends BaseTradeLeg> extends BaseRow {
     private TradeState state;
     private List<LEG> legs;
     private Currency currency;
-    private long eventSequenceNo;
+    private Long eventSequenceNo;
     private boolean deleted;
     private String mediumDisplayName;
 
@@ -74,11 +74,11 @@ public abstract class BaseTradeRow<LEG extends BaseTradeLeg> extends BaseRow {
         this.currency = currency;
     }
 
-    public long getEventSequenceNo() {
+    public Long getEventSequenceNo() {
         return eventSequenceNo;
     }
 
-    public void setEventSequenceNo(long eventSequenceNo) {
+    public void setEventSequenceNo(Long eventSequenceNo) {
         this.eventSequenceNo = eventSequenceNo;
     }
 
@@ -104,13 +104,13 @@ public abstract class BaseTradeRow<LEG extends BaseTradeLeg> extends BaseRow {
         if (!(o instanceof BaseTradeRow)) return false;
         if (!super.equals(o)) return false;
         BaseTradeRow<?> that = (BaseTradeRow<?>) o;
-        return eventSequenceNo == that.eventSequenceNo &&
-                deleted == that.deleted &&
+        return deleted == that.deleted &&
                 Objects.equals(tradeId, that.tradeId) &&
                 Objects.equals(tradeTime, that.tradeTime) &&
                 state == that.state &&
                 Objects.equals(legs, that.legs) &&
                 currency == that.currency &&
+                Objects.equals(eventSequenceNo, that.eventSequenceNo) &&
                 Objects.equals(mediumDisplayName, that.mediumDisplayName);
     }
 

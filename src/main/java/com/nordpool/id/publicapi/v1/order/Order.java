@@ -17,8 +17,8 @@ import java.util.Objects;
 public class Order {
     private String orderId;
     private Long deliveryAreaId;
-    private long price;
-    private long qty;
+    private Long price;
+    private Long qty;
     @JsonSerialize(
             using = DateSerializer.class
     )
@@ -54,19 +54,19 @@ public class Order {
         this.deliveryAreaId = deliveryAreaId;
     }
 
-    public long getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
-    public long getQty() {
+    public Long getQty() {
         return qty;
     }
 
-    public void setQty(long qty) {
+    public void setQty(Long qty) {
         this.qty = qty;
     }
 
@@ -99,11 +99,11 @@ public class Order {
         if (this == o) return true;
         if (!(o instanceof Order)) return false;
         Order order = (Order) o;
-        return price == order.price &&
-                qty == order.qty &&
-                deleted == order.deleted &&
+        return deleted == order.deleted &&
                 Objects.equals(orderId, order.orderId) &&
                 Objects.equals(deliveryAreaId, order.deliveryAreaId) &&
+                Objects.equals(price, order.price) &&
+                Objects.equals(qty, order.qty) &&
                 Objects.equals(createdAt, order.createdAt) &&
                 Objects.equals(updatedAt, order.updatedAt);
     }
