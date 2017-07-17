@@ -8,10 +8,9 @@ package com.nordpool.id.publicapi.v1.trade;
 
 public enum TradeState {
     COMPLETED,
-    CANCELLED,
-    RECALL_REJECTED,
-    RECALL_GRANTED,
-    RECALL_REQUESTED;
+    DISPUTED,
+    NOT_CANCELLED,
+    CANCELLED;
 
     private TradeState() {
     }
