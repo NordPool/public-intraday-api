@@ -11,6 +11,14 @@ import java.util.Objects;
 public class PublicTradeLeg extends BaseTradeLeg {
     private LegOwnershipEnum ownership;
 
+    public LegOwnershipEnum getOwnership() {
+        return ownership;
+    }
+
+    public void setOwnership(LegOwnershipEnum ownership) {
+        this.ownership = ownership;
+    }
+
     public PublicTradeLeg() {
     }
 
