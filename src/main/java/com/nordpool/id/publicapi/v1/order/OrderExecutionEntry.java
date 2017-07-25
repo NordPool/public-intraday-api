@@ -8,6 +8,7 @@ package com.nordpool.id.publicapi.v1.order;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.nordpool.id.publicapi.v1.order.error.Error;
 import com.nordpool.id.publicapi.v1.serialize.DateDeserializer;
 import com.nordpool.id.publicapi.v1.serialize.DateSerializer;
 
