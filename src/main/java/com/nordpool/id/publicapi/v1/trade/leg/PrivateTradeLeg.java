@@ -17,6 +17,8 @@ public class PrivateTradeLeg extends BaseTradeLeg {
     private String portfolioId;
     private String refOrderId;
     private boolean aggressor;
+    private String marketId;
+    private String tenantId;
     private String userId;
     private Long deliveryStart;
     private Long deliveryEnd;
@@ -51,6 +53,22 @@ public class PrivateTradeLeg extends BaseTradeLeg {
 
     public void setAggressor(boolean aggressor) {
         this.aggressor = aggressor;
+    }
+
+    public String getMarketId() {
+        return marketId;
+    }
+
+    public void setMarketId(String marketId) {
+        this.marketId = marketId;
+    }
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
     }
 
     public String getUserId() {
@@ -124,6 +142,8 @@ public class PrivateTradeLeg extends BaseTradeLeg {
         if (!super.equals(o)) return false;
         PrivateTradeLeg that = (PrivateTradeLeg) o;
         return aggressor == that.aggressor &&
+                Objects.equals(marketId, that.marketId) &&
+                Objects.equals(tenantId, that.tenantId) &&
                 Objects.equals(portfolioId, that.portfolioId) &&
                 Objects.equals(refOrderId, that.refOrderId) &&
                 Objects.equals(userId, that.userId) &&
@@ -138,13 +158,15 @@ public class PrivateTradeLeg extends BaseTradeLeg {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), portfolioId, refOrderId, aggressor, userId, deliveryStart, deliveryEnd, orderState, orderType, text, orderAction, timeInForce);
+        return Objects.hash(super.hashCode(), marketId, tenantId, portfolioId, refOrderId, aggressor, userId, deliveryStart, deliveryEnd, orderState, orderType, text, orderAction, timeInForce);
     }
 
     @Override
     public String toString() {
         return "PrivateTradeLeg{" +
-                "portfolioId='" + portfolioId + '\'' +
+                "  marketId='" + marketId + '\'' +
+                ", tenantId='" + tenantId + '\'' +
+                ", portfolioId='" + portfolioId + '\'' +
                 ", refOrderId='" + refOrderId + '\'' +
                 ", aggressor=" + aggressor +
                 ", userId='" + userId + '\'' +

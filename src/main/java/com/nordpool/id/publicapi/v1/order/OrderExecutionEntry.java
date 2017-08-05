@@ -18,6 +18,7 @@ import java.util.Objects;
 
 public class OrderExecutionEntry {
     private Long eventSequenceNo;
+    private String marketId;
     private String tenantId;
     private String userId;
     private String orderId;
@@ -72,6 +73,14 @@ public class OrderExecutionEntry {
 
     public void setEventSequenceNo(Long eventSequenceNo) {
         this.eventSequenceNo = eventSequenceNo;
+    }
+
+    public String getMarketId() {
+        return marketId;
+    }
+
+    public void setMarketId(String marketId) {
+        this.marketId = marketId;
     }
 
     public String getTenantId() {
@@ -280,6 +289,7 @@ public class OrderExecutionEntry {
         if (!(o instanceof OrderExecutionEntry)) return false;
         OrderExecutionEntry that = (OrderExecutionEntry) o;
         return Objects.equals(eventSequenceNo, that.eventSequenceNo) &&
+                Objects.equals(marketId, that.marketId) &&
                 Objects.equals(tenantId, that.tenantId) &&
                 Objects.equals(userId, that.userId) &&
                 Objects.equals(orderId, that.orderId) &&
@@ -309,13 +319,14 @@ public class OrderExecutionEntry {
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventSequenceNo, tenantId, userId, orderId, revisionNo, previousOrderId, originalOrderId, createdAt, updatedAt, clientOrderId, portfolioId, contractIds, deliveryAreaId, side, orderType, unitPrice, quantity, timeInForce, expireTime, text, state, action, clipSize, clipPriceChange, remainingQuantity, errors);
+        return Objects.hash(eventSequenceNo, marketId, tenantId, userId, orderId, revisionNo, previousOrderId, originalOrderId, createdAt, updatedAt, clientOrderId, portfolioId, contractIds, deliveryAreaId, side, orderType, unitPrice, quantity, timeInForce, expireTime, text, state, action, clipSize, clipPriceChange, remainingQuantity, errors);
     }
 
     @Override
     public String toString() {
         return "OrderExecutionEntry{" +
                 "eventSequenceNo=" + eventSequenceNo +
+                ", marketId='" + marketId + '\'' +
                 ", tenantId='" + tenantId + '\'' +
                 ", userId='" + userId + '\'' +
                 ", orderId='" + orderId + '\'' +
