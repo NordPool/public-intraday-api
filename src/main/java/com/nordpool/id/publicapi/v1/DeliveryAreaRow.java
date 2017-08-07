@@ -11,8 +11,9 @@ import com.nordpool.id.publicapi.v1.base.BaseRow;
 import java.util.List;
 import java.util.Objects;
 
-public class AreaRow extends BaseRow {
+public class DeliveryAreaRow extends BaseRow {
     private Long deliveryAreaId;
+    private String deliveryAreaEIC;
     private String currencyCode;
     private String areaCode;
     private String timeZone;
@@ -21,7 +22,7 @@ public class AreaRow extends BaseRow {
     private Boolean deleted;
     private Long marketAreaId;
 
-    public AreaRow() {
+    public DeliveryAreaRow() {
     }
 
     public Long getDeliveryAreaId() {
@@ -30,6 +31,14 @@ public class AreaRow extends BaseRow {
 
     public void setDeliveryAreaId(Long deliveryAreaId) {
         this.deliveryAreaId = deliveryAreaId;
+    }
+
+    public String getDeliveryAreaEIC() {
+        return deliveryAreaEIC;
+    }
+
+    public void setDeliveryAreaEIC(String deliveryAreaEIC) {
+        this.deliveryAreaEIC = deliveryAreaEIC;
     }
 
     public String getCurrencyCode() {
@@ -91,28 +100,30 @@ public class AreaRow extends BaseRow {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AreaRow)) return false;
+        if (!(o instanceof DeliveryAreaRow)) return false;
         if (!super.equals(o)) return false;
-        AreaRow areaRow = (AreaRow) o;
-        return Objects.equals(deliveryAreaId, areaRow.deliveryAreaId) &&
-                Objects.equals(currencyCode, areaRow.currencyCode) &&
-                Objects.equals(areaCode, areaRow.areaCode) &&
-                Objects.equals(timeZone, areaRow.timeZone) &&
-                Objects.equals(countryIsoCode, areaRow.countryIsoCode) &&
-                Objects.equals(productTypes, areaRow.productTypes) &&
-                Objects.equals(deleted, areaRow.deleted) &&
-                Objects.equals(marketAreaId, areaRow.marketAreaId);
+        DeliveryAreaRow deliveryAreaRow = (DeliveryAreaRow) o;
+        return Objects.equals(deliveryAreaId, deliveryAreaRow.deliveryAreaId) &&
+                Objects.equals(deliveryAreaEIC, deliveryAreaRow.deliveryAreaEIC) &&
+                Objects.equals(currencyCode, deliveryAreaRow.currencyCode) &&
+                Objects.equals(areaCode, deliveryAreaRow.areaCode) &&
+                Objects.equals(timeZone, deliveryAreaRow.timeZone) &&
+                Objects.equals(countryIsoCode, deliveryAreaRow.countryIsoCode) &&
+                Objects.equals(productTypes, deliveryAreaRow.productTypes) &&
+                Objects.equals(deleted, deliveryAreaRow.deleted) &&
+                Objects.equals(marketAreaId, deliveryAreaRow.marketAreaId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), deliveryAreaId, currencyCode, areaCode, timeZone, countryIsoCode, productTypes, deleted, marketAreaId);
+        return Objects.hash(super.hashCode(), deliveryAreaId, deliveryAreaEIC, currencyCode, areaCode, timeZone, countryIsoCode, productTypes, deleted, marketAreaId);
     }
 
     @Override
     public String toString() {
-        return "AreaRow{" +
+        return "DeliveryAreaRow{" +
                 "deliveryAreaId=" + deliveryAreaId +
+                ", deliveryAreaEIC=" + deliveryAreaEIC +
                 ", currencyCode='" + currencyCode + '\'' +
                 ", areaCode='" + areaCode + '\'' +
                 ", timeZone='" + timeZone + '\'' +

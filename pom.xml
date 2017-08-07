@@ -9,11 +9,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <!-- Distribution mgmt related properties -->
+        <nexus.release.url>http://s-npspdt-dev1/nexus/content/repositories/releases</nexus.release.url>
+        <nexus.snapshots.url>http://s-npspdt-dev1/nexus/content/repositories/snapshots</nexus.snapshots.url>
+    </properties>
+
 
     <groupId>com.npspot</groupId>
     <artifactId>public.intraday.api</artifactId>
     <packaging>jar</packaging>
-    <version>1.008</version>
+    <version>1.009</version>
     <name>Nord Pool Intraday Public API classes</name>
     <url>http://www.npspot.com</url>
 
@@ -54,6 +60,12 @@
     <distributionManagement>
         <repository>
             <id>nexus</id>
+            <url>${nexus.release.url}</url>
         </repository>
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>nexus</id>
+            <url>${nexus.snapshots.url}</url>
+        </snapshotRepository>
     </distributionManagement>
 </project>
