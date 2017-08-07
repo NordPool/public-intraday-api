@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public class DeliveryAreaRow extends BaseRow {
     private Long deliveryAreaId;
-    private String deliveryAreaEIC;
+    private String eicCode;
     private String currencyCode;
     private String areaCode;
     private String timeZone;
@@ -33,12 +33,12 @@ public class DeliveryAreaRow extends BaseRow {
         this.deliveryAreaId = deliveryAreaId;
     }
 
-    public String getDeliveryAreaEIC() {
-        return deliveryAreaEIC;
+    public String getEicCode() {
+        return eicCode;
     }
 
-    public void setDeliveryAreaEIC(String deliveryAreaEIC) {
-        this.deliveryAreaEIC = deliveryAreaEIC;
+    public void setEicCode(String eicCode) {
+        this.eicCode = eicCode;
     }
 
     public String getCurrencyCode() {
@@ -104,7 +104,7 @@ public class DeliveryAreaRow extends BaseRow {
         if (!super.equals(o)) return false;
         DeliveryAreaRow deliveryAreaRow = (DeliveryAreaRow) o;
         return Objects.equals(deliveryAreaId, deliveryAreaRow.deliveryAreaId) &&
-                Objects.equals(deliveryAreaEIC, deliveryAreaRow.deliveryAreaEIC) &&
+                Objects.equals(eicCode, deliveryAreaRow.eicCode) &&
                 Objects.equals(currencyCode, deliveryAreaRow.currencyCode) &&
                 Objects.equals(areaCode, deliveryAreaRow.areaCode) &&
                 Objects.equals(timeZone, deliveryAreaRow.timeZone) &&
@@ -116,14 +116,14 @@ public class DeliveryAreaRow extends BaseRow {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), deliveryAreaId, deliveryAreaEIC, currencyCode, areaCode, timeZone, countryIsoCode, productTypes, deleted, marketAreaId);
+        return Objects.hash(super.hashCode(), deliveryAreaId, eicCode, currencyCode, areaCode, timeZone, countryIsoCode, productTypes, deleted, marketAreaId);
     }
 
     @Override
     public String toString() {
         return "DeliveryAreaRow{" +
                 "deliveryAreaId=" + deliveryAreaId +
-                ", deliveryAreaEIC=" + deliveryAreaEIC +
+                ", eicCode=" + eicCode +
                 ", currencyCode='" + currencyCode + '\'' +
                 ", areaCode='" + areaCode + '\'' +
                 ", timeZone='" + timeZone + '\'' +
