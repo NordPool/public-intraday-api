@@ -25,6 +25,7 @@ public class OrderModification {
     private Long unitPrice;
     private Long quantity;
     private TimeInForce timeInForce;
+    private ExecutionRestriction executionRestriction;
     @JsonSerialize(
             using = DateSerializer.class
     )
@@ -163,6 +164,14 @@ public class OrderModification {
         this.clipPriceChange = clipPriceChange;
     }
 
+    public ExecutionRestriction getExecutionRestriction() {
+        return executionRestriction;
+    }
+
+    public void setExecutionRestriction(ExecutionRestriction executionRestriction) {
+        this.executionRestriction = executionRestriction;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -177,6 +186,7 @@ public class OrderModification {
                 Objects.equals(unitPrice, that.unitPrice) &&
                 Objects.equals(quantity, that.quantity) &&
                 timeInForce == that.timeInForce &&
+                executionRestriction == that.executionRestriction &&
                 Objects.equals(expireTime, that.expireTime) &&
                 Objects.equals(text, that.text) &&
                 Objects.equals(clipSize, that.clipSize) &&
@@ -185,7 +195,7 @@ public class OrderModification {
 
     @Override
     public int hashCode() {
-        return Objects.hash(revisionNo, clientOrderId, orderId, portfolioId, contractIds, orderType, unitPrice, quantity, timeInForce, expireTime, text, clipSize, clipPriceChange);
+        return Objects.hash(revisionNo, clientOrderId, orderId, portfolioId, executionRestriction, contractIds, orderType, unitPrice, quantity, timeInForce, expireTime, text, clipSize, clipPriceChange);
     }
 
     @Override
@@ -200,6 +210,7 @@ public class OrderModification {
                 ", unitPrice=" + unitPrice +
                 ", quantity=" + quantity +
                 ", timeInForce=" + timeInForce +
+                ", executionRestriction=" + executionRestriction +
                 ", expireTime=" + expireTime +
                 ", text='" + text + '\'' +
                 ", clipSize=" + clipSize +

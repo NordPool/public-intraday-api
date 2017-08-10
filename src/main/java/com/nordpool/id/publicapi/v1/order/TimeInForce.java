@@ -9,7 +9,7 @@ package com.nordpool.id.publicapi.v1.order;
 public enum TimeInForce {
     IOC,
     FOK,
-    AON,
+
     NON,
     GTD,
     GFS;

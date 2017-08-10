@@ -25,6 +25,8 @@ public class OrderEntry {
     private Long unitPrice;
     private Long quantity;
     private TimeInForce timeInForce;
+    private ExecutionRestriction executionRestriction;
+
     @JsonSerialize(
             using = DateSerializer.class
     )
@@ -50,11 +52,40 @@ public class OrderEntry {
         setUnitPrice(builder.unitPrice);
         setQuantity(builder.quantity);
         setTimeInForce(builder.timeInForce);
+        setExecutionRestriction(builder.executionRestriction);
         setExpireTime(builder.expireTime);
         setText(builder.text);
         setState(builder.state);
         setClipSize(builder.clipSize);
         setClipPriceChange(builder.clipPriceChange);
+    }
+
+    public static Builder newBuilder(OrderEntry copy) {
+        Builder builder = new Builder();
+        builder.clientOrderId = copy.clientOrderId;
+        builder.portfolioId = copy.portfolioId;
+        builder.contractIds = copy.contractIds;
+        builder.deliveryAreaId = copy.deliveryAreaId;
+        builder.side = copy.side;
+        builder.orderType = copy.orderType;
+        builder.unitPrice = copy.unitPrice;
+        builder.quantity = copy.quantity;
+        builder.timeInForce = copy.timeInForce;
+        builder.executionRestriction = copy.executionRestriction;
+        builder.expireTime = copy.expireTime;
+        builder.text = copy.text;
+        builder.state = copy.state;
+        builder.clipSize = copy.clipSize;
+        builder.clipPriceChange = copy.clipPriceChange;
+        return builder;
+    }
+
+    public ExecutionRestriction getExecutionRestriction() {
+        return executionRestriction;
+    }
+
+    public void setExecutionRestriction(ExecutionRestriction executionRestriction) {
+        this.executionRestriction = executionRestriction;
     }
 
     public static Builder newBuilder() {
@@ -187,6 +218,7 @@ public class OrderEntry {
                 Objects.equals(unitPrice, that.unitPrice) &&
                 Objects.equals(quantity, that.quantity) &&
                 timeInForce == that.timeInForce &&
+                executionRestriction == that.executionRestriction &&
                 Objects.equals(expireTime, that.expireTime) &&
                 Objects.equals(text, that.text) &&
                 state == that.state &&
@@ -196,7 +228,7 @@ public class OrderEntry {
 
     @Override
     public int hashCode() {
-        return Objects.hash(clientOrderId, portfolioId, contractIds, deliveryAreaId, side, orderType, unitPrice, quantity, timeInForce, expireTime, text, state, clipSize, clipPriceChange);
+        return Objects.hash(clientOrderId, portfolioId, contractIds, deliveryAreaId, side, executionRestriction, orderType, unitPrice, quantity, timeInForce, expireTime, text, state, clipSize, clipPriceChange);
     }
 
     @Override
@@ -211,6 +243,7 @@ public class OrderEntry {
                 ", unitPrice=" + unitPrice +
                 ", quantity=" + quantity +
                 ", timeInForce=" + timeInForce +
+                ", executionRestriction=" + executionRestriction +
                 ", expireTime=" + expireTime +
                 ", text='" + text + '\'' +
                 ", state=" + state +
@@ -230,6 +263,7 @@ public class OrderEntry {
         private Long unitPrice;
         private Long quantity;
         private TimeInForce timeInForce;
+        private ExecutionRestriction executionRestriction;
         private ZonedDateTime expireTime;
         private String text;
         private OrderState state;
@@ -281,6 +315,17 @@ public class OrderEntry {
 
         public Builder withTimeInForce(TimeInForce val) {
             timeInForce = val;
+            return this;
+        }
+
+        /**
+         * Sets the {@code executionRestriction} and returns a reference to this Builder so that the methods can be chained together.
+         *
+         * @param val the {@code executionRestriction} to set
+         * @return a reference to this Builder
+         */
+        public Builder withExecutionRestriction(ExecutionRestriction val) {
+            executionRestriction = val;
             return this;
         }
 
