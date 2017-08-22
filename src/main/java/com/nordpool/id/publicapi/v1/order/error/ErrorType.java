@@ -9,6 +9,7 @@ package com.nordpool.id.publicapi.v1.order.error;
 public enum ErrorType {
     NPM,
     PRE_TRADE,
+    MW,
     LTS,
     XBID;
 
