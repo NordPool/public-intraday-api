@@ -16,7 +16,6 @@ import java.util.Objects;
 public class PrivateTradeLeg extends BaseTradeLeg {
     private String portfolioId;
     private String refOrderId;
-    private boolean aggressor;
     private String userId;
     private Long deliveryStart;
     private Long deliveryEnd;
@@ -44,15 +43,6 @@ public class PrivateTradeLeg extends BaseTradeLeg {
     public void setRefOrderId(String refOrderId) {
         this.refOrderId = refOrderId;
     }
-
-    public boolean isAggressor() {
-        return aggressor;
-    }
-
-    public void setAggressor(boolean aggressor) {
-        this.aggressor = aggressor;
-    }
-
 
     public String getUserId() {
         return userId;
@@ -124,9 +114,8 @@ public class PrivateTradeLeg extends BaseTradeLeg {
         if (!(o instanceof PrivateTradeLeg)) return false;
         if (!super.equals(o)) return false;
         PrivateTradeLeg that = (PrivateTradeLeg) o;
-        return aggressor == that.aggressor &&
 
-                Objects.equals(portfolioId, that.portfolioId) &&
+        return Objects.equals(portfolioId, that.portfolioId) &&
                 Objects.equals(refOrderId, that.refOrderId) &&
                 Objects.equals(userId, that.userId) &&
                 Objects.equals(deliveryStart, that.deliveryStart) &&
@@ -140,7 +129,7 @@ public class PrivateTradeLeg extends BaseTradeLeg {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(),  portfolioId, refOrderId, aggressor, userId, deliveryStart, deliveryEnd, orderState, orderType, text, orderAction, timeInForce);
+        return Objects.hash(super.hashCode(), portfolioId, refOrderId, userId, deliveryStart, deliveryEnd, orderState, orderType, text, orderAction, timeInForce);
     }
 
     @Override
@@ -149,7 +138,6 @@ public class PrivateTradeLeg extends BaseTradeLeg {
 
                 ", portfolioId='" + portfolioId + '\'' +
                 ", refOrderId='" + refOrderId + '\'' +
-                ", aggressor=" + aggressor +
                 ", userId='" + userId + '\'' +
                 ", deliveryStart=" + deliveryStart +
                 ", deliveryEnd=" + deliveryEnd +

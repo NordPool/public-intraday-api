@@ -16,6 +16,7 @@ public abstract class BaseTradeLeg {
     private Long unitPrice;
     private Long quantity;
     private Long deliveryAreaId;
+    private Boolean aggressor;
 
     public BaseTradeLeg() {
     }
@@ -60,6 +61,14 @@ public abstract class BaseTradeLeg {
         this.deliveryAreaId = deliveryAreaId;
     }
 
+    public Boolean getAggressor() {
+        return aggressor;
+    }
+
+    public void isAggressor(Boolean aggressor) {
+        this.aggressor = aggressor;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,12 +78,13 @@ public abstract class BaseTradeLeg {
                 side == that.side &&
                 Objects.equals(unitPrice, that.unitPrice) &&
                 Objects.equals(quantity, that.quantity) &&
-                Objects.equals(deliveryAreaId, that.deliveryAreaId);
+                Objects.equals(deliveryAreaId, that.deliveryAreaId) &&
+                Objects.equals(aggressor, that.aggressor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contractId, side, unitPrice, quantity, deliveryAreaId);
+        return Objects.hash(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);
     }
 
     @Override
@@ -85,6 +95,7 @@ public abstract class BaseTradeLeg {
                 ", unitPrice=" + unitPrice +
                 ", quantity=" + quantity +
                 ", deliveryAreaId=" + deliveryAreaId +
+                ", aggressor=" + aggressor +
                 '}';
     }
 }
