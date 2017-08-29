@@ -14,7 +14,6 @@ import java.util.Objects;
 public class OrderEntryRequest {
     private String requestId;
     private boolean rejectPartially;
-    private String memberId;
     private List<OrderEntry> orders;
 
     public OrderEntryRequest() {
@@ -23,7 +22,6 @@ public class OrderEntryRequest {
     private OrderEntryRequest(Builder builder) {
         setRequestId(builder.requestId);
         setRejectPartially(builder.rejectPartially);
-        setMemberId(builder.memberId);
         setOrders(builder.orders);
     }
 
@@ -47,14 +45,6 @@ public class OrderEntryRequest {
         this.rejectPartially = rejectPartially;
     }
 
-    public String getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
-    }
-
     public List<OrderEntry> getOrders() {
         return orders;
     }
@@ -70,13 +60,12 @@ public class OrderEntryRequest {
         OrderEntryRequest that = (OrderEntryRequest) o;
         return rejectPartially == that.rejectPartially &&
                 Objects.equals(requestId, that.requestId) &&
-                Objects.equals(memberId, that.memberId) &&
                 Objects.equals(orders, that.orders);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(requestId, rejectPartially, memberId, orders);
+        return Objects.hash(requestId, rejectPartially, orders);
     }
 
     @Override
@@ -84,7 +73,6 @@ public class OrderEntryRequest {
         return "OrderEntryRequest{" +
                 "requestId='" + requestId + '\'' +
                 ", rejectPartially=" + rejectPartially +
-                ", memberId='" + memberId + '\'' +
                 ", orders=" + orders +
                 '}';
     }
@@ -93,7 +81,6 @@ public class OrderEntryRequest {
     public static final class Builder {
         private String requestId;
         private boolean rejectPartially;
-        private String memberId;
         private List<OrderEntry> orders;
 
         private Builder() {
@@ -106,11 +93,6 @@ public class OrderEntryRequest {
 
         public Builder withRejectPartially(boolean val) {
             rejectPartially = val;
-            return this;
-        }
-
-        public Builder withMemberId(String val) {
-            memberId = val;
             return this;
         }
 
