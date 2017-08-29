@@ -16,7 +16,6 @@ import java.util.Objects;
 
 public class OrderExecutionReport extends BaseRow {
     private String requestId;
-    private String memberId;
     private ErrorType errorType;
     private List<Error> errors;
     private List<OrderExecutionEntry> orders;
@@ -30,14 +29,6 @@ public class OrderExecutionReport extends BaseRow {
 
     public void setRequestId(String requestId) {
         this.requestId = requestId;
-    }
-
-    public String getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
     }
 
     public ErrorType getErrorType() {
@@ -71,7 +62,6 @@ public class OrderExecutionReport extends BaseRow {
         if (!super.equals(o)) return false;
         OrderExecutionReport that = (OrderExecutionReport) o;
         return Objects.equals(requestId, that.requestId) &&
-                Objects.equals(memberId, that.memberId) &&
                 errorType == that.errorType &&
                 Objects.equals(errors, that.errors) &&
                 Objects.equals(orders, that.orders);
@@ -79,14 +69,13 @@ public class OrderExecutionReport extends BaseRow {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), requestId, memberId, errorType, errors, orders);
+        return Objects.hash(super.hashCode(), requestId, errorType, errors, orders);
     }
 
     @Override
     public String toString() {
         return "OrderExecutionReport{" +
                 "requestId='" + requestId + '\'' +
-                ", memberId='" + memberId + '\'' +
                 ", errorType=" + errorType +
                 ", errors=" + errors +
                 ", orders=" + orders +
