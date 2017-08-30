@@ -20,7 +20,6 @@ public class DeliveryAreaRow extends BaseRow {
     private String countryIsoCode;
     private List<String> productTypes;
     private Boolean deleted;
-    private Long marketAreaId;
 
     public DeliveryAreaRow() {
     }
@@ -89,14 +88,6 @@ public class DeliveryAreaRow extends BaseRow {
         this.deleted = deleted;
     }
 
-    public Long getMarketAreaId() {
-        return marketAreaId;
-    }
-
-    public void setMarketAreaId(Long marketAreaId) {
-        this.marketAreaId = marketAreaId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -110,13 +101,12 @@ public class DeliveryAreaRow extends BaseRow {
                 Objects.equals(timeZone, deliveryAreaRow.timeZone) &&
                 Objects.equals(countryIsoCode, deliveryAreaRow.countryIsoCode) &&
                 Objects.equals(productTypes, deliveryAreaRow.productTypes) &&
-                Objects.equals(deleted, deliveryAreaRow.deleted) &&
-                Objects.equals(marketAreaId, deliveryAreaRow.marketAreaId);
+                Objects.equals(deleted, deliveryAreaRow.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), deliveryAreaId, eicCode, currencyCode, areaCode, timeZone, countryIsoCode, productTypes, deleted, marketAreaId);
+        return Objects.hash(super.hashCode(), deliveryAreaId, eicCode, currencyCode, areaCode, timeZone, countryIsoCode, productTypes, deleted);
     }
 
     @Override
@@ -130,7 +120,6 @@ public class DeliveryAreaRow extends BaseRow {
                 ", countryIsoCode='" + countryIsoCode + '\'' +
                 ", productTypes=" + productTypes +
                 ", deleted=" + deleted +
-                ", marketAreaId=" + marketAreaId +
                 "} " + super.toString();
     }
 }
