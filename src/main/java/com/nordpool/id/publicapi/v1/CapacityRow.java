@@ -25,8 +25,8 @@ public class CapacityRow extends BaseRow {
             using = DateDeserializer.class
     )
     private ZonedDateTime publicationTime;
-    private Long marketAreaFrom;
-    private Long marketAreaTo;
+    private Long deliveryAreaFrom;
+    private Long deliveryAreaTo;
     private Long deliveryStart;
     private Long deliveryEnd;
     private Integer inCapacity;
@@ -59,20 +59,20 @@ public class CapacityRow extends BaseRow {
         this.publicationTime = publicationTime;
     }
 
-    public Long getMarketAreaFrom() {
-        return marketAreaFrom;
+    public Long getDeliveryAreaFrom() {
+        return deliveryAreaFrom;
     }
 
-    public void setMarketAreaFrom(Long marketAreaFrom) {
-        this.marketAreaFrom = marketAreaFrom;
+    public void setDeliveryAreaFrom(Long deliveryAreaFrom) {
+        this.deliveryAreaFrom = deliveryAreaFrom;
     }
 
-    public Long getMarketAreaTo() {
-        return marketAreaTo;
+    public Long getDeliveryAreaTo() {
+        return deliveryAreaTo;
     }
 
-    public void setMarketAreaTo(Long marketAreaTo) {
-        this.marketAreaTo = marketAreaTo;
+    public void setDeliveryAreaTo(Long deliveryAreaTo) {
+        this.deliveryAreaTo = deliveryAreaTo;
     }
 
     public Long getDeliveryStart() {
@@ -116,8 +116,8 @@ public class CapacityRow extends BaseRow {
         return internal == that.internal &&
                 Objects.equals(eventSequenceNo, that.eventSequenceNo) &&
                 Objects.equals(publicationTime, that.publicationTime) &&
-                Objects.equals(marketAreaFrom, that.marketAreaFrom) &&
-                Objects.equals(marketAreaTo, that.marketAreaTo) &&
+                Objects.equals(deliveryAreaFrom, that.deliveryAreaFrom) &&
+                Objects.equals(deliveryAreaTo, that.deliveryAreaTo) &&
                 Objects.equals(deliveryStart, that.deliveryStart) &&
                 Objects.equals(deliveryEnd, that.deliveryEnd) &&
                 Objects.equals(inCapacity, that.inCapacity) &&
@@ -126,7 +126,7 @@ public class CapacityRow extends BaseRow {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), eventSequenceNo, internal, publicationTime, marketAreaFrom, marketAreaTo, deliveryStart, deliveryEnd, inCapacity, outCapacity);
+        return Objects.hash(super.hashCode(), eventSequenceNo, internal, publicationTime, deliveryAreaFrom, deliveryAreaTo, deliveryStart, deliveryEnd, inCapacity, outCapacity);
     }
 
     @Override
@@ -135,8 +135,8 @@ public class CapacityRow extends BaseRow {
                 "eventSequenceNo=" + eventSequenceNo +
                 ", internal=" + internal +
                 ", publicationTime=" + publicationTime +
-                ", marketAreaFrom=" + marketAreaFrom +
-                ", marketAreaTo=" + marketAreaTo +
+                ", deliveryAreaFrom=" + deliveryAreaFrom +
+                ", deliveryAreaTo=" + deliveryAreaTo +
                 ", deliveryStart=" + deliveryStart +
                 ", deliveryEnd=" + deliveryEnd +
                 ", inCapacity=" + inCapacity +
