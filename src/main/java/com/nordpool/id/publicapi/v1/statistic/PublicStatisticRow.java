@@ -7,13 +7,12 @@
 package com.nordpool.id.publicapi.v1.statistic;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.nordpool.id.publicapi.v1.base.BaseRow;
 import com.nordpool.id.publicapi.v1.serialize.DateDeserializer;
 
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
-public class PublicStatisticRow extends BaseRow {
+public class PublicStatisticRow extends BaseStatisticRow {
     private Long lastPrice;
     private Long lastQuantity;
 
