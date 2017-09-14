@@ -20,10 +20,10 @@ import java.util.Objects;
 
 public class Portfolio {
     private String id;
-    private String tenantId;
     private String name;
     private String shortName;
     private String companyId;
+    private PortfolioPermission permission;
 
     @JsonSerialize(
             using = DateSerializer.class
@@ -58,14 +58,6 @@ public class Portfolio {
         this.id = id;
     }
 
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
-
     public String getName() {
         return name;
     }
@@ -88,6 +80,14 @@ public class Portfolio {
 
     public void setCompanyId(String companyId) {
         this.companyId = companyId;
+    }
+
+    public PortfolioPermission getPermission() {
+        return permission;
+    }
+
+    public void setPermission(PortfolioPermission permission) {
+        this.permission = permission;
     }
 
     public ZonedDateTime getValidFrom() {
@@ -153,10 +153,10 @@ public class Portfolio {
         Portfolio portfolio = (Portfolio) o;
         return deleted == portfolio.deleted &&
                 Objects.equals(id, portfolio.id) &&
-                Objects.equals(tenantId, portfolio.tenantId) &&
                 Objects.equals(name, portfolio.name) &&
                 Objects.equals(shortName, portfolio.shortName) &&
                 Objects.equals(companyId, portfolio.companyId) &&
+                permission == portfolio.permission &&
                 Objects.equals(validFrom, portfolio.validFrom) &&
                 Objects.equals(validTo, portfolio.validTo) &&
                 state == portfolio.state &&
@@ -167,17 +167,17 @@ public class Portfolio {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tenantId, name, shortName, companyId, validFrom, validTo, deleted, state, currency, areas, markets);
+        return Objects.hash(id, name, shortName, companyId, permission, validFrom, validTo, deleted, state, currency, areas, markets);
     }
 
     @Override
     public String toString() {
         return "Portfolio{" +
                 "id='" + id + '\'' +
-                ", tenantId='" + tenantId + '\'' +
                 ", name='" + name + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", companyId='" + companyId + '\'' +
+                ", permission=" + permission +
                 ", validFrom=" + validFrom +
                 ", validTo=" + validTo +
                 ", deleted=" + deleted +
