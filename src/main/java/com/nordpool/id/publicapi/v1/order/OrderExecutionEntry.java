@@ -15,6 +15,7 @@ import com.nordpool.id.publicapi.v1.serialize.DateSerializer;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 public class OrderExecutionEntry {
     private Long eventSequenceNo;
@@ -39,7 +40,7 @@ public class OrderExecutionEntry {
             using = DateDeserializer.class
     )
     private ZonedDateTime updatedAt;
-    private String clientOrderId;
+    private UUID clientOrderId;
     private String portfolioId;
     private List<String> contractIds;
     private Long deliveryAreaId;
@@ -147,11 +148,11 @@ public class OrderExecutionEntry {
         this.updatedAt = updatedAt;
     }
 
-    public String getClientOrderId() {
+    public UUID getClientOrderId() {
         return clientOrderId;
     }
 
-    public void setClientOrderId(String clientOrderId) {
+    public void setClientOrderId(UUID clientOrderId) {
         this.clientOrderId = clientOrderId;
     }
 
