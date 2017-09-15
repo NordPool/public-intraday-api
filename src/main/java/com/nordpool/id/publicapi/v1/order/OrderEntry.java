@@ -14,9 +14,10 @@ import com.nordpool.id.publicapi.v1.serialize.DateSerializer;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 public class OrderEntry {
-    private String clientOrderId;
+    private UUID clientOrderId;
     private String portfolioId;
     private List<String> contractIds;
     private Long deliveryAreaId;
@@ -92,11 +93,11 @@ public class OrderEntry {
         return new Builder();
     }
 
-    public String getClientOrderId() {
+    public UUID getClientOrderId() {
         return clientOrderId;
     }
 
-    public void setClientOrderId(String clientOrderId) {
+    public void setClientOrderId(UUID clientOrderId) {
         this.clientOrderId = clientOrderId;
     }
 
@@ -254,7 +255,7 @@ public class OrderEntry {
 
 
     public static final class Builder {
-        private String clientOrderId;
+        private UUID clientOrderId;
         private String portfolioId;
         private List<String> contractIds;
         private Long deliveryAreaId;
@@ -273,7 +274,7 @@ public class OrderEntry {
         private Builder() {
         }
 
-        public Builder withClientOrderId(String val) {
+        public Builder withClientOrderId(UUID val) {
             clientOrderId = val;
             return this;
         }
