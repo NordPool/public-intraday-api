@@ -17,6 +17,7 @@ import java.util.Objects;
 public class Order {
     private String orderId;
     private Long deliveryAreaId;
+    private String portfolioId;
     private Long price;
     private Long qty;
     @JsonSerialize(
@@ -34,6 +35,7 @@ public class Order {
     )
     private ZonedDateTime updatedAt;
     private boolean deleted;
+    private OrderOwnershipEnum ownership;
 
     public Order() {
     }
@@ -52,6 +54,14 @@ public class Order {
 
     public void setDeliveryAreaId(Long deliveryAreaId) {
         this.deliveryAreaId = deliveryAreaId;
+    }
+
+    public String getPortfolioId() {
+        return portfolioId;
+    }
+
+    public void setPortfolioId(String portfolioId) {
+        this.portfolioId = portfolioId;
     }
 
     public Long getPrice() {
@@ -94,6 +104,14 @@ public class Order {
         this.deleted = deleted;
     }
 
+    public OrderOwnershipEnum getOwnership() {
+        return ownership;
+    }
+
+    public void setOwnership(OrderOwnershipEnum ownership) {
+        this.ownership = ownership;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -102,15 +120,17 @@ public class Order {
         return deleted == order.deleted &&
                 Objects.equals(orderId, order.orderId) &&
                 Objects.equals(deliveryAreaId, order.deliveryAreaId) &&
+                Objects.equals(portfolioId, order.portfolioId) &&
                 Objects.equals(price, order.price) &&
                 Objects.equals(qty, order.qty) &&
                 Objects.equals(createdAt, order.createdAt) &&
-                Objects.equals(updatedAt, order.updatedAt);
+                Objects.equals(updatedAt, order.updatedAt) &&
+                ownership == order.ownership;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, deliveryAreaId, price, qty, createdAt, updatedAt, deleted);
+        return Objects.hash(orderId, deliveryAreaId, portfolioId, price, qty, createdAt, updatedAt, deleted, ownership);
     }
 
     @Override
@@ -118,11 +138,13 @@ public class Order {
         return "Order{" +
                 "orderId='" + orderId + '\'' +
                 ", deliveryAreaId=" + deliveryAreaId +
+                ", portfolioId='" + portfolioId + '\'' +
                 ", price=" + price +
                 ", qty=" + qty +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 ", deleted=" + deleted +
+                ", ownership=" + ownership +
                 '}';
     }
 }
