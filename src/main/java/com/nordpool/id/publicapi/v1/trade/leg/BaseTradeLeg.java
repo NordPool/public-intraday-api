@@ -61,11 +61,11 @@ public abstract class BaseTradeLeg {
         this.deliveryAreaId = deliveryAreaId;
     }
 
-    public Boolean getAggressor() {
+    public Boolean isAggressor() {
         return aggressor;
     }
 
-    public void isAggressor(Boolean aggressor) {
+    public void setAggressor(Boolean aggressor) {
         this.aggressor = aggressor;
     }
 
