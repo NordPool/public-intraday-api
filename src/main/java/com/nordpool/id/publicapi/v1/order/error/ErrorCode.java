@@ -14,8 +14,9 @@ public enum ErrorCode {
     ITEM_NOT_FOUND,
     ACCESS_MODE_VIOLATION,
     THIRD_PARTY,
-    INVALID_AREA;
+    INVALID_AREA,
+    PARSING_ERROR
 
     private ErrorCode() {
     }
-}
+    }
