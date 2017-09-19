@@ -64,7 +64,6 @@ public class OrderExecutionEntry {
     private Long remainingQuantity;
     private List<Error> errors;
 
-
     public OrderExecutionEntry() {
     }
 
@@ -289,38 +288,38 @@ public class OrderExecutionEntry {
         if (this == o) return true;
         if (!(o instanceof OrderExecutionEntry)) return false;
         OrderExecutionEntry that = (OrderExecutionEntry) o;
-        return Objects.equals(eventSequenceNo, that.eventSequenceNo) &&
-                Objects.equals(marketId, that.marketId) &&
-                Objects.equals(tenantId, that.tenantId) &&
-                Objects.equals(userId, that.userId) &&
-                Objects.equals(orderId, that.orderId) &&
-                Objects.equals(revisionNo, that.revisionNo) &&
-                Objects.equals(previousOrderId, that.previousOrderId) &&
-                Objects.equals(originalOrderId, that.originalOrderId) &&
-                Objects.equals(createdAt, that.createdAt) &&
-                Objects.equals(updatedAt, that.updatedAt) &&
-                Objects.equals(clientOrderId, that.clientOrderId) &&
-                Objects.equals(portfolioId, that.portfolioId) &&
-                Objects.equals(contractIds, that.contractIds) &&
-                Objects.equals(deliveryAreaId, that.deliveryAreaId) &&
-                side == that.side &&
-                orderType == that.orderType &&
-                Objects.equals(unitPrice, that.unitPrice) &&
-                Objects.equals(quantity, that.quantity) &&
-                timeInForce == that.timeInForce &&
-                Objects.equals(expireTime, that.expireTime) &&
-                Objects.equals(text, that.text) &&
-                state == that.state &&
-                action == that.action &&
-                Objects.equals(clipSize, that.clipSize) &&
-                Objects.equals(clipPriceChange, that.clipPriceChange) &&
-                Objects.equals(remainingQuantity, that.remainingQuantity) &&
-                Objects.equals(errors, that.errors);
+        return Objects.equals(getEventSequenceNo(), that.getEventSequenceNo()) &&
+                Objects.equals(getMarketId(), that.getMarketId()) &&
+                Objects.equals(getTenantId(), that.getTenantId()) &&
+                Objects.equals(getUserId(), that.getUserId()) &&
+                Objects.equals(getOrderId(), that.getOrderId()) &&
+                Objects.equals(getRevisionNo(), that.getRevisionNo()) &&
+                Objects.equals(getPreviousOrderId(), that.getPreviousOrderId()) &&
+                Objects.equals(getOriginalOrderId(), that.getOriginalOrderId()) &&
+                Objects.equals(getCreatedAt(), that.getCreatedAt()) &&
+                Objects.equals(getUpdatedAt(), that.getUpdatedAt()) &&
+                Objects.equals(getClientOrderId(), that.getClientOrderId()) &&
+                Objects.equals(getPortfolioId(), that.getPortfolioId()) &&
+                Objects.equals(getContractIds(), that.getContractIds()) &&
+                Objects.equals(getDeliveryAreaId(), that.getDeliveryAreaId()) &&
+                getSide() == that.getSide() &&
+                getOrderType() == that.getOrderType() &&
+                Objects.equals(getUnitPrice(), that.getUnitPrice()) &&
+                Objects.equals(getQuantity(), that.getQuantity()) &&
+                getTimeInForce() == that.getTimeInForce() &&
+                Objects.equals(getExpireTime(), that.getExpireTime()) &&
+                Objects.equals(getText(), that.getText()) &&
+                getState() == that.getState() &&
+                getAction() == that.getAction() &&
+                Objects.equals(getClipSize(), that.getClipSize()) &&
+                Objects.equals(getClipPriceChange(), that.getClipPriceChange()) &&
+                Objects.equals(getRemainingQuantity(), that.getRemainingQuantity()) &&
+                Objects.equals(getErrors(), that.getErrors());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventSequenceNo, marketId, tenantId, userId, orderId, revisionNo, previousOrderId, originalOrderId, createdAt, updatedAt, clientOrderId, portfolioId, contractIds, deliveryAreaId, side, orderType, unitPrice, quantity, timeInForce, expireTime, text, state, action, clipSize, clipPriceChange, remainingQuantity, errors);
+        return Objects.hash(getEventSequenceNo(), getMarketId(), getTenantId(), getUserId(), getOrderId(), getRevisionNo(), getPreviousOrderId(), getOriginalOrderId(), getCreatedAt(), getUpdatedAt(), getClientOrderId(), getPortfolioId(), getContractIds(), getDeliveryAreaId(), getSide(), getOrderType(), getUnitPrice(), getQuantity(), getTimeInForce(), getExpireTime(), getText(), getState(), getAction(), getClipSize(), getClipPriceChange(), getRemainingQuantity(), getErrors());
     }
 
     @Override

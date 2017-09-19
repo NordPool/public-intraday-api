@@ -13,7 +13,8 @@ public enum ErrorCode {
     FIELD_FORMAT_INVALID,
     ITEM_NOT_FOUND,
     ACCESS_MODE_VIOLATION,
-    THIRD_PARTY;
+    THIRD_PARTY,
+    INVALID_AREA;
 
     private ErrorCode() {
     }
