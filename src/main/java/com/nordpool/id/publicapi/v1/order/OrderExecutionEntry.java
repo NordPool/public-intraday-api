@@ -63,7 +63,6 @@ public class OrderExecutionEntry {
     private Long clipPriceChange;
     private Long remainingQuantity;
     private List<Error> errors;
-    private String productId;
 
     public OrderExecutionEntry() {
     }
@@ -284,14 +283,6 @@ public class OrderExecutionEntry {
         this.errors = errors;
     }
 
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -323,13 +314,12 @@ public class OrderExecutionEntry {
                 Objects.equals(getClipSize(), that.getClipSize()) &&
                 Objects.equals(getClipPriceChange(), that.getClipPriceChange()) &&
                 Objects.equals(getRemainingQuantity(), that.getRemainingQuantity()) &&
-                Objects.equals(getErrors(), that.getErrors()) &&
-                Objects.equals(getProductId(), that.getProductId());
+                Objects.equals(getErrors(), that.getErrors());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEventSequenceNo(), getMarketId(), getTenantId(), getUserId(), getOrderId(), getRevisionNo(), getPreviousOrderId(), getOriginalOrderId(), getCreatedAt(), getUpdatedAt(), getClientOrderId(), getPortfolioId(), getContractIds(), getDeliveryAreaId(), getSide(), getOrderType(), getUnitPrice(), getQuantity(), getTimeInForce(), getExpireTime(), getText(), getState(), getAction(), getClipSize(), getClipPriceChange(), getRemainingQuantity(), getErrors(), getProductId());
+        return Objects.hash(getEventSequenceNo(), getMarketId(), getTenantId(), getUserId(), getOrderId(), getRevisionNo(), getPreviousOrderId(), getOriginalOrderId(), getCreatedAt(), getUpdatedAt(), getClientOrderId(), getPortfolioId(), getContractIds(), getDeliveryAreaId(), getSide(), getOrderType(), getUnitPrice(), getQuantity(), getTimeInForce(), getExpireTime(), getText(), getState(), getAction(), getClipSize(), getClipPriceChange(), getRemainingQuantity(), getErrors());
     }
 
     @Override
@@ -362,7 +352,6 @@ public class OrderExecutionEntry {
                 ", clipPriceChange=" + clipPriceChange +
                 ", remainingQuantity=" + remainingQuantity +
                 ", errors=" + errors +
-                ", productId='" + productId + '\'' +
                 '}';
     }
 }
