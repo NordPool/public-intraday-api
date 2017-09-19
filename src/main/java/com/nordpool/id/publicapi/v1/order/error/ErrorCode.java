@@ -15,7 +15,7 @@ public enum ErrorCode {
     ACCESS_MODE_VIOLATION,
     THIRD_PARTY,
     INVALID_AREA,
-    PARSING_ERROR
+    PARSING_ERROR;
 
     private ErrorCode() {
     }
