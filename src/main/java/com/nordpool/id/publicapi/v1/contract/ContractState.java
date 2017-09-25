@@ -12,7 +12,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum ContractState {
     HIBE,
     IACT,
-    ACTI;
+    ACTI,
+    FRZN;
 
     private ContractState() {
     }
