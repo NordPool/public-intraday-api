@@ -64,7 +64,6 @@ public class OrderExecutionEntry {
     private Long remainingQuantity;
     private List<Error> errors;
     private ExecutionRestriction executionRestriction;
-    private Boolean deleted;
 
     public OrderExecutionEntry() {
     }
@@ -293,14 +292,6 @@ public class OrderExecutionEntry {
         this.executionRestriction = executionRestriction;
     }
 
-    public Boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -333,13 +324,12 @@ public class OrderExecutionEntry {
                 Objects.equals(getClipPriceChange(), that.getClipPriceChange()) &&
                 Objects.equals(getRemainingQuantity(), that.getRemainingQuantity()) &&
                 Objects.equals(getErrors(), that.getErrors()) &&
-                getExecutionRestriction() == that.getExecutionRestriction() &&
-                Objects.equals(isDeleted(), that.isDeleted());
+                getExecutionRestriction() == that.getExecutionRestriction();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEventSequenceNo(), getMarketId(), getTenantId(), getUserId(), getOrderId(), getRevisionNo(), getPreviousOrderId(), getOriginalOrderId(), getCreatedAt(), getUpdatedAt(), getClientOrderId(), getPortfolioId(), getContractIds(), getDeliveryAreaId(), getSide(), getOrderType(), getUnitPrice(), getQuantity(), getTimeInForce(), getExpireTime(), getText(), getState(), getAction(), getClipSize(), getClipPriceChange(), getRemainingQuantity(), getErrors(), getExecutionRestriction(), isDeleted());
+        return Objects.hash(getEventSequenceNo(), getMarketId(), getTenantId(), getUserId(), getOrderId(), getRevisionNo(), getPreviousOrderId(), getOriginalOrderId(), getCreatedAt(), getUpdatedAt(), getClientOrderId(), getPortfolioId(), getContractIds(), getDeliveryAreaId(), getSide(), getOrderType(), getUnitPrice(), getQuantity(), getTimeInForce(), getExpireTime(), getText(), getState(), getAction(), getClipSize(), getClipPriceChange(), getRemainingQuantity(), getErrors(), getExecutionRestriction());
     }
 
     @Override
@@ -373,7 +363,6 @@ public class OrderExecutionEntry {
                 ", remainingQuantity=" + remainingQuantity +
                 ", errors=" + errors +
                 ", executionRestriction=" + executionRestriction +
-                ", deleted=" + deleted +
                 '}';
     }
 }
