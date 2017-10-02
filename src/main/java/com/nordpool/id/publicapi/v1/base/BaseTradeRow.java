@@ -12,20 +12,18 @@ import com.nordpool.id.publicapi.v1.serialize.DateDeserializer;
 import com.nordpool.id.publicapi.v1.serialize.DateSerializer;
 import com.nordpool.id.publicapi.v1.trade.Currency;
 import com.nordpool.id.publicapi.v1.trade.TradeState;
-import com.nordpool.id.publicapi.v1.trade.leg.BaseTradeLeg;
 
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.Objects;
 
-public abstract class BaseTradeRow<LEG extends BaseTradeLeg> extends BaseRow {
+public abstract class BaseTradeRow extends BaseRow {
     private String tradeId;
 
     @JsonSerialize(using = DateSerializer.class)
     @JsonDeserialize(using = DateDeserializer.class)
     private ZonedDateTime tradeTime;
     private TradeState state;
-    private List<LEG> legs;
+
     private Currency currency;
     private Long eventSequenceNo;
     private boolean deleted;
@@ -56,14 +54,6 @@ public abstract class BaseTradeRow<LEG extends BaseTradeLeg> extends BaseRow {
 
     public void setState(TradeState state) {
         this.state = state;
-    }
-
-    public List<LEG> getLegs() {
-        return legs;
-    }
-
-    public void setLegs(List<LEG> legs) {
-        this.legs = legs;
     }
 
     public Currency getCurrency() {
@@ -103,12 +93,11 @@ public abstract class BaseTradeRow<LEG extends BaseTradeLeg> extends BaseRow {
         if (this == o) return true;
         if (!(o instanceof BaseTradeRow)) return false;
         if (!super.equals(o)) return false;
-        BaseTradeRow<?> that = (BaseTradeRow<?>) o;
+        BaseTradeRow that = (BaseTradeRow) o;
         return deleted == that.deleted &&
                 Objects.equals(tradeId, that.tradeId) &&
                 Objects.equals(tradeTime, that.tradeTime) &&
                 state == that.state &&
-                Objects.equals(legs, that.legs) &&
                 currency == that.currency &&
                 Objects.equals(eventSequenceNo, that.eventSequenceNo) &&
                 Objects.equals(mediumDisplayName, that.mediumDisplayName);
@@ -116,7 +105,7 @@ public abstract class BaseTradeRow<LEG extends BaseTradeLeg> extends BaseRow {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), tradeId, tradeTime, state, legs, currency, eventSequenceNo, deleted, mediumDisplayName);
+        return Objects.hash(super.hashCode(), tradeId, tradeTime, state, currency, eventSequenceNo, deleted, mediumDisplayName);
     }
 
     @Override
@@ -125,7 +114,6 @@ public abstract class BaseTradeRow<LEG extends BaseTradeLeg> extends BaseRow {
                 "tradeId='" + tradeId + '\'' +
                 ", tradeTime=" + tradeTime +
                 ", state=" + state +
-                ", legs=" + legs +
                 ", currency=" + currency +
                 ", eventSequenceNo=" + eventSequenceNo +
                 ", deleted=" + deleted +
