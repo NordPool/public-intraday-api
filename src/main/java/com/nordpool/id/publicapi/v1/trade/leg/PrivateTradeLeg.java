@@ -14,9 +14,8 @@ import com.nordpool.id.publicapi.v1.order.TimeInForce;
 import java.util.Objects;
 
 public class PrivateTradeLeg extends BaseTradeLeg {
-    private String portfolioId;
+
     private String refOrderId;
-    private String userId;
     private Long deliveryStart;
     private Long deliveryEnd;
     private OrderState orderState;
@@ -28,28 +27,12 @@ public class PrivateTradeLeg extends BaseTradeLeg {
     public PrivateTradeLeg() {
     }
 
-    public String getPortfolioId() {
-        return portfolioId;
-    }
-
-    public void setPortfolioId(String portfolioId) {
-        this.portfolioId = portfolioId;
-    }
-
     public String getRefOrderId() {
         return refOrderId;
     }
 
     public void setRefOrderId(String refOrderId) {
         this.refOrderId = refOrderId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public Long getDeliveryStart() {
@@ -115,9 +98,7 @@ public class PrivateTradeLeg extends BaseTradeLeg {
         if (!super.equals(o)) return false;
         PrivateTradeLeg that = (PrivateTradeLeg) o;
 
-        return Objects.equals(portfolioId, that.portfolioId) &&
-                Objects.equals(refOrderId, that.refOrderId) &&
-                Objects.equals(userId, that.userId) &&
+        return Objects.equals(refOrderId, that.refOrderId) &&
                 Objects.equals(deliveryStart, that.deliveryStart) &&
                 Objects.equals(deliveryEnd, that.deliveryEnd) &&
                 orderState == that.orderState &&
@@ -129,16 +110,13 @@ public class PrivateTradeLeg extends BaseTradeLeg {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), portfolioId, refOrderId, userId, deliveryStart, deliveryEnd, orderState, orderType, text, orderAction, timeInForce);
+        return Objects.hash(super.hashCode(), refOrderId, deliveryStart, deliveryEnd, orderState, orderType, text, orderAction, timeInForce);
     }
 
     @Override
     public String toString() {
         return "PrivateTradeLeg{" +
-
-                ", portfolioId='" + portfolioId + '\'' +
-                ", refOrderId='" + refOrderId + '\'' +
-                ", userId='" + userId + '\'' +
+                "refOrderId='" + refOrderId + '\'' +
                 ", deliveryStart=" + deliveryStart +
                 ", deliveryEnd=" + deliveryEnd +
                 ", orderState=" + orderState +

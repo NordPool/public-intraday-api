@@ -17,6 +17,8 @@ public abstract class BaseTradeLeg {
     private Long quantity;
     private Long deliveryAreaId;
     private Boolean aggressor;
+    private String portfolioId;
+    private String userId;
 
     public BaseTradeLeg() {
     }
@@ -69,22 +71,40 @@ public abstract class BaseTradeLeg {
         this.aggressor = aggressor;
     }
 
+    public String getPortfolioId() {
+        return portfolioId;
+    }
+
+    public void setPortfolioId(String portfolioId) {
+        this.portfolioId = portfolioId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof BaseTradeLeg)) return false;
         BaseTradeLeg that = (BaseTradeLeg) o;
-        return Objects.equals(contractId, that.contractId) &&
-                side == that.side &&
-                Objects.equals(unitPrice, that.unitPrice) &&
-                Objects.equals(quantity, that.quantity) &&
-                Objects.equals(deliveryAreaId, that.deliveryAreaId) &&
-                Objects.equals(aggressor, that.aggressor);
+        return Objects.equals(getContractId(), that.getContractId()) &&
+                getSide() == that.getSide() &&
+                Objects.equals(getUnitPrice(), that.getUnitPrice()) &&
+                Objects.equals(getQuantity(), that.getQuantity()) &&
+                Objects.equals(getDeliveryAreaId(), that.getDeliveryAreaId()) &&
+                Objects.equals(isAggressor(), that.isAggressor()) &&
+                Objects.equals(getPortfolioId(), that.getPortfolioId()) &&
+                Objects.equals(getUserId(), that.getUserId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);
+        return Objects.hash(getContractId(), getSide(), getUnitPrice(), getQuantity(), getDeliveryAreaId(), isAggressor(), getPortfolioId(), getUserId());
     }
 
     @Override
@@ -96,6 +116,8 @@ public abstract class BaseTradeLeg {
                 ", quantity=" + quantity +
                 ", deliveryAreaId=" + deliveryAreaId +
                 ", aggressor=" + aggressor +
+                ", portfolioId='" + portfolioId + '\'' +
+                ", userId='" + userId + '\'' +
                 '}';
     }
 }
