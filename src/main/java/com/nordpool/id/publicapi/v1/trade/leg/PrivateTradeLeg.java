@@ -23,6 +23,8 @@ public class PrivateTradeLeg extends BaseTradeLeg {
     private String text;
     private OrderAction orderAction;
     private TimeInForce timeInForce;
+    private String portfolioId;
+    private String userId;
 
     public PrivateTradeLeg() {
     }
@@ -91,26 +93,43 @@ public class PrivateTradeLeg extends BaseTradeLeg {
         this.timeInForce = timeInForce;
     }
 
+    public String getPortfolioId() {
+        return portfolioId;
+    }
+
+    public void setPortfolioId(String portfolioId) {
+        this.portfolioId = portfolioId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof PrivateTradeLeg)) return false;
         if (!super.equals(o)) return false;
         PrivateTradeLeg that = (PrivateTradeLeg) o;
-
-        return Objects.equals(refOrderId, that.refOrderId) &&
-                Objects.equals(deliveryStart, that.deliveryStart) &&
-                Objects.equals(deliveryEnd, that.deliveryEnd) &&
-                orderState == that.orderState &&
-                orderType == that.orderType &&
-                Objects.equals(text, that.text) &&
-                orderAction == that.orderAction &&
-                timeInForce == that.timeInForce;
+        return Objects.equals(getRefOrderId(), that.getRefOrderId()) &&
+                Objects.equals(getDeliveryStart(), that.getDeliveryStart()) &&
+                Objects.equals(getDeliveryEnd(), that.getDeliveryEnd()) &&
+                getOrderState() == that.getOrderState() &&
+                getOrderType() == that.getOrderType() &&
+                Objects.equals(getText(), that.getText()) &&
+                getOrderAction() == that.getOrderAction() &&
+                getTimeInForce() == that.getTimeInForce() &&
+                Objects.equals(getPortfolioId(), that.getPortfolioId()) &&
+                Objects.equals(getUserId(), that.getUserId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), refOrderId, deliveryStart, deliveryEnd, orderState, orderType, text, orderAction, timeInForce);
+        return Objects.hash(super.hashCode(), getRefOrderId(), getDeliveryStart(), getDeliveryEnd(), getOrderState(), getOrderType(), getText(), getOrderAction(), getTimeInForce(), getPortfolioId(), getUserId());
     }
 
     @Override
@@ -124,6 +143,8 @@ public class PrivateTradeLeg extends BaseTradeLeg {
                 ", text='" + text + '\'' +
                 ", orderAction=" + orderAction +
                 ", timeInForce=" + timeInForce +
+                ", portfolioId='" + portfolioId + '\'' +
+                ", userId='" + userId + '\'' +
                 "} " + super.toString();
     }
 }

@@ -11,14 +11,13 @@ import com.nordpool.id.publicapi.v1.order.OrderSide;
 import java.util.Objects;
 
 public abstract class BaseTradeLeg {
+
     private String contractId;
     private OrderSide side;
     private Long unitPrice;
     private Long quantity;
     private Long deliveryAreaId;
     private Boolean aggressor;
-    private String portfolioId;
-    private String userId;
 
     public BaseTradeLeg() {
     }
@@ -71,22 +70,6 @@ public abstract class BaseTradeLeg {
         this.aggressor = aggressor;
     }
 
-    public String getPortfolioId() {
-        return portfolioId;
-    }
-
-    public void setPortfolioId(String portfolioId) {
-        this.portfolioId = portfolioId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -97,14 +80,12 @@ public abstract class BaseTradeLeg {
                 Objects.equals(getUnitPrice(), that.getUnitPrice()) &&
                 Objects.equals(getQuantity(), that.getQuantity()) &&
                 Objects.equals(getDeliveryAreaId(), that.getDeliveryAreaId()) &&
-                Objects.equals(isAggressor(), that.isAggressor()) &&
-                Objects.equals(getPortfolioId(), that.getPortfolioId()) &&
-                Objects.equals(getUserId(), that.getUserId());
+                Objects.equals(isAggressor(), that.isAggressor());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getContractId(), getSide(), getUnitPrice(), getQuantity(), getDeliveryAreaId(), isAggressor(), getPortfolioId(), getUserId());
+        return Objects.hash(getContractId(), getSide(), getUnitPrice(), getQuantity(), getDeliveryAreaId(), isAggressor());
     }
 
     @Override
@@ -116,8 +97,6 @@ public abstract class BaseTradeLeg {
                 ", quantity=" + quantity +
                 ", deliveryAreaId=" + deliveryAreaId +
                 ", aggressor=" + aggressor +
-                ", portfolioId='" + portfolioId + '\'' +
-                ", userId='" + userId + '\'' +
                 '}';
     }
 }
