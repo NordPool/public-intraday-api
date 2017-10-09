@@ -11,6 +11,7 @@ import com.nordpool.id.publicapi.v1.order.OrderSide;
 import java.util.Objects;
 
 public abstract class BaseTradeLeg {
+
     private String contractId;
     private OrderSide side;
     private Long unitPrice;
@@ -74,17 +75,17 @@ public abstract class BaseTradeLeg {
         if (this == o) return true;
         if (!(o instanceof BaseTradeLeg)) return false;
         BaseTradeLeg that = (BaseTradeLeg) o;
-        return Objects.equals(contractId, that.contractId) &&
-                side == that.side &&
-                Objects.equals(unitPrice, that.unitPrice) &&
-                Objects.equals(quantity, that.quantity) &&
-                Objects.equals(deliveryAreaId, that.deliveryAreaId) &&
-                Objects.equals(aggressor, that.aggressor);
+        return Objects.equals(getContractId(), that.getContractId()) &&
+                getSide() == that.getSide() &&
+                Objects.equals(getUnitPrice(), that.getUnitPrice()) &&
+                Objects.equals(getQuantity(), that.getQuantity()) &&
+                Objects.equals(getDeliveryAreaId(), that.getDeliveryAreaId()) &&
+                Objects.equals(isAggressor(), that.isAggressor());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);
+        return Objects.hash(getContractId(), getSide(), getUnitPrice(), getQuantity(), getDeliveryAreaId(), isAggressor());
     }
 
     @Override
