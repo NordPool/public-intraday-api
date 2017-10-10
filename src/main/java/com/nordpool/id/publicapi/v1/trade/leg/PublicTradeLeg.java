@@ -9,18 +9,9 @@ package com.nordpool.id.publicapi.v1.trade.leg;
 import java.util.Objects;
 
 public class PublicTradeLeg extends BaseTradeLeg {
-    private String tenantId;
     private LegOwnershipEnum ownership;
 
     public PublicTradeLeg() {
-    }
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
     }
 
     public LegOwnershipEnum getOwnership() {
@@ -37,20 +28,18 @@ public class PublicTradeLeg extends BaseTradeLeg {
         if (!(o instanceof PublicTradeLeg)) return false;
         if (!super.equals(o)) return false;
         PublicTradeLeg that = (PublicTradeLeg) o;
-        return Objects.equals(tenantId, that.tenantId) &&
-                ownership == that.ownership;
+        return ownership == that.ownership;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), tenantId, ownership);
+        return Objects.hash(super.hashCode(), ownership);
     }
 
     @Override
     public String toString() {
         return "PublicTradeLeg{" +
-                "tenantId='" + tenantId + '\'' +
-                ", ownership=" + ownership +
+                "ownership=" + ownership +
                 "} " + super.toString();
     }
 }
