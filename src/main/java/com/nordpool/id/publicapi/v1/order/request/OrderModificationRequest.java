@@ -1,43 +1,74 @@
-/*
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- */
 
 package com.nordpool.id.publicapi.v1.order.request;
 
+import java.util.List;
 import com.nordpool.id.publicapi.v1.order.OrderModification;
 import com.nordpool.id.publicapi.v1.order.OrderModificationType;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
-import java.util.List;
-import java.util.Objects;
 
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ * <p>
+ * 
+ * 
+ */
 public class OrderModificationRequest {
+
+    /**
+     * Unique identifier for this request, provided by the client to track their own requests
+     * 
+     */
     private String requestId;
     private OrderModificationType orderModificationType;
     private String userId;
-    private List<OrderModification> orders;
+    private List<OrderModification> orders = null;
 
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
     public OrderModificationRequest() {
     }
 
-    private OrderModificationRequest(Builder builder) {
-        setRequestId(builder.requestId);
-        setOrderModificationType(builder.orderModificationType);
-        setUserId(builder.userId);
-        setOrders(builder.orders);
+    /**
+     * 
+     * @param requestId
+     * @param orders
+     * @param orderModificationType
+     * @param userId
+     */
+    public OrderModificationRequest(String requestId, OrderModificationType orderModificationType, String userId, List<OrderModification> orders) {
+        super();
+        this.requestId = requestId;
+        this.orderModificationType = orderModificationType;
+        this.userId = userId;
+        this.orders = orders;
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
-    }
-
+    /**
+     * Unique identifier for this request, provided by the client to track their own requests
+     * 
+     */
     public String getRequestId() {
         return requestId;
     }
 
+    /**
+     * Unique identifier for this request, provided by the client to track their own requests
+     * 
+     */
     public void setRequestId(String requestId) {
         this.requestId = requestId;
+    }
+
+    public OrderModificationRequest withRequestId(String requestId) {
+        this.requestId = requestId;
+        return this;
     }
 
     public OrderModificationType getOrderModificationType() {
@@ -48,12 +79,22 @@ public class OrderModificationRequest {
         this.orderModificationType = orderModificationType;
     }
 
+    public OrderModificationRequest withOrderModificationType(OrderModificationType orderModificationType) {
+        this.orderModificationType = orderModificationType;
+        return this;
+    }
+
     public String getUserId() {
         return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public OrderModificationRequest withUserId(String userId) {
+        this.userId = userId;
+        return this;
     }
 
     public List<OrderModification> getOrders() {
@@ -64,54 +105,31 @@ public class OrderModificationRequest {
         this.orders = orders;
     }
 
+    public OrderModificationRequest withOrders(List<OrderModification> orders) {
+        this.orders = orders;
+        return this;
+    }
+
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OrderModificationRequest)) return false;
-        OrderModificationRequest that = (OrderModificationRequest) o;
-        return Objects.equals(requestId, that.requestId) &&
-                orderModificationType == that.orderModificationType &&
-                Objects.equals(userId, that.userId) &&
-                Objects.equals(orders, that.orders);
+    public String toString() {
+        return new ToStringBuilder(this).append("requestId", requestId).append("orderModificationType", orderModificationType).append("userId", userId).append("orders", orders).toString();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(requestId, orderModificationType, userId, orders);
+        return new HashCodeBuilder().append(orders).append(orderModificationType).append(userId).append(requestId).toHashCode();
     }
 
-
-    public static final class Builder {
-        private String requestId;
-        private OrderModificationType orderModificationType;
-        private String userId;
-        private List<OrderModification> orders;
-
-        private Builder() {
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
         }
-
-        public Builder withRequestId(String val) {
-            requestId = val;
-            return this;
+        if ((other instanceof OrderModificationRequest) == false) {
+            return false;
         }
-
-        public Builder withOrderModificationType(OrderModificationType val) {
-            orderModificationType = val;
-            return this;
-        }
-
-        public Builder withUserId(String val) {
-            userId = val;
-            return this;
-        }
-
-        public Builder withOrders(List<OrderModification> val) {
-            orders = val;
-            return this;
-        }
-
-        public OrderModificationRequest build() {
-            return new OrderModificationRequest(this);
-        }
+        OrderModificationRequest rhs = ((OrderModificationRequest) other);
+        return new EqualsBuilder().append(orders, rhs.orders).append(orderModificationType, rhs.orderModificationType).append(userId, rhs.userId).append(requestId, rhs.requestId).isEquals();
     }
+
 }

@@ -1,27 +1,40 @@
-/*
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- */
 
 package com.nordpool.id.publicapi.v1.trade.request;
 
-import java.util.Objects;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
+
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ * <p>
+ * 
+ * 
+ */
 public class TradeRecallRequest {
+
     private String tradeId;
     private String revisionNo;
 
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
     public TradeRecallRequest() {
     }
 
-    private TradeRecallRequest(Builder builder) {
-        setTradeId(builder.tradeId);
-        setRevisionNo(builder.revisionNo);
-    }
-
-    public static Builder newBuilder() {
-        return new Builder();
+    /**
+     * 
+     * @param revisionNo
+     * @param tradeId
+     */
+    public TradeRecallRequest(String tradeId, String revisionNo) {
+        super();
+        this.tradeId = tradeId;
+        this.revisionNo = revisionNo;
     }
 
     public String getTradeId() {
@@ -32,6 +45,11 @@ public class TradeRecallRequest {
         this.tradeId = tradeId;
     }
 
+    public TradeRecallRequest withTradeId(String tradeId) {
+        this.tradeId = tradeId;
+        return this;
+    }
+
     public String getRevisionNo() {
         return revisionNo;
     }
@@ -40,48 +58,31 @@ public class TradeRecallRequest {
         this.revisionNo = revisionNo;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof TradeRecallRequest)) return false;
-        TradeRecallRequest that = (TradeRecallRequest) o;
-        return Objects.equals(tradeId, that.tradeId) &&
-                Objects.equals(revisionNo, that.revisionNo);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(tradeId, revisionNo);
+    public TradeRecallRequest withRevisionNo(String revisionNo) {
+        this.revisionNo = revisionNo;
+        return this;
     }
 
     @Override
     public String toString() {
-        return "TradeRecallRequest{" +
-                "tradeId='" + tradeId + '\'' +
-                ", revisionNo='" + revisionNo + '\'' +
-                '}';
+        return new ToStringBuilder(this).append("tradeId", tradeId).append("revisionNo", revisionNo).toString();
     }
 
-
-    public static final class Builder {
-        private String tradeId;
-        private String revisionNo;
-
-        private Builder() {
-        }
-
-        public Builder withTradeId(String val) {
-            tradeId = val;
-            return this;
-        }
-
-        public Builder withRevisionNo(String val) {
-            revisionNo = val;
-            return this;
-        }
-
-        public TradeRecallRequest build() {
-            return new TradeRecallRequest(this);
-        }
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(tradeId).append(revisionNo).toHashCode();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof TradeRecallRequest) == false) {
+            return false;
+        }
+        TradeRecallRequest rhs = ((TradeRecallRequest) other);
+        return new EqualsBuilder().append(tradeId, rhs.tradeId).append(revisionNo, rhs.revisionNo).isEquals();
+    }
+
 }

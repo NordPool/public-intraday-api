@@ -1,125 +1,170 @@
-/*
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- */
 
 package com.nordpool.id.publicapi.v1.order.request;
 
-import com.nordpool.id.publicapi.v1.order.OrderEntry;
-
 import java.util.List;
-import java.util.Objects;
+import com.nordpool.id.publicapi.v1.order.OrderEntry;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
+
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ * <p>
+ * 
+ * 
+ */
 public class OrderEntryRequest {
-    private String requestId;
-    private boolean rejectPartially;
-    private String memberId;
-    private List<OrderEntry> orders;
 
+    /**
+     * Unique identifier for this request, provided by the client to track their own requests
+     * 
+     */
+    private String requestId;
+    /**
+     * Should the message be completely rejected if only some of the entered orders cause errors.
+     * 
+     */
+    private Boolean rejectPartially;
+    /**
+     * Member ID
+     * 
+     */
+    private String memberId;
+    /**
+     * List of orders
+     * 
+     */
+    private List<OrderEntry> orders = null;
+
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
     public OrderEntryRequest() {
     }
 
-    private OrderEntryRequest(Builder builder) {
-        setRequestId(builder.requestId);
-        setRejectPartially(builder.rejectPartially);
-        setMemberId(builder.memberId);
-        setOrders(builder.orders);
+    /**
+     * 
+     * @param requestId
+     * @param rejectPartially
+     * @param orders
+     * @param memberId
+     */
+    public OrderEntryRequest(String requestId, Boolean rejectPartially, String memberId, List<OrderEntry> orders) {
+        super();
+        this.requestId = requestId;
+        this.rejectPartially = rejectPartially;
+        this.memberId = memberId;
+        this.orders = orders;
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
-    }
-
+    /**
+     * Unique identifier for this request, provided by the client to track their own requests
+     * 
+     */
     public String getRequestId() {
         return requestId;
     }
 
+    /**
+     * Unique identifier for this request, provided by the client to track their own requests
+     * 
+     */
     public void setRequestId(String requestId) {
         this.requestId = requestId;
     }
 
-    public boolean isRejectPartially() {
+    public OrderEntryRequest withRequestId(String requestId) {
+        this.requestId = requestId;
+        return this;
+    }
+
+    /**
+     * Should the message be completely rejected if only some of the entered orders cause errors.
+     * 
+     */
+    public Boolean getRejectPartially() {
         return rejectPartially;
     }
 
-    public void setRejectPartially(boolean rejectPartially) {
+    /**
+     * Should the message be completely rejected if only some of the entered orders cause errors.
+     * 
+     */
+    public void setRejectPartially(Boolean rejectPartially) {
         this.rejectPartially = rejectPartially;
     }
 
+    public OrderEntryRequest withRejectPartially(Boolean rejectPartially) {
+        this.rejectPartially = rejectPartially;
+        return this;
+    }
+
+    /**
+     * Member ID
+     * 
+     */
     public String getMemberId() {
         return memberId;
     }
 
+    /**
+     * Member ID
+     * 
+     */
     public void setMemberId(String memberId) {
         this.memberId = memberId;
     }
 
+    public OrderEntryRequest withMemberId(String memberId) {
+        this.memberId = memberId;
+        return this;
+    }
+
+    /**
+     * List of orders
+     * 
+     */
     public List<OrderEntry> getOrders() {
         return orders;
     }
 
+    /**
+     * List of orders
+     * 
+     */
     public void setOrders(List<OrderEntry> orders) {
         this.orders = orders;
     }
 
-    @Override
-    public String toString() {
-        return "OrderEntryRequest{" +
-                "requestId='" + requestId + '\'' +
-                ", rejectPartially=" + rejectPartially +
-                ", memberId='" + memberId + '\'' +
-                ", orders=" + orders +
-                '}';
+    public OrderEntryRequest withOrders(List<OrderEntry> orders) {
+        this.orders = orders;
+        return this;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OrderEntryRequest)) return false;
-        OrderEntryRequest that = (OrderEntryRequest) o;
-        return isRejectPartially() == that.isRejectPartially() &&
-                Objects.equals(getRequestId(), that.getRequestId()) &&
-                Objects.equals(getMemberId(), that.getMemberId()) &&
-                Objects.equals(getOrders(), that.getOrders());
+    public String toString() {
+        return new ToStringBuilder(this).append("requestId", requestId).append("rejectPartially", rejectPartially).append("memberId", memberId).append("orders", orders).toString();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getRequestId(), isRejectPartially(), getMemberId(), getOrders());
+        return new HashCodeBuilder().append(rejectPartially).append(orders).append(requestId).append(memberId).toHashCode();
     }
 
-    public static final class Builder {
-        private String requestId;
-        private boolean rejectPartially;
-        private String memberId;
-        private List<OrderEntry> orders;
-
-        private Builder() {
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
         }
-
-        public Builder withRequestId(String val) {
-            requestId = val;
-            return this;
+        if ((other instanceof OrderEntryRequest) == false) {
+            return false;
         }
-
-        public Builder withRejectPartially(boolean val) {
-            rejectPartially = val;
-            return this;
-        }
-
-        public Builder withMemberId(String val) {
-            memberId = val;
-            return this;
-        }
-
-        public Builder withOrders(List<OrderEntry> val) {
-            orders = val;
-            return this;
-        }
-
-        public OrderEntryRequest build() {
-            return new OrderEntryRequest(this);
-        }
+        OrderEntryRequest rhs = ((OrderEntryRequest) other);
+        return new EqualsBuilder().append(rejectPartially, rhs.rejectPartially).append(orders, rhs.orders).append(requestId, rhs.requestId).append(memberId, rhs.memberId).isEquals();
     }
+
 }
