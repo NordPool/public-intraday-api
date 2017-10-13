@@ -35,7 +35,6 @@ public class PrivateTradeRow
      * 
      */
     private String cancellationDeadLine;
-    private Long revisionNo;
 
     /**
      * No args constructor for use in serialization
@@ -51,7 +50,6 @@ public class PrivateTradeRow
      * @param deleted
      * @param legs
      * @param cancellationFee
-     * @param revisionNo
      * @param currency
      * @param eventSequenceNo
      * @param state
@@ -59,12 +57,11 @@ public class PrivateTradeRow
      * @param tradeId
      * @param updatedAt
      */
-    public PrivateTradeRow(List<PrivateTradeLeg> legs, Long cancellationFee, String cancellationDeadLine, Long revisionNo, String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Boolean deleted, String mediumDisplayName, ZonedDateTime updatedAt) {
+    public PrivateTradeRow(List<PrivateTradeLeg> legs, Long cancellationFee, String cancellationDeadLine, String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Boolean deleted, String mediumDisplayName, ZonedDateTime updatedAt) {
         super(tradeId, tradeTime, state, currency, eventSequenceNo, deleted, mediumDisplayName, updatedAt);
         this.legs = legs;
         this.cancellationFee = cancellationFee;
         this.cancellationDeadLine = cancellationDeadLine;
-        this.revisionNo = revisionNo;
     }
 
     /**
@@ -122,19 +119,6 @@ public class PrivateTradeRow
         return this;
     }
 
-    public Long getRevisionNo() {
-        return revisionNo;
-    }
-
-    public void setRevisionNo(Long revisionNo) {
-        this.revisionNo = revisionNo;
-    }
-
-    public PrivateTradeRow withRevisionNo(Long revisionNo) {
-        this.revisionNo = revisionNo;
-        return this;
-    }
-
     @Override
     public PrivateTradeRow withTradeId(String tradeId) {
         super.withTradeId(tradeId);
@@ -185,12 +169,12 @@ public class PrivateTradeRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("legs", legs).append("cancellationFee", cancellationFee).append("cancellationDeadLine", cancellationDeadLine).append("revisionNo", revisionNo).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("legs", legs).append("cancellationFee", cancellationFee).append("cancellationDeadLine", cancellationDeadLine).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(cancellationFee).append(revisionNo).append(cancellationDeadLine).append(legs).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(cancellationFee).append(cancellationDeadLine).append(legs).toHashCode();
     }
 
     @Override
@@ -202,7 +186,7 @@ public class PrivateTradeRow
             return false;
         }
         PrivateTradeRow rhs = ((PrivateTradeRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(cancellationFee, rhs.cancellationFee).append(revisionNo, rhs.revisionNo).append(cancellationDeadLine, rhs.cancellationDeadLine).append(legs, rhs.legs).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(cancellationFee, rhs.cancellationFee).append(cancellationDeadLine, rhs.cancellationDeadLine).append(legs, rhs.legs).isEquals();
     }
 
 }
