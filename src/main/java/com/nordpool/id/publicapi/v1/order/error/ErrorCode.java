@@ -16,7 +16,8 @@ public enum ErrorCode {
     ACCESS_MODE_VIOLATION("ACCESS_MODE_VIOLATION"),
     THIRD_PARTY("THIRD_PARTY"),
     INVALID_AREA("INVALID_AREA"),
-    PARSING_ERROR("PARSING_ERROR");
+    PARSING_ERROR("PARSING_ERROR"),
+    REUQEST_OVER_THROTTLING("REUQEST_OVER_THROTTLING");
     private final String value;
     private final static Map<String, ErrorCode> CONSTANTS = new HashMap<String, ErrorCode>();
 
