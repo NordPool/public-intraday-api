@@ -8,7 +8,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Currency {
 
-    EUR("EUR");
+    EUR("EUR"),
+    GBP("GBP");
     private final String value;
     private final static Map<String, Currency> CONSTANTS = new HashMap<String, Currency>();
 
