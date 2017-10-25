@@ -1,95 +1,93 @@
-/*
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- */
 
 package com.nordpool.id.publicapi.v1.trade.leg;
 
 import com.nordpool.id.publicapi.v1.order.OrderAction;
+import com.nordpool.id.publicapi.v1.order.OrderSide;
 import com.nordpool.id.publicapi.v1.order.OrderState;
 import com.nordpool.id.publicapi.v1.order.OrderType;
 import com.nordpool.id.publicapi.v1.order.TimeInForce;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
-import java.util.Objects;
 
-public class PrivateTradeLeg extends BaseTradeLeg {
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ * <p>
+ * 
+ * 
+ */
+public class PrivateTradeLeg
+    extends BaseTradeLeg
+{
 
+    private String portfolioId;
     private String refOrderId;
+    private String userId;
     private Long deliveryStart;
     private Long deliveryEnd;
+    /**
+     * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
+     * 
+     */
     private OrderState orderState;
+    /**
+     * LIMIT, ICEBERG, USER_DEFINED_BLOCK
+     * 
+     */
     private OrderType orderType;
     private String text;
+    /**
+     * Action
+     * 
+     */
     private OrderAction orderAction;
+    /**
+     * IOC, FOK, AON, NON, GTD, GFS
+     * 
+     */
     private TimeInForce timeInForce;
-    private String portfolioId;
-    private String userId;
 
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
     public PrivateTradeLeg() {
     }
 
-    public String getRefOrderId() {
-        return refOrderId;
-    }
-
-    public void setRefOrderId(String refOrderId) {
+    /**
+     * 
+     * @param unitPrice
+     * @param orderType
+     * @param aggressor
+     * @param side
+     * @param quantity
+     * @param deliveryStart
+     * @param deliveryEnd
+     * @param refOrderId
+     * @param userId
+     * @param orderAction
+     * @param orderState
+     * @param portfolioId
+     * @param contractId
+     * @param tenantId
+     * @param deliveryAreaId
+     * @param text
+     * @param timeInForce
+     */
+    public PrivateTradeLeg(String portfolioId, String refOrderId, String userId, Long deliveryStart, Long deliveryEnd, OrderState orderState, OrderType orderType, String text, OrderAction orderAction, TimeInForce timeInForce, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String tenantId) {
+        super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor, tenantId);
+        this.portfolioId = portfolioId;
         this.refOrderId = refOrderId;
-    }
-
-    public Long getDeliveryStart() {
-        return deliveryStart;
-    }
-
-    public void setDeliveryStart(Long deliveryStart) {
+        this.userId = userId;
         this.deliveryStart = deliveryStart;
-    }
-
-    public Long getDeliveryEnd() {
-        return deliveryEnd;
-    }
-
-    public void setDeliveryEnd(Long deliveryEnd) {
         this.deliveryEnd = deliveryEnd;
-    }
-
-    public OrderState getOrderState() {
-        return orderState;
-    }
-
-    public void setOrderState(OrderState orderState) {
         this.orderState = orderState;
-    }
-
-    public OrderType getOrderType() {
-        return orderType;
-    }
-
-    public void setOrderType(OrderType orderType) {
         this.orderType = orderType;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
         this.text = text;
-    }
-
-    public OrderAction getOrderAction() {
-        return orderAction;
-    }
-
-    public void setOrderAction(OrderAction orderAction) {
         this.orderAction = orderAction;
-    }
-
-    public TimeInForce getTimeInForce() {
-        return timeInForce;
-    }
-
-    public void setTimeInForce(TimeInForce timeInForce) {
         this.timeInForce = timeInForce;
     }
 
@@ -101,6 +99,24 @@ public class PrivateTradeLeg extends BaseTradeLeg {
         this.portfolioId = portfolioId;
     }
 
+    public PrivateTradeLeg withPortfolioId(String portfolioId) {
+        this.portfolioId = portfolioId;
+        return this;
+    }
+
+    public String getRefOrderId() {
+        return refOrderId;
+    }
+
+    public void setRefOrderId(String refOrderId) {
+        this.refOrderId = refOrderId;
+    }
+
+    public PrivateTradeLeg withRefOrderId(String refOrderId) {
+        this.refOrderId = refOrderId;
+        return this;
+    }
+
     public String getUserId() {
         return userId;
     }
@@ -109,42 +125,196 @@ public class PrivateTradeLeg extends BaseTradeLeg {
         this.userId = userId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PrivateTradeLeg)) return false;
-        if (!super.equals(o)) return false;
-        PrivateTradeLeg that = (PrivateTradeLeg) o;
-        return Objects.equals(getRefOrderId(), that.getRefOrderId()) &&
-                Objects.equals(getDeliveryStart(), that.getDeliveryStart()) &&
-                Objects.equals(getDeliveryEnd(), that.getDeliveryEnd()) &&
-                getOrderState() == that.getOrderState() &&
-                getOrderType() == that.getOrderType() &&
-                Objects.equals(getText(), that.getText()) &&
-                getOrderAction() == that.getOrderAction() &&
-                getTimeInForce() == that.getTimeInForce() &&
-                Objects.equals(getPortfolioId(), that.getPortfolioId()) &&
-                Objects.equals(getUserId(), that.getUserId());
+    public PrivateTradeLeg withUserId(String userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    public Long getDeliveryStart() {
+        return deliveryStart;
+    }
+
+    public void setDeliveryStart(Long deliveryStart) {
+        this.deliveryStart = deliveryStart;
+    }
+
+    public PrivateTradeLeg withDeliveryStart(Long deliveryStart) {
+        this.deliveryStart = deliveryStart;
+        return this;
+    }
+
+    public Long getDeliveryEnd() {
+        return deliveryEnd;
+    }
+
+    public void setDeliveryEnd(Long deliveryEnd) {
+        this.deliveryEnd = deliveryEnd;
+    }
+
+    public PrivateTradeLeg withDeliveryEnd(Long deliveryEnd) {
+        this.deliveryEnd = deliveryEnd;
+        return this;
+    }
+
+    /**
+     * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
+     * 
+     */
+    public OrderState getOrderState() {
+        return orderState;
+    }
+
+    /**
+     * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
+     * 
+     */
+    public void setOrderState(OrderState orderState) {
+        this.orderState = orderState;
+    }
+
+    public PrivateTradeLeg withOrderState(OrderState orderState) {
+        this.orderState = orderState;
+        return this;
+    }
+
+    /**
+     * LIMIT, ICEBERG, USER_DEFINED_BLOCK
+     * 
+     */
+    public OrderType getOrderType() {
+        return orderType;
+    }
+
+    /**
+     * LIMIT, ICEBERG, USER_DEFINED_BLOCK
+     * 
+     */
+    public void setOrderType(OrderType orderType) {
+        this.orderType = orderType;
+    }
+
+    public PrivateTradeLeg withOrderType(OrderType orderType) {
+        this.orderType = orderType;
+        return this;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public PrivateTradeLeg withText(String text) {
+        this.text = text;
+        return this;
+    }
+
+    /**
+     * Action
+     * 
+     */
+    public OrderAction getOrderAction() {
+        return orderAction;
+    }
+
+    /**
+     * Action
+     * 
+     */
+    public void setOrderAction(OrderAction orderAction) {
+        this.orderAction = orderAction;
+    }
+
+    public PrivateTradeLeg withOrderAction(OrderAction orderAction) {
+        this.orderAction = orderAction;
+        return this;
+    }
+
+    /**
+     * IOC, FOK, AON, NON, GTD, GFS
+     * 
+     */
+    public TimeInForce getTimeInForce() {
+        return timeInForce;
+    }
+
+    /**
+     * IOC, FOK, AON, NON, GTD, GFS
+     * 
+     */
+    public void setTimeInForce(TimeInForce timeInForce) {
+        this.timeInForce = timeInForce;
+    }
+
+    public PrivateTradeLeg withTimeInForce(TimeInForce timeInForce) {
+        this.timeInForce = timeInForce;
+        return this;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getRefOrderId(), getDeliveryStart(), getDeliveryEnd(), getOrderState(), getOrderType(), getText(), getOrderAction(), getTimeInForce(), getPortfolioId(), getUserId());
+    public PrivateTradeLeg withContractId(String contractId) {
+        super.withContractId(contractId);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeLeg withSide(OrderSide side) {
+        super.withSide(side);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeLeg withUnitPrice(Long unitPrice) {
+        super.withUnitPrice(unitPrice);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeLeg withQuantity(Long quantity) {
+        super.withQuantity(quantity);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeLeg withDeliveryAreaId(Long deliveryAreaId) {
+        super.withDeliveryAreaId(deliveryAreaId);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeLeg withAggressor(Boolean aggressor) {
+        super.withAggressor(aggressor);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeLeg withTenantId(String tenantId) {
+        super.withTenantId(tenantId);
+        return this;
     }
 
     @Override
     public String toString() {
-        return "PrivateTradeLeg{" +
-                "refOrderId='" + refOrderId + '\'' +
-                ", deliveryStart=" + deliveryStart +
-                ", deliveryEnd=" + deliveryEnd +
-                ", orderState=" + orderState +
-                ", orderType=" + orderType +
-                ", text='" + text + '\'' +
-                ", orderAction=" + orderAction +
-                ", timeInForce=" + timeInForce +
-                ", portfolioId='" + portfolioId + '\'' +
-                ", userId='" + userId + '\'' +
-                "} " + super.toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("portfolioId", portfolioId).append("refOrderId", refOrderId).append("userId", userId).append("deliveryStart", deliveryStart).append("deliveryEnd", deliveryEnd).append("orderState", orderState).append("orderType", orderType).append("text", text).append("orderAction", orderAction).append("timeInForce", timeInForce).toString();
     }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(orderType).append(portfolioId).append(deliveryStart).append(deliveryEnd).append(refOrderId).append(text).append(userId).append(timeInForce).append(orderAction).append(orderState).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof PrivateTradeLeg) == false) {
+            return false;
+        }
+        PrivateTradeLeg rhs = ((PrivateTradeLeg) other);
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(orderType, rhs.orderType).append(portfolioId, rhs.portfolioId).append(deliveryStart, rhs.deliveryStart).append(deliveryEnd, rhs.deliveryEnd).append(refOrderId, rhs.refOrderId).append(text, rhs.text).append(userId, rhs.userId).append(timeInForce, rhs.timeInForce).append(orderAction, rhs.orderAction).append(orderState, rhs.orderState).isEquals();
+    }
+
 }

@@ -1,120 +1,181 @@
-/*
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- */
 
 package com.nordpool.id.publicapi.v1.order;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.nordpool.id.publicapi.v1.serialize.DateDeserializer;
-import com.nordpool.id.publicapi.v1.serialize.DateSerializer;
-
 import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
+
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ * <p>
+ * 
+ * 
+ */
 public class OrderEntry {
+
+    /**
+     * UUID for the order, provided by the client to track their own orders
+     * 
+     */
     private UUID clientOrderId;
+    /**
+     * The portfolio id of the current order
+     * 
+     */
     private String portfolioId;
-    private List<String> contractIds;
+    /**
+     * The contract ids that the current order should be placed on. For limit orders, only one value is allowed, for custom block orders all the contracts that the block spans should be included
+     * 
+     */
+    private List<String> contractIds = null;
     private Long deliveryAreaId;
+    /**
+     * BUY/SELL
+     * 
+     */
     private OrderSide side;
+    /**
+     * LIMIT, ICEBERG, USER_DEFINED_BLOCK
+     * 
+     */
     private OrderType orderType;
     private Long unitPrice;
     private Long quantity;
+    /**
+     * IOC, FOK, AON, NON, GTD, GFS
+     * 
+     */
     private TimeInForce timeInForce;
+    /**
+     * 'AON' (All or None): The order must be filled completely or not at all. The order stays in the order book until it is executed or removed by the system or user. This execution restriction can be used only in combination with User Defined Block Orders. 'NON': No restrictions.
+     * 
+     */
     private ExecutionRestriction executionRestriction;
-
-    @JsonSerialize(
-            using = DateSerializer.class
-    )
-    @JsonDeserialize(
-            using = DateDeserializer.class
-    )
+    @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
+    @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
     private ZonedDateTime expireTime;
     private String text;
+    /**
+     * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
+     * 
+     */
     private OrderState state;
     private Long clipSize;
     private Long clipPriceChange;
 
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
     public OrderEntry() {
     }
 
-    private OrderEntry(Builder builder) {
-        setClientOrderId(builder.clientOrderId);
-        setPortfolioId(builder.portfolioId);
-        setContractIds(builder.contractIds);
-        setDeliveryAreaId(builder.deliveryAreaId);
-        setSide(builder.side);
-        setOrderType(builder.orderType);
-        setUnitPrice(builder.unitPrice);
-        setQuantity(builder.quantity);
-        setTimeInForce(builder.timeInForce);
-        setExecutionRestriction(builder.executionRestriction);
-        setExpireTime(builder.expireTime);
-        setText(builder.text);
-        setState(builder.state);
-        setClipSize(builder.clipSize);
-        setClipPriceChange(builder.clipPriceChange);
-    }
-
-    public static Builder newBuilder(OrderEntry copy) {
-        Builder builder = new Builder();
-        builder.clientOrderId = copy.clientOrderId;
-        builder.portfolioId = copy.portfolioId;
-        builder.contractIds = copy.contractIds;
-        builder.deliveryAreaId = copy.deliveryAreaId;
-        builder.side = copy.side;
-        builder.orderType = copy.orderType;
-        builder.unitPrice = copy.unitPrice;
-        builder.quantity = copy.quantity;
-        builder.timeInForce = copy.timeInForce;
-        builder.executionRestriction = copy.executionRestriction;
-        builder.expireTime = copy.expireTime;
-        builder.text = copy.text;
-        builder.state = copy.state;
-        builder.clipSize = copy.clipSize;
-        builder.clipPriceChange = copy.clipPriceChange;
-        return builder;
-    }
-
-    public ExecutionRestriction getExecutionRestriction() {
-        return executionRestriction;
-    }
-
-    public void setExecutionRestriction(ExecutionRestriction executionRestriction) {
+    /**
+     * 
+     * @param unitPrice
+     * @param orderType
+     * @param side
+     * @param clipSize
+     * @param quantity
+     * @param clientOrderId
+     * @param contractIds
+     * @param clipPriceChange
+     * @param portfolioId
+     * @param executionRestriction
+     * @param expireTime
+     * @param deliveryAreaId
+     * @param text
+     * @param state
+     * @param timeInForce
+     */
+    public OrderEntry(UUID clientOrderId, String portfolioId, List<String> contractIds, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, OrderState state, Long clipSize, Long clipPriceChange) {
+        super();
+        this.clientOrderId = clientOrderId;
+        this.portfolioId = portfolioId;
+        this.contractIds = contractIds;
+        this.deliveryAreaId = deliveryAreaId;
+        this.side = side;
+        this.orderType = orderType;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.timeInForce = timeInForce;
         this.executionRestriction = executionRestriction;
+        this.expireTime = expireTime;
+        this.text = text;
+        this.state = state;
+        this.clipSize = clipSize;
+        this.clipPriceChange = clipPriceChange;
     }
 
-    public static Builder newBuilder() {
-        return new Builder();
-    }
-
+    /**
+     * UUID for the order, provided by the client to track their own orders
+     * 
+     */
     public UUID getClientOrderId() {
         return clientOrderId;
     }
 
+    /**
+     * UUID for the order, provided by the client to track their own orders
+     * 
+     */
     public void setClientOrderId(UUID clientOrderId) {
         this.clientOrderId = clientOrderId;
     }
 
+    public OrderEntry withClientOrderId(UUID clientOrderId) {
+        this.clientOrderId = clientOrderId;
+        return this;
+    }
+
+    /**
+     * The portfolio id of the current order
+     * 
+     */
     public String getPortfolioId() {
         return portfolioId;
     }
 
+    /**
+     * The portfolio id of the current order
+     * 
+     */
     public void setPortfolioId(String portfolioId) {
         this.portfolioId = portfolioId;
     }
 
+    public OrderEntry withPortfolioId(String portfolioId) {
+        this.portfolioId = portfolioId;
+        return this;
+    }
+
+    /**
+     * The contract ids that the current order should be placed on. For limit orders, only one value is allowed, for custom block orders all the contracts that the block spans should be included
+     * 
+     */
     public List<String> getContractIds() {
         return contractIds;
     }
 
+    /**
+     * The contract ids that the current order should be placed on. For limit orders, only one value is allowed, for custom block orders all the contracts that the block spans should be included
+     * 
+     */
     public void setContractIds(List<String> contractIds) {
         this.contractIds = contractIds;
+    }
+
+    public OrderEntry withContractIds(List<String> contractIds) {
+        this.contractIds = contractIds;
+        return this;
     }
 
     public Long getDeliveryAreaId() {
@@ -125,20 +186,51 @@ public class OrderEntry {
         this.deliveryAreaId = deliveryAreaId;
     }
 
+    public OrderEntry withDeliveryAreaId(Long deliveryAreaId) {
+        this.deliveryAreaId = deliveryAreaId;
+        return this;
+    }
+
+    /**
+     * BUY/SELL
+     * 
+     */
     public OrderSide getSide() {
         return side;
     }
 
+    /**
+     * BUY/SELL
+     * 
+     */
     public void setSide(OrderSide side) {
         this.side = side;
     }
 
+    public OrderEntry withSide(OrderSide side) {
+        this.side = side;
+        return this;
+    }
+
+    /**
+     * LIMIT, ICEBERG, USER_DEFINED_BLOCK
+     * 
+     */
     public OrderType getOrderType() {
         return orderType;
     }
 
+    /**
+     * LIMIT, ICEBERG, USER_DEFINED_BLOCK
+     * 
+     */
     public void setOrderType(OrderType orderType) {
         this.orderType = orderType;
+    }
+
+    public OrderEntry withOrderType(OrderType orderType) {
+        this.orderType = orderType;
+        return this;
     }
 
     public Long getUnitPrice() {
@@ -149,6 +241,11 @@ public class OrderEntry {
         this.unitPrice = unitPrice;
     }
 
+    public OrderEntry withUnitPrice(Long unitPrice) {
+        this.unitPrice = unitPrice;
+        return this;
+    }
+
     public Long getQuantity() {
         return quantity;
     }
@@ -157,12 +254,51 @@ public class OrderEntry {
         this.quantity = quantity;
     }
 
+    public OrderEntry withQuantity(Long quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    /**
+     * IOC, FOK, AON, NON, GTD, GFS
+     * 
+     */
     public TimeInForce getTimeInForce() {
         return timeInForce;
     }
 
+    /**
+     * IOC, FOK, AON, NON, GTD, GFS
+     * 
+     */
     public void setTimeInForce(TimeInForce timeInForce) {
         this.timeInForce = timeInForce;
+    }
+
+    public OrderEntry withTimeInForce(TimeInForce timeInForce) {
+        this.timeInForce = timeInForce;
+        return this;
+    }
+
+    /**
+     * 'AON' (All or None): The order must be filled completely or not at all. The order stays in the order book until it is executed or removed by the system or user. This execution restriction can be used only in combination with User Defined Block Orders. 'NON': No restrictions.
+     * 
+     */
+    public ExecutionRestriction getExecutionRestriction() {
+        return executionRestriction;
+    }
+
+    /**
+     * 'AON' (All or None): The order must be filled completely or not at all. The order stays in the order book until it is executed or removed by the system or user. This execution restriction can be used only in combination with User Defined Block Orders. 'NON': No restrictions.
+     * 
+     */
+    public void setExecutionRestriction(ExecutionRestriction executionRestriction) {
+        this.executionRestriction = executionRestriction;
+    }
+
+    public OrderEntry withExecutionRestriction(ExecutionRestriction executionRestriction) {
+        this.executionRestriction = executionRestriction;
+        return this;
     }
 
     public ZonedDateTime getExpireTime() {
@@ -173,6 +309,11 @@ public class OrderEntry {
         this.expireTime = expireTime;
     }
 
+    public OrderEntry withExpireTime(ZonedDateTime expireTime) {
+        this.expireTime = expireTime;
+        return this;
+    }
+
     public String getText() {
         return text;
     }
@@ -181,12 +322,30 @@ public class OrderEntry {
         this.text = text;
     }
 
+    public OrderEntry withText(String text) {
+        this.text = text;
+        return this;
+    }
+
+    /**
+     * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
+     * 
+     */
     public OrderState getState() {
         return state;
     }
 
+    /**
+     * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
+     * 
+     */
     public void setState(OrderState state) {
         this.state = state;
+    }
+
+    public OrderEntry withState(OrderState state) {
+        this.state = state;
+        return this;
     }
 
     public Long getClipSize() {
@@ -197,6 +356,11 @@ public class OrderEntry {
         this.clipSize = clipSize;
     }
 
+    public OrderEntry withClipSize(Long clipSize) {
+        this.clipSize = clipSize;
+        return this;
+    }
+
     public Long getClipPriceChange() {
         return clipPriceChange;
     }
@@ -205,158 +369,31 @@ public class OrderEntry {
         this.clipPriceChange = clipPriceChange;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OrderEntry)) return false;
-        OrderEntry that = (OrderEntry) o;
-        return Objects.equals(clientOrderId, that.clientOrderId) &&
-                Objects.equals(portfolioId, that.portfolioId) &&
-                Objects.equals(contractIds, that.contractIds) &&
-                Objects.equals(deliveryAreaId, that.deliveryAreaId) &&
-                side == that.side &&
-                orderType == that.orderType &&
-                Objects.equals(unitPrice, that.unitPrice) &&
-                Objects.equals(quantity, that.quantity) &&
-                timeInForce == that.timeInForce &&
-                executionRestriction == that.executionRestriction &&
-                Objects.equals(expireTime, that.expireTime) &&
-                Objects.equals(text, that.text) &&
-                state == that.state &&
-                Objects.equals(clipSize, that.clipSize) &&
-                Objects.equals(clipPriceChange, that.clipPriceChange);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(clientOrderId, portfolioId, contractIds, deliveryAreaId, side, executionRestriction, orderType, unitPrice, quantity, timeInForce, expireTime, text, state, clipSize, clipPriceChange);
+    public OrderEntry withClipPriceChange(Long clipPriceChange) {
+        this.clipPriceChange = clipPriceChange;
+        return this;
     }
 
     @Override
     public String toString() {
-        return "OrderEntry{" +
-                "clientOrderId='" + clientOrderId + '\'' +
-                ", portfolioId='" + portfolioId + '\'' +
-                ", contractIds=" + contractIds +
-                ", deliveryAreaId=" + deliveryAreaId +
-                ", side=" + side +
-                ", orderType=" + orderType +
-                ", unitPrice=" + unitPrice +
-                ", quantity=" + quantity +
-                ", timeInForce=" + timeInForce +
-                ", executionRestriction=" + executionRestriction +
-                ", expireTime=" + expireTime +
-                ", text='" + text + '\'' +
-                ", state=" + state +
-                ", clipSize=" + clipSize +
-                ", clipPriceChange=" + clipPriceChange +
-                '}';
+        return new ToStringBuilder(this).append("clientOrderId", clientOrderId).append("portfolioId", portfolioId).append("contractIds", contractIds).append("deliveryAreaId", deliveryAreaId).append("side", side).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("executionRestriction", executionRestriction).append("expireTime", expireTime).append("text", text).append("state", state).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).toString();
     }
 
-
-    public static final class Builder {
-        private UUID clientOrderId;
-        private String portfolioId;
-        private List<String> contractIds;
-        private Long deliveryAreaId;
-        private OrderSide side;
-        private OrderType orderType;
-        private Long unitPrice;
-        private Long quantity;
-        private TimeInForce timeInForce;
-        private ExecutionRestriction executionRestriction;
-        private ZonedDateTime expireTime;
-        private String text;
-        private OrderState state;
-        private Long clipSize;
-        private Long clipPriceChange;
-
-        private Builder() {
-        }
-
-        public Builder withClientOrderId(UUID val) {
-            clientOrderId = val;
-            return this;
-        }
-
-        public Builder withPortfolioId(String val) {
-            portfolioId = val;
-            return this;
-        }
-
-        public Builder withContractIds(List<String> val) {
-            contractIds = val;
-            return this;
-        }
-
-        public Builder withDeliveryAreaId(Long val) {
-            deliveryAreaId = val;
-            return this;
-        }
-
-        public Builder withSide(OrderSide val) {
-            side = val;
-            return this;
-        }
-
-        public Builder withOrderType(OrderType val) {
-            orderType = val;
-            return this;
-        }
-
-        public Builder withUnitPrice(Long val) {
-            unitPrice = val;
-            return this;
-        }
-
-        public Builder withQuantity(Long val) {
-            quantity = val;
-            return this;
-        }
-
-        public Builder withTimeInForce(TimeInForce val) {
-            timeInForce = val;
-            return this;
-        }
-
-        /**
-         * Sets the {@code executionRestriction} and returns a reference to this Builder so that the methods can be chained together.
-         *
-         * @param val the {@code executionRestriction} to set
-         * @return a reference to this Builder
-         */
-        public Builder withExecutionRestriction(ExecutionRestriction val) {
-            executionRestriction = val;
-            return this;
-        }
-
-        public Builder withExpireTime(ZonedDateTime val) {
-            expireTime = val;
-            return this;
-        }
-
-        public Builder withText(String val) {
-            text = val;
-            return this;
-        }
-
-        public Builder withState(OrderState val) {
-            state = val;
-            return this;
-        }
-
-        public Builder withClipSize(Long val) {
-            clipSize = val;
-            return this;
-        }
-
-        public Builder withClipPriceChange(Long val) {
-            clipPriceChange = val;
-            return this;
-        }
-
-        public OrderEntry build() {
-            return new OrderEntry(this);
-        }
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(unitPrice).append(orderType).append(side).append(clipSize).append(quantity).append(clientOrderId).append(contractIds).append(clipPriceChange).append(portfolioId).append(executionRestriction).append(expireTime).append(deliveryAreaId).append(text).append(state).append(timeInForce).toHashCode();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof OrderEntry) == false) {
+            return false;
+        }
+        OrderEntry rhs = ((OrderEntry) other);
+        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(orderType, rhs.orderType).append(side, rhs.side).append(clipSize, rhs.clipSize).append(quantity, rhs.quantity).append(clientOrderId, rhs.clientOrderId).append(contractIds, rhs.contractIds).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(executionRestriction, rhs.executionRestriction).append(expireTime, rhs.expireTime).append(deliveryAreaId, rhs.deliveryAreaId).append(text, rhs.text).append(state, rhs.state).append(timeInForce, rhs.timeInForce).isEquals();
+    }
+
 }

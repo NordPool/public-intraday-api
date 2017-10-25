@@ -1,35 +1,43 @@
-/*
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- */
 
 package com.nordpool.id.publicapi.v1.command;
 
-public class TokenRefreshCommand extends Command {
-    // Prospective fields for token replacement
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ * <p>
+ * 
+ * 
+ */
+public class TokenRefreshCommand {
+
     private String oldToken;
     private String newToken;
+    private CommandType type;
 
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
     public TokenRefreshCommand() {
-        super(CommandType.TOKEN_REFRESH);
     }
 
-    private TokenRefreshCommand(Builder builder) {
-        this();
-        oldToken = builder.oldToken;
-        newToken = builder.newToken;
-    }
-
-    public static Builder newBuilder() {
-        return new Builder();
-    }
-
-    public static Builder newBuilder(TokenRefreshCommand copy) {
-        Builder builder = new Builder();
-        builder.oldToken = copy.oldToken;
-        builder.newToken = copy.newToken;
-        return builder;
+    /**
+     * 
+     * @param newToken
+     * @param oldToken
+     * @param type
+     */
+    public TokenRefreshCommand(String oldToken, String newToken, CommandType type) {
+        super();
+        this.oldToken = oldToken;
+        this.newToken = newToken;
+        this.type = type;
     }
 
     public String getOldToken() {
@@ -40,6 +48,11 @@ public class TokenRefreshCommand extends Command {
         this.oldToken = oldToken;
     }
 
+    public TokenRefreshCommand withOldToken(String oldToken) {
+        this.oldToken = oldToken;
+        return this;
+    }
+
     public String getNewToken() {
         return newToken;
     }
@@ -48,54 +61,44 @@ public class TokenRefreshCommand extends Command {
         this.newToken = newToken;
     }
 
+    public TokenRefreshCommand withNewToken(String newToken) {
+        this.newToken = newToken;
+        return this;
+    }
+
+    public CommandType getType() {
+        return type;
+    }
+
+    public void setType(CommandType type) {
+        this.type = type;
+    }
+
+    public TokenRefreshCommand withType(CommandType type) {
+        this.type = type;
+        return this;
+    }
 
     @Override
     public String toString() {
-        return "TokenRefreshCommand{" +
-                ", oldToken='" + oldToken + '\'' +
-                ", newToken='" + newToken + '\'' +
-                "} " + super.toString();
+        return new ToStringBuilder(this).append("oldToken", oldToken).append("newToken", newToken).append("type", type).toString();
     }
 
-    /**
-     * {@code TokenRefreshCommand} builder static inner class.
-     */
-    public static final class Builder {
-        private String oldToken;
-        private String newToken;
-
-        private Builder() {
-        }
-
-        /**
-         * Sets the {@code oldToken} and returns a reference to this Builder so that the methods can be chained together.
-         *
-         * @param val the {@code oldToken} to set
-         * @return a reference to this Builder
-         */
-        public Builder withOldToken(String val) {
-            oldToken = val;
-            return this;
-        }
-
-        /**
-         * Sets the {@code newToken} and returns a reference to this Builder so that the methods can be chained together.
-         *
-         * @param val the {@code newToken} to set
-         * @return a reference to this Builder
-         */
-        public Builder withNewToken(String val) {
-            newToken = val;
-            return this;
-        }
-
-        /**
-         * Returns a {@code TokenRefreshCommand} built from the parameters previously set.
-         *
-         * @return a {@code TokenRefreshCommand} built with parameters of this {@code TokenRefreshCommand.Builder}
-         */
-        public TokenRefreshCommand build() {
-            return new TokenRefreshCommand(this);
-        }
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(oldToken).append(newToken).append(type).toHashCode();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof TokenRefreshCommand) == false) {
+            return false;
+        }
+        TokenRefreshCommand rhs = ((TokenRefreshCommand) other);
+        return new EqualsBuilder().append(oldToken, rhs.oldToken).append(newToken, rhs.newToken).append(type, rhs.type).isEquals();
+    }
+
 }

@@ -1,32 +1,91 @@
-/*
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- */
 
 package com.nordpool.id.publicapi.v1;
 
-import com.nordpool.id.publicapi.v1.base.BaseTradeRow;
-import com.nordpool.id.publicapi.v1.trade.leg.PrivateTradeLeg;
-
+import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.Objects;
+import com.nordpool.id.publicapi.v1.base.BaseTradeRow;
+import com.nordpool.id.publicapi.v1.trade.Currency;
+import com.nordpool.id.publicapi.v1.trade.TradeState;
+import com.nordpool.id.publicapi.v1.trade.leg.PrivateTradeLeg;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class PrivateTradeRow extends BaseTradeRow {
-    private List<PrivateTradeLeg> legs;
+
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ * <p>
+ * 
+ * 
+ */
+public class PrivateTradeRow
+    extends BaseTradeRow
+{
+
+    /**
+     * Basic data about orders participated in the trade
+     * 
+     */
+    private List<PrivateTradeLeg> legs = null;
     private Long cancellationFee;
+    /**
+     * There is a deadline for trade cancellation, in accordance with market rules
+     * 
+     */
     private String cancellationDeadLine;
     private Long revisionNo;
 
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
     public PrivateTradeRow() {
     }
 
+    /**
+     * 
+     * @param mediumDisplayName
+     * @param tradeTime
+     * @param deleted
+     * @param legs
+     * @param cancellationFee
+     * @param revisionNo
+     * @param currency
+     * @param eventSequenceNo
+     * @param state
+     * @param cancellationDeadLine
+     * @param tradeId
+     * @param updatedAt
+     */
+    public PrivateTradeRow(List<PrivateTradeLeg> legs, Long cancellationFee, String cancellationDeadLine, Long revisionNo, String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Boolean deleted, String mediumDisplayName, ZonedDateTime updatedAt) {
+        super(tradeId, tradeTime, state, currency, eventSequenceNo, deleted, mediumDisplayName, updatedAt);
+        this.legs = legs;
+        this.cancellationFee = cancellationFee;
+        this.cancellationDeadLine = cancellationDeadLine;
+        this.revisionNo = revisionNo;
+    }
+
+    /**
+     * Basic data about orders participated in the trade
+     * 
+     */
     public List<PrivateTradeLeg> getLegs() {
         return legs;
     }
 
+    /**
+     * Basic data about orders participated in the trade
+     * 
+     */
     public void setLegs(List<PrivateTradeLeg> legs) {
         this.legs = legs;
+    }
+
+    public PrivateTradeRow withLegs(List<PrivateTradeLeg> legs) {
+        this.legs = legs;
+        return this;
     }
 
     public Long getCancellationFee() {
@@ -37,12 +96,30 @@ public class PrivateTradeRow extends BaseTradeRow {
         this.cancellationFee = cancellationFee;
     }
 
+    public PrivateTradeRow withCancellationFee(Long cancellationFee) {
+        this.cancellationFee = cancellationFee;
+        return this;
+    }
+
+    /**
+     * There is a deadline for trade cancellation, in accordance with market rules
+     * 
+     */
     public String getCancellationDeadLine() {
         return cancellationDeadLine;
     }
 
+    /**
+     * There is a deadline for trade cancellation, in accordance with market rules
+     * 
+     */
     public void setCancellationDeadLine(String cancellationDeadLine) {
         this.cancellationDeadLine = cancellationDeadLine;
+    }
+
+    public PrivateTradeRow withCancellationDeadLine(String cancellationDeadLine) {
+        this.cancellationDeadLine = cancellationDeadLine;
+        return this;
     }
 
     public Long getRevisionNo() {
@@ -53,30 +130,79 @@ public class PrivateTradeRow extends BaseTradeRow {
         this.revisionNo = revisionNo;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof PrivateTradeRow)) return false;
-        if (!super.equals(o)) return false;
-        PrivateTradeRow that = (PrivateTradeRow) o;
-        return Objects.equals(legs, that.legs) &&
-                Objects.equals(cancellationFee, that.cancellationFee) &&
-                Objects.equals(cancellationDeadLine, that.cancellationDeadLine) &&
-                Objects.equals(revisionNo, that.revisionNo);
+    public PrivateTradeRow withRevisionNo(Long revisionNo) {
+        this.revisionNo = revisionNo;
+        return this;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), legs, cancellationFee, cancellationDeadLine, revisionNo);
+    public PrivateTradeRow withTradeId(String tradeId) {
+        super.withTradeId(tradeId);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeRow withTradeTime(ZonedDateTime tradeTime) {
+        super.withTradeTime(tradeTime);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeRow withState(TradeState state) {
+        super.withState(state);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeRow withCurrency(Currency currency) {
+        super.withCurrency(currency);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeRow withEventSequenceNo(Long eventSequenceNo) {
+        super.withEventSequenceNo(eventSequenceNo);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeRow withDeleted(Boolean deleted) {
+        super.withDeleted(deleted);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeRow withMediumDisplayName(String mediumDisplayName) {
+        super.withMediumDisplayName(mediumDisplayName);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeRow withUpdatedAt(ZonedDateTime updatedAt) {
+        super.withUpdatedAt(updatedAt);
+        return this;
     }
 
     @Override
     public String toString() {
-        return "PrivateTradeRow{" +
-                "legs=" + legs +
-                ", cancellationFee=" + cancellationFee +
-                ", cancellationDeadLine='" + cancellationDeadLine + '\'' +
-                ", revisionNo=" + revisionNo +
-                "} " + super.toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("legs", legs).append("cancellationFee", cancellationFee).append("cancellationDeadLine", cancellationDeadLine).append("revisionNo", revisionNo).toString();
     }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(cancellationFee).append(revisionNo).append(cancellationDeadLine).append(legs).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof PrivateTradeRow) == false) {
+            return false;
+        }
+        PrivateTradeRow rhs = ((PrivateTradeRow) other);
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(cancellationFee, rhs.cancellationFee).append(revisionNo, rhs.revisionNo).append(cancellationDeadLine, rhs.cancellationDeadLine).append(legs, rhs.legs).isEquals();
+    }
+
 }

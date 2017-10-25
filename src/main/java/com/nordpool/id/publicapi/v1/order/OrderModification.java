@@ -1,64 +1,99 @@
-/*
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- */
 
 package com.nordpool.id.publicapi.v1.order;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.nordpool.id.publicapi.v1.serialize.DateDeserializer;
-import com.nordpool.id.publicapi.v1.serialize.DateSerializer;
-
 import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
+
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ * <p>
+ * 
+ * 
+ */
 public class OrderModification {
+
     private Long revisionNo;
+    /**
+     * UUID for the order, provided by the client to track their own orders
+     * 
+     */
     private UUID clientOrderId;
     private String orderId;
     private String portfolioId;
-    private List<String> contractIds;
+    private List<String> contractIds = null;
+    /**
+     * LIMIT, ICEBERG, USER_DEFINED_BLOCK
+     * 
+     */
     private OrderType orderType;
     private Long unitPrice;
     private Long quantity;
+    /**
+     * IOC, FOK, AON, NON, GTD, GFS
+     * 
+     */
     private TimeInForce timeInForce;
+    /**
+     * 'AON' (All or None): The order must be filled completely or not at all. The order stays in the order book until it is executed or removed by the system or user. This execution restriction can be used only in combination with User Defined Block Orders. 'NON': No restrictions.
+     * 
+     */
     private ExecutionRestriction executionRestriction;
-    @JsonSerialize(
-            using = DateSerializer.class
-    )
-    @JsonDeserialize(
-            using = DateDeserializer.class
-    )
+    @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
+    @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
     private ZonedDateTime expireTime;
     private String text;
     private Long clipSize;
     private Long clipPriceChange;
 
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
     public OrderModification() {
     }
 
-    private OrderModification(Builder builder) {
-        setRevisionNo(builder.revisionNo);
-        setClientOrderId(builder.clientOrderId);
-        setOrderId(builder.orderId);
-        setPortfolioId(builder.portfolioId);
-        setContractIds(builder.contractIds);
-        setOrderType(builder.orderType);
-        setUnitPrice(builder.unitPrice);
-        setQuantity(builder.quantity);
-        setTimeInForce(builder.timeInForce);
-        setExpireTime(builder.expireTime);
-        setText(builder.text);
-        setClipSize(builder.clipSize);
-        setClipPriceChange(builder.clipPriceChange);
-    }
-
-    public static Builder newBuilder() {
-        return new Builder();
+    /**
+     * 
+     * @param unitPrice
+     * @param orderType
+     * @param clipSize
+     * @param quantity
+     * @param orderId
+     * @param clientOrderId
+     * @param contractIds
+     * @param clipPriceChange
+     * @param portfolioId
+     * @param executionRestriction
+     * @param expireTime
+     * @param revisionNo
+     * @param text
+     * @param timeInForce
+     */
+    public OrderModification(Long revisionNo, UUID clientOrderId, String orderId, String portfolioId, List<String> contractIds, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, Long clipSize, Long clipPriceChange) {
+        super();
+        this.revisionNo = revisionNo;
+        this.clientOrderId = clientOrderId;
+        this.orderId = orderId;
+        this.portfolioId = portfolioId;
+        this.contractIds = contractIds;
+        this.orderType = orderType;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+        this.timeInForce = timeInForce;
+        this.executionRestriction = executionRestriction;
+        this.expireTime = expireTime;
+        this.text = text;
+        this.clipSize = clipSize;
+        this.clipPriceChange = clipPriceChange;
     }
 
     public Long getRevisionNo() {
@@ -69,12 +104,30 @@ public class OrderModification {
         this.revisionNo = revisionNo;
     }
 
+    public OrderModification withRevisionNo(Long revisionNo) {
+        this.revisionNo = revisionNo;
+        return this;
+    }
+
+    /**
+     * UUID for the order, provided by the client to track their own orders
+     * 
+     */
     public UUID getClientOrderId() {
         return clientOrderId;
     }
 
+    /**
+     * UUID for the order, provided by the client to track their own orders
+     * 
+     */
     public void setClientOrderId(UUID clientOrderId) {
         this.clientOrderId = clientOrderId;
+    }
+
+    public OrderModification withClientOrderId(UUID clientOrderId) {
+        this.clientOrderId = clientOrderId;
+        return this;
     }
 
     public String getOrderId() {
@@ -85,12 +138,22 @@ public class OrderModification {
         this.orderId = orderId;
     }
 
+    public OrderModification withOrderId(String orderId) {
+        this.orderId = orderId;
+        return this;
+    }
+
     public String getPortfolioId() {
         return portfolioId;
     }
 
     public void setPortfolioId(String portfolioId) {
         this.portfolioId = portfolioId;
+    }
+
+    public OrderModification withPortfolioId(String portfolioId) {
+        this.portfolioId = portfolioId;
+        return this;
     }
 
     public List<String> getContractIds() {
@@ -101,12 +164,30 @@ public class OrderModification {
         this.contractIds = contractIds;
     }
 
+    public OrderModification withContractIds(List<String> contractIds) {
+        this.contractIds = contractIds;
+        return this;
+    }
+
+    /**
+     * LIMIT, ICEBERG, USER_DEFINED_BLOCK
+     * 
+     */
     public OrderType getOrderType() {
         return orderType;
     }
 
+    /**
+     * LIMIT, ICEBERG, USER_DEFINED_BLOCK
+     * 
+     */
     public void setOrderType(OrderType orderType) {
         this.orderType = orderType;
+    }
+
+    public OrderModification withOrderType(OrderType orderType) {
+        this.orderType = orderType;
+        return this;
     }
 
     public Long getUnitPrice() {
@@ -117,6 +198,11 @@ public class OrderModification {
         this.unitPrice = unitPrice;
     }
 
+    public OrderModification withUnitPrice(Long unitPrice) {
+        this.unitPrice = unitPrice;
+        return this;
+    }
+
     public Long getQuantity() {
         return quantity;
     }
@@ -125,12 +211,51 @@ public class OrderModification {
         this.quantity = quantity;
     }
 
+    public OrderModification withQuantity(Long quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    /**
+     * IOC, FOK, AON, NON, GTD, GFS
+     * 
+     */
     public TimeInForce getTimeInForce() {
         return timeInForce;
     }
 
+    /**
+     * IOC, FOK, AON, NON, GTD, GFS
+     * 
+     */
     public void setTimeInForce(TimeInForce timeInForce) {
         this.timeInForce = timeInForce;
+    }
+
+    public OrderModification withTimeInForce(TimeInForce timeInForce) {
+        this.timeInForce = timeInForce;
+        return this;
+    }
+
+    /**
+     * 'AON' (All or None): The order must be filled completely or not at all. The order stays in the order book until it is executed or removed by the system or user. This execution restriction can be used only in combination with User Defined Block Orders. 'NON': No restrictions.
+     * 
+     */
+    public ExecutionRestriction getExecutionRestriction() {
+        return executionRestriction;
+    }
+
+    /**
+     * 'AON' (All or None): The order must be filled completely or not at all. The order stays in the order book until it is executed or removed by the system or user. This execution restriction can be used only in combination with User Defined Block Orders. 'NON': No restrictions.
+     * 
+     */
+    public void setExecutionRestriction(ExecutionRestriction executionRestriction) {
+        this.executionRestriction = executionRestriction;
+    }
+
+    public OrderModification withExecutionRestriction(ExecutionRestriction executionRestriction) {
+        this.executionRestriction = executionRestriction;
+        return this;
     }
 
     public ZonedDateTime getExpireTime() {
@@ -141,12 +266,22 @@ public class OrderModification {
         this.expireTime = expireTime;
     }
 
+    public OrderModification withExpireTime(ZonedDateTime expireTime) {
+        this.expireTime = expireTime;
+        return this;
+    }
+
     public String getText() {
         return text;
     }
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public OrderModification withText(String text) {
+        this.text = text;
+        return this;
     }
 
     public Long getClipSize() {
@@ -157,6 +292,11 @@ public class OrderModification {
         this.clipSize = clipSize;
     }
 
+    public OrderModification withClipSize(Long clipSize) {
+        this.clipSize = clipSize;
+        return this;
+    }
+
     public Long getClipPriceChange() {
         return clipPriceChange;
     }
@@ -165,146 +305,31 @@ public class OrderModification {
         this.clipPriceChange = clipPriceChange;
     }
 
-    public ExecutionRestriction getExecutionRestriction() {
-        return executionRestriction;
-    }
-
-    public void setExecutionRestriction(ExecutionRestriction executionRestriction) {
-        this.executionRestriction = executionRestriction;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OrderModification)) return false;
-        OrderModification that = (OrderModification) o;
-        return Objects.equals(revisionNo, that.revisionNo) &&
-                Objects.equals(clientOrderId, that.clientOrderId) &&
-                Objects.equals(orderId, that.orderId) &&
-                Objects.equals(portfolioId, that.portfolioId) &&
-                Objects.equals(contractIds, that.contractIds) &&
-                orderType == that.orderType &&
-                Objects.equals(unitPrice, that.unitPrice) &&
-                Objects.equals(quantity, that.quantity) &&
-                timeInForce == that.timeInForce &&
-                executionRestriction == that.executionRestriction &&
-                Objects.equals(expireTime, that.expireTime) &&
-                Objects.equals(text, that.text) &&
-                Objects.equals(clipSize, that.clipSize) &&
-                Objects.equals(clipPriceChange, that.clipPriceChange);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(revisionNo, clientOrderId, orderId, portfolioId, executionRestriction, contractIds, orderType, unitPrice, quantity, timeInForce, expireTime, text, clipSize, clipPriceChange);
+    public OrderModification withClipPriceChange(Long clipPriceChange) {
+        this.clipPriceChange = clipPriceChange;
+        return this;
     }
 
     @Override
     public String toString() {
-        return "OrderModification{" +
-                "revisionNo=" + revisionNo +
-                ", clientOrderId='" + clientOrderId + '\'' +
-                ", orderId='" + orderId + '\'' +
-                ", portfolioId='" + portfolioId + '\'' +
-                ", contractIds=" + contractIds +
-                ", orderType=" + orderType +
-                ", unitPrice=" + unitPrice +
-                ", quantity=" + quantity +
-                ", timeInForce=" + timeInForce +
-                ", executionRestriction=" + executionRestriction +
-                ", expireTime=" + expireTime +
-                ", text='" + text + '\'' +
-                ", clipSize=" + clipSize +
-                ", clipPriceChange=" + clipPriceChange +
-                '}';
+        return new ToStringBuilder(this).append("revisionNo", revisionNo).append("clientOrderId", clientOrderId).append("orderId", orderId).append("portfolioId", portfolioId).append("contractIds", contractIds).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("executionRestriction", executionRestriction).append("expireTime", expireTime).append("text", text).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).toString();
     }
 
-
-    public static final class Builder {
-        private Long revisionNo;
-        private UUID clientOrderId;
-        private String orderId;
-        private String portfolioId;
-        private List<String> contractIds;
-        private OrderType orderType;
-        private Long unitPrice;
-        private Long quantity;
-        private TimeInForce timeInForce;
-        private ZonedDateTime expireTime;
-        private String text;
-        private Long clipSize;
-        private Long clipPriceChange;
-
-        private Builder() {
-        }
-
-        public Builder withRevisionNo(Long val) {
-            revisionNo = val;
-            return this;
-        }
-
-        public Builder withClientOrderId(UUID val) {
-            clientOrderId = val;
-            return this;
-        }
-
-        public Builder withOrderId(String val) {
-            orderId = val;
-            return this;
-        }
-
-        public Builder withPortfolioId(String val) {
-            portfolioId = val;
-            return this;
-        }
-
-        public Builder withContractIds(List<String> val) {
-            contractIds = val;
-            return this;
-        }
-
-        public Builder withOrderType(OrderType val) {
-            orderType = val;
-            return this;
-        }
-
-        public Builder withUnitPrice(Long val) {
-            unitPrice = val;
-            return this;
-        }
-
-        public Builder withQuantity(Long val) {
-            quantity = val;
-            return this;
-        }
-
-        public Builder withTimeInForce(TimeInForce val) {
-            timeInForce = val;
-            return this;
-        }
-
-        public Builder withExpireTime(ZonedDateTime val) {
-            expireTime = val;
-            return this;
-        }
-
-        public Builder withText(String val) {
-            text = val;
-            return this;
-        }
-
-        public Builder withClipSize(Long val) {
-            clipSize = val;
-            return this;
-        }
-
-        public Builder withClipPriceChange(Long val) {
-            clipPriceChange = val;
-            return this;
-        }
-
-        public OrderModification build() {
-            return new OrderModification(this);
-        }
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(unitPrice).append(orderType).append(clipSize).append(quantity).append(orderId).append(clientOrderId).append(contractIds).append(clipPriceChange).append(portfolioId).append(executionRestriction).append(expireTime).append(revisionNo).append(text).append(timeInForce).toHashCode();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof OrderModification) == false) {
+            return false;
+        }
+        OrderModification rhs = ((OrderModification) other);
+        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(orderType, rhs.orderType).append(clipSize, rhs.clipSize).append(quantity, rhs.quantity).append(orderId, rhs.orderId).append(clientOrderId, rhs.clientOrderId).append(contractIds, rhs.contractIds).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(executionRestriction, rhs.executionRestriction).append(expireTime, rhs.expireTime).append(revisionNo, rhs.revisionNo).append(text, rhs.text).append(timeInForce, rhs.timeInForce).isEquals();
+    }
+
 }

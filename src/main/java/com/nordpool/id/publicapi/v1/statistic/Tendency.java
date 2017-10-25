@@ -1,27 +1,47 @@
+
 package com.nordpool.id.publicapi.v1.statistic;
 
-import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
-/**
- * Created by Tesla Intraday Team on 08/08/2017.
- */
 public enum Tendency {
-    UP,
-    DOWN,
-    EQUAL;
 
-    private Tendency() {
-    }
+    UP("UP"),
+    DOWN("DOWN"),
+    EQUAL("EQUAL");
+    private final String value;
+    private final static Map<String, Tendency> CONSTANTS = new HashMap<String, Tendency>();
 
-    public static Tendency define(Long current, Long last) {
-        if (current != null && last != null) {
-            if (current.compareTo(last) > 0) {
-                return UP;
-            } else {
-                return current.compareTo(last) < 0 ? DOWN : EQUAL;
-            }
-        } else {
-            return null;
+    static {
+        for (Tendency c: values()) {
+            CONSTANTS.put(c.value, c);
         }
     }
+
+    private Tendency(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return this.value;
+    }
+
+    @JsonValue
+    public String value() {
+        return this.value;
+    }
+
+    @JsonCreator
+    public static Tendency fromValue(String value) {
+        Tendency constant = CONSTANTS.get(value);
+        if (constant == null) {
+            throw new IllegalArgumentException(value);
+        } else {
+            return constant;
+        }
+    }
+
 }

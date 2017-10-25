@@ -1,29 +1,35 @@
-/*
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- */
 
 package com.nordpool.id.publicapi.v1;
 
+import java.time.ZonedDateTime;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.nordpool.id.publicapi.v1.base.BaseRow;
-import com.nordpool.id.publicapi.v1.serialize.DateDeserializer;
-import com.nordpool.id.publicapi.v1.serialize.DateSerializer;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
-import java.time.ZonedDateTime;
-import java.util.Objects;
 
-public class CapacityRow extends BaseRow {
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ * <p>
+ * Capacity information between areas
+ * 
+ */
+public class CapacityRow
+    extends BaseRow
+{
+
     private Integer eventSequenceNo;
-    private boolean internal;
-    @JsonSerialize(
-            using = DateSerializer.class
-    )
-    @JsonDeserialize(
-            using = DateDeserializer.class
-    )
+    /**
+     * true - capacity data produced by internal Nord Pool Matcher. false - capacity data came
+     * 
+     */
+    private Boolean internal;
+    @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
+    @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
     private ZonedDateTime publicationTime;
     private Long deliveryAreaFrom;
     private Long deliveryAreaTo;
@@ -32,7 +38,37 @@ public class CapacityRow extends BaseRow {
     private Integer inCapacity;
     private Integer outCapacity;
 
+    /**
+     * No args constructor for use in serialization
+     * 
+     */
     public CapacityRow() {
+    }
+
+    /**
+     * 
+     * @param internal
+     * @param deliveryAreaFrom
+     * @param outCapacity
+     * @param deliveryStart
+     * @param deliveryEnd
+     * @param publicationTime
+     * @param inCapacity
+     * @param eventSequenceNo
+     * @param deliveryAreaTo
+     * @param updatedAt
+     */
+    public CapacityRow(Integer eventSequenceNo, Boolean internal, ZonedDateTime publicationTime, Long deliveryAreaFrom, Long deliveryAreaTo, Long deliveryStart, Long deliveryEnd, Integer inCapacity, Integer outCapacity, ZonedDateTime updatedAt) {
+        super(updatedAt);
+        this.eventSequenceNo = eventSequenceNo;
+        this.internal = internal;
+        this.publicationTime = publicationTime;
+        this.deliveryAreaFrom = deliveryAreaFrom;
+        this.deliveryAreaTo = deliveryAreaTo;
+        this.deliveryStart = deliveryStart;
+        this.deliveryEnd = deliveryEnd;
+        this.inCapacity = inCapacity;
+        this.outCapacity = outCapacity;
     }
 
     public Integer getEventSequenceNo() {
@@ -43,12 +79,30 @@ public class CapacityRow extends BaseRow {
         this.eventSequenceNo = eventSequenceNo;
     }
 
-    public boolean isInternal() {
+    public CapacityRow withEventSequenceNo(Integer eventSequenceNo) {
+        this.eventSequenceNo = eventSequenceNo;
+        return this;
+    }
+
+    /**
+     * true - capacity data produced by internal Nord Pool Matcher. false - capacity data came
+     * 
+     */
+    public Boolean getInternal() {
         return internal;
     }
 
-    public void setInternal(boolean internal) {
+    /**
+     * true - capacity data produced by internal Nord Pool Matcher. false - capacity data came
+     * 
+     */
+    public void setInternal(Boolean internal) {
         this.internal = internal;
+    }
+
+    public CapacityRow withInternal(Boolean internal) {
+        this.internal = internal;
+        return this;
     }
 
     public ZonedDateTime getPublicationTime() {
@@ -59,12 +113,22 @@ public class CapacityRow extends BaseRow {
         this.publicationTime = publicationTime;
     }
 
+    public CapacityRow withPublicationTime(ZonedDateTime publicationTime) {
+        this.publicationTime = publicationTime;
+        return this;
+    }
+
     public Long getDeliveryAreaFrom() {
         return deliveryAreaFrom;
     }
 
     public void setDeliveryAreaFrom(Long deliveryAreaFrom) {
         this.deliveryAreaFrom = deliveryAreaFrom;
+    }
+
+    public CapacityRow withDeliveryAreaFrom(Long deliveryAreaFrom) {
+        this.deliveryAreaFrom = deliveryAreaFrom;
+        return this;
     }
 
     public Long getDeliveryAreaTo() {
@@ -75,12 +139,22 @@ public class CapacityRow extends BaseRow {
         this.deliveryAreaTo = deliveryAreaTo;
     }
 
+    public CapacityRow withDeliveryAreaTo(Long deliveryAreaTo) {
+        this.deliveryAreaTo = deliveryAreaTo;
+        return this;
+    }
+
     public Long getDeliveryStart() {
         return deliveryStart;
     }
 
     public void setDeliveryStart(Long deliveryStart) {
         this.deliveryStart = deliveryStart;
+    }
+
+    public CapacityRow withDeliveryStart(Long deliveryStart) {
+        this.deliveryStart = deliveryStart;
+        return this;
     }
 
     public Long getDeliveryEnd() {
@@ -91,12 +165,22 @@ public class CapacityRow extends BaseRow {
         this.deliveryEnd = deliveryEnd;
     }
 
+    public CapacityRow withDeliveryEnd(Long deliveryEnd) {
+        this.deliveryEnd = deliveryEnd;
+        return this;
+    }
+
     public Integer getInCapacity() {
         return inCapacity;
     }
 
     public void setInCapacity(Integer inCapacity) {
         this.inCapacity = inCapacity;
+    }
+
+    public CapacityRow withInCapacity(Integer inCapacity) {
+        this.inCapacity = inCapacity;
+        return this;
     }
 
     public Integer getOutCapacity() {
@@ -107,40 +191,37 @@ public class CapacityRow extends BaseRow {
         this.outCapacity = outCapacity;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CapacityRow)) return false;
-        if (!super.equals(o)) return false;
-        CapacityRow that = (CapacityRow) o;
-        return internal == that.internal &&
-                Objects.equals(eventSequenceNo, that.eventSequenceNo) &&
-                Objects.equals(publicationTime, that.publicationTime) &&
-                Objects.equals(deliveryAreaFrom, that.deliveryAreaFrom) &&
-                Objects.equals(deliveryAreaTo, that.deliveryAreaTo) &&
-                Objects.equals(deliveryStart, that.deliveryStart) &&
-                Objects.equals(deliveryEnd, that.deliveryEnd) &&
-                Objects.equals(inCapacity, that.inCapacity) &&
-                Objects.equals(outCapacity, that.outCapacity);
+    public CapacityRow withOutCapacity(Integer outCapacity) {
+        this.outCapacity = outCapacity;
+        return this;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), eventSequenceNo, internal, publicationTime, deliveryAreaFrom, deliveryAreaTo, deliveryStart, deliveryEnd, inCapacity, outCapacity);
+    public CapacityRow withUpdatedAt(ZonedDateTime updatedAt) {
+        super.withUpdatedAt(updatedAt);
+        return this;
     }
 
     @Override
     public String toString() {
-        return "CapacityRow{" +
-                "eventSequenceNo=" + eventSequenceNo +
-                ", internal=" + internal +
-                ", publicationTime=" + publicationTime +
-                ", deliveryAreaFrom=" + deliveryAreaFrom +
-                ", deliveryAreaTo=" + deliveryAreaTo +
-                ", deliveryStart=" + deliveryStart +
-                ", deliveryEnd=" + deliveryEnd +
-                ", inCapacity=" + inCapacity +
-                ", outCapacity=" + outCapacity +
-                "} " + super.toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("eventSequenceNo", eventSequenceNo).append("internal", internal).append("publicationTime", publicationTime).append("deliveryAreaFrom", deliveryAreaFrom).append("deliveryAreaTo", deliveryAreaTo).append("deliveryStart", deliveryStart).append("deliveryEnd", deliveryEnd).append("inCapacity", inCapacity).append("outCapacity", outCapacity).toString();
     }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(internal).append(deliveryAreaFrom).append(outCapacity).append(deliveryStart).append(deliveryEnd).append(publicationTime).append(inCapacity).append(eventSequenceNo).append(deliveryAreaTo).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if ((other instanceof CapacityRow) == false) {
+            return false;
+        }
+        CapacityRow rhs = ((CapacityRow) other);
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(internal, rhs.internal).append(deliveryAreaFrom, rhs.deliveryAreaFrom).append(outCapacity, rhs.outCapacity).append(deliveryStart, rhs.deliveryStart).append(deliveryEnd, rhs.deliveryEnd).append(publicationTime, rhs.publicationTime).append(inCapacity, rhs.inCapacity).append(eventSequenceNo, rhs.eventSequenceNo).append(deliveryAreaTo, rhs.deliveryAreaTo).isEquals();
+    }
+
 }
