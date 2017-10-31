@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.nordpool.id.publicapi.v1.area.DeliveryAreaState;
 import com.nordpool.id.publicapi.v1.base.BaseRow;
-import com.nordpool.id.publicapi.v1.contract.ContractState;
 import com.nordpool.id.publicapi.v1.contract.ProductType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -36,11 +35,6 @@ public class ContractRow
      * 
      */
     private String contractName;
-    /**
-     * ACTI: Active, IACT: Expired(will never be reopened), HIBE: Closed(can be reopened)
-     * 
-     */
-    private ContractState state;
     private Long durationSeconds;
     private Long resolutionSeconds;
     /**
@@ -112,15 +106,13 @@ public class ContractRow
      * @param dlvryEnd
      * @param contractId
      * @param contractName
-     * @param state
      * @param productType
      * @param updatedAt
      */
-    public ContractRow(String contractId, String contractName, ContractState state, Long durationSeconds, Long resolutionSeconds, Boolean predefined, Boolean deleted, ZonedDateTime dlvryStart, ZonedDateTime dlvryEnd, List<DeliveryAreaState> dlvryAreaState, String marketId, String shortDisplayName, String mediumDisplayName, ProductType productType, String productId, ZonedDateTime updatedAt) {
+    public ContractRow(String contractId, String contractName, Long durationSeconds, Long resolutionSeconds, Boolean predefined, Boolean deleted, ZonedDateTime dlvryStart, ZonedDateTime dlvryEnd, List<DeliveryAreaState> dlvryAreaState, String marketId, String shortDisplayName, String mediumDisplayName, ProductType productType, String productId, ZonedDateTime updatedAt) {
         super(updatedAt);
         this.contractId = contractId;
         this.contractName = contractName;
-        this.state = state;
         this.durationSeconds = durationSeconds;
         this.resolutionSeconds = resolutionSeconds;
         this.predefined = predefined;
@@ -174,27 +166,6 @@ public class ContractRow
 
     public ContractRow withContractName(String contractName) {
         this.contractName = contractName;
-        return this;
-    }
-
-    /**
-     * ACTI: Active, IACT: Expired(will never be reopened), HIBE: Closed(can be reopened)
-     * 
-     */
-    public ContractState getState() {
-        return state;
-    }
-
-    /**
-     * ACTI: Active, IACT: Expired(will never be reopened), HIBE: Closed(can be reopened)
-     * 
-     */
-    public void setState(ContractState state) {
-        this.state = state;
-    }
-
-    public ContractRow withState(ContractState state) {
-        this.state = state;
         return this;
     }
 
@@ -426,12 +397,12 @@ public class ContractRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("contractId", contractId).append("contractName", contractName).append("state", state).append("durationSeconds", durationSeconds).append("resolutionSeconds", resolutionSeconds).append("predefined", predefined).append("deleted", deleted).append("dlvryStart", dlvryStart).append("dlvryEnd", dlvryEnd).append("dlvryAreaState", dlvryAreaState).append("marketId", marketId).append("shortDisplayName", shortDisplayName).append("mediumDisplayName", mediumDisplayName).append("productType", productType).append("productId", productId).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("contractId", contractId).append("contractName", contractName).append("durationSeconds", durationSeconds).append("resolutionSeconds", resolutionSeconds).append("predefined", predefined).append("deleted", deleted).append("dlvryStart", dlvryStart).append("dlvryEnd", dlvryEnd).append("dlvryAreaState", dlvryAreaState).append("marketId", marketId).append("shortDisplayName", shortDisplayName).append("mediumDisplayName", mediumDisplayName).append("productType", productType).append("productId", productId).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(resolutionSeconds).append(productId).append(durationSeconds).append(dlvryAreaState).append(predefined).append(dlvryStart).append(marketId).append(shortDisplayName).append(mediumDisplayName).append(deleted).append(dlvryEnd).append(contractId).append(contractName).append(state).append(productType).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(resolutionSeconds).append(productId).append(durationSeconds).append(dlvryAreaState).append(predefined).append(dlvryStart).append(marketId).append(shortDisplayName).append(mediumDisplayName).append(deleted).append(dlvryEnd).append(contractId).append(contractName).append(productType).toHashCode();
     }
 
     @Override
@@ -443,7 +414,7 @@ public class ContractRow
             return false;
         }
         ContractRow rhs = ((ContractRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(resolutionSeconds, rhs.resolutionSeconds).append(productId, rhs.productId).append(durationSeconds, rhs.durationSeconds).append(dlvryAreaState, rhs.dlvryAreaState).append(predefined, rhs.predefined).append(dlvryStart, rhs.dlvryStart).append(marketId, rhs.marketId).append(shortDisplayName, rhs.shortDisplayName).append(mediumDisplayName, rhs.mediumDisplayName).append(deleted, rhs.deleted).append(dlvryEnd, rhs.dlvryEnd).append(contractId, rhs.contractId).append(contractName, rhs.contractName).append(state, rhs.state).append(productType, rhs.productType).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(resolutionSeconds, rhs.resolutionSeconds).append(productId, rhs.productId).append(durationSeconds, rhs.durationSeconds).append(dlvryAreaState, rhs.dlvryAreaState).append(predefined, rhs.predefined).append(dlvryStart, rhs.dlvryStart).append(marketId, rhs.marketId).append(shortDisplayName, rhs.shortDisplayName).append(mediumDisplayName, rhs.mediumDisplayName).append(deleted, rhs.deleted).append(dlvryEnd, rhs.dlvryEnd).append(contractId, rhs.contractId).append(contractName, rhs.contractName).append(productType, rhs.productType).isEquals();
     }
 
 }
