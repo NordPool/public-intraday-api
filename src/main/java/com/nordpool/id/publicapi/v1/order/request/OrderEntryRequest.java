@@ -29,11 +29,6 @@ public class OrderEntryRequest {
      */
     private Boolean rejectPartially;
     /**
-     * Member ID
-     * 
-     */
-    private String memberId;
-    /**
      * List of orders
      * 
      */
@@ -51,13 +46,11 @@ public class OrderEntryRequest {
      * @param requestId
      * @param rejectPartially
      * @param orders
-     * @param memberId
      */
-    public OrderEntryRequest(String requestId, Boolean rejectPartially, String memberId, List<OrderEntry> orders) {
+    public OrderEntryRequest(String requestId, Boolean rejectPartially, List<OrderEntry> orders) {
         super();
         this.requestId = requestId;
         this.rejectPartially = rejectPartially;
-        this.memberId = memberId;
         this.orders = orders;
     }
 
@@ -104,27 +97,6 @@ public class OrderEntryRequest {
     }
 
     /**
-     * Member ID
-     * 
-     */
-    public String getMemberId() {
-        return memberId;
-    }
-
-    /**
-     * Member ID
-     * 
-     */
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
-    }
-
-    public OrderEntryRequest withMemberId(String memberId) {
-        this.memberId = memberId;
-        return this;
-    }
-
-    /**
      * List of orders
      * 
      */
@@ -147,12 +119,12 @@ public class OrderEntryRequest {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("requestId", requestId).append("rejectPartially", rejectPartially).append("memberId", memberId).append("orders", orders).toString();
+        return new ToStringBuilder(this).append("requestId", requestId).append("rejectPartially", rejectPartially).append("orders", orders).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(rejectPartially).append(orders).append(requestId).append(memberId).toHashCode();
+        return new HashCodeBuilder().append(rejectPartially).append(orders).append(requestId).toHashCode();
     }
 
     @Override
@@ -164,7 +136,7 @@ public class OrderEntryRequest {
             return false;
         }
         OrderEntryRequest rhs = ((OrderEntryRequest) other);
-        return new EqualsBuilder().append(rejectPartially, rhs.rejectPartially).append(orders, rhs.orders).append(requestId, rhs.requestId).append(memberId, rhs.memberId).isEquals();
+        return new EqualsBuilder().append(rejectPartially, rhs.rejectPartially).append(orders, rhs.orders).append(requestId, rhs.requestId).isEquals();
     }
 
 }
