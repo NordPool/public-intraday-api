@@ -1,0 +1,3 @@
+Copyright ${h_currentYear} ${h_copyrightOwner}.
+This library is intended to aid integration with ${h_copyrightOwner}’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+Please send feedback to idapi@nordpoolgroup.com.
