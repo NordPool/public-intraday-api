@@ -1,3 +1,9 @@
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ */
+
 
 package com.nordpool.id.publicapi.v1;
 
@@ -11,15 +17,6 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-
-/**
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- * <p>
- * 
- * 
- */
 public class PublicTradeRow
     extends BaseTradeRow
 {
@@ -42,6 +39,7 @@ public class PublicTradeRow
      * @param mediumDisplayName
      * @param tradeTime
      * @param deleted
+     * @param companyTrade
      * @param legs
      * @param currency
      * @param eventSequenceNo
@@ -49,8 +47,8 @@ public class PublicTradeRow
      * @param tradeId
      * @param updatedAt
      */
-    public PublicTradeRow(List<PublicTradeLeg> legs, String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Boolean deleted, String mediumDisplayName, ZonedDateTime updatedAt) {
-        super(tradeId, tradeTime, state, currency, eventSequenceNo, deleted, mediumDisplayName, updatedAt);
+    public PublicTradeRow(List<PublicTradeLeg> legs, String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Boolean deleted, String mediumDisplayName, Boolean companyTrade, ZonedDateTime updatedAt) {
+        super(tradeId, tradeTime, state, currency, eventSequenceNo, deleted, mediumDisplayName, companyTrade, updatedAt);
         this.legs = legs;
     }
 
@@ -114,6 +112,12 @@ public class PublicTradeRow
     @Override
     public PublicTradeRow withMediumDisplayName(String mediumDisplayName) {
         super.withMediumDisplayName(mediumDisplayName);
+        return this;
+    }
+
+    @Override
+    public PublicTradeRow withCompanyTrade(Boolean companyTrade) {
+        super.withCompanyTrade(companyTrade);
         return this;
     }
 

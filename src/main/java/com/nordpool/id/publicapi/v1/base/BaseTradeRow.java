@@ -1,3 +1,9 @@
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ */
+
 
 package com.nordpool.id.publicapi.v1.base;
 
@@ -12,10 +18,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 /**
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- * <p>
  * Class with base trade fields
  * 
  */
@@ -52,6 +54,11 @@ public class BaseTradeRow
      * 
      */
     private String mediumDisplayName;
+    /**
+     * Trade was made within the same company.
+     * 
+     */
+    private Boolean companyTrade;
 
     /**
      * No args constructor for use in serialization
@@ -65,13 +72,14 @@ public class BaseTradeRow
      * @param mediumDisplayName
      * @param tradeTime
      * @param deleted
+     * @param companyTrade
      * @param currency
      * @param eventSequenceNo
      * @param state
      * @param tradeId
      * @param updatedAt
      */
-    public BaseTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Boolean deleted, String mediumDisplayName, ZonedDateTime updatedAt) {
+    public BaseTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Boolean deleted, String mediumDisplayName, Boolean companyTrade, ZonedDateTime updatedAt) {
         super(updatedAt);
         this.tradeId = tradeId;
         this.tradeTime = tradeTime;
@@ -80,6 +88,7 @@ public class BaseTradeRow
         this.eventSequenceNo = eventSequenceNo;
         this.deleted = deleted;
         this.mediumDisplayName = mediumDisplayName;
+        this.companyTrade = companyTrade;
     }
 
     /**
@@ -213,6 +222,27 @@ public class BaseTradeRow
         return this;
     }
 
+    /**
+     * Trade was made within the same company.
+     * 
+     */
+    public Boolean getCompanyTrade() {
+        return companyTrade;
+    }
+
+    /**
+     * Trade was made within the same company.
+     * 
+     */
+    public void setCompanyTrade(Boolean companyTrade) {
+        this.companyTrade = companyTrade;
+    }
+
+    public BaseTradeRow withCompanyTrade(Boolean companyTrade) {
+        this.companyTrade = companyTrade;
+        return this;
+    }
+
     @Override
     public BaseTradeRow withUpdatedAt(ZonedDateTime updatedAt) {
         super.withUpdatedAt(updatedAt);
@@ -221,12 +251,12 @@ public class BaseTradeRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("tradeId", tradeId).append("tradeTime", tradeTime).append("state", state).append("currency", currency).append("eventSequenceNo", eventSequenceNo).append("deleted", deleted).append("mediumDisplayName", mediumDisplayName).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("tradeId", tradeId).append("tradeTime", tradeTime).append("state", state).append("currency", currency).append("eventSequenceNo", eventSequenceNo).append("deleted", deleted).append("mediumDisplayName", mediumDisplayName).append("companyTrade", companyTrade).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(mediumDisplayName).append(tradeTime).append(deleted).append(currency).append(eventSequenceNo).append(state).append(tradeId).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(mediumDisplayName).append(tradeTime).append(deleted).append(companyTrade).append(currency).append(eventSequenceNo).append(state).append(tradeId).toHashCode();
     }
 
     @Override
@@ -238,7 +268,7 @@ public class BaseTradeRow
             return false;
         }
         BaseTradeRow rhs = ((BaseTradeRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(mediumDisplayName, rhs.mediumDisplayName).append(tradeTime, rhs.tradeTime).append(deleted, rhs.deleted).append(currency, rhs.currency).append(eventSequenceNo, rhs.eventSequenceNo).append(state, rhs.state).append(tradeId, rhs.tradeId).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(mediumDisplayName, rhs.mediumDisplayName).append(tradeTime, rhs.tradeTime).append(deleted, rhs.deleted).append(companyTrade, rhs.companyTrade).append(currency, rhs.currency).append(eventSequenceNo, rhs.eventSequenceNo).append(state, rhs.state).append(tradeId, rhs.tradeId).isEquals();
     }
 
 }

@@ -1,3 +1,9 @@
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ */
+
 
 package com.nordpool.id.publicapi.v1;
 
@@ -11,15 +17,6 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-
-/**
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- * <p>
- * 
- * 
- */
 public class PrivateTradeRow
     extends BaseTradeRow
 {
@@ -46,6 +43,9 @@ public class PrivateTradeRow
 
     /**
      * 
+     * @param companyTrade
+     * @param eventSequenceNo
+     * @param cancellationDeadLine
      * @param mediumDisplayName
      * @param tradeTime
      * @param deleted
@@ -53,14 +53,12 @@ public class PrivateTradeRow
      * @param cancellationFee
      * @param revisionNo
      * @param currency
-     * @param eventSequenceNo
      * @param state
-     * @param cancellationDeadLine
      * @param tradeId
      * @param updatedAt
      */
-    public PrivateTradeRow(List<PrivateTradeLeg> legs, Long cancellationFee, String cancellationDeadLine, Long revisionNo, String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Boolean deleted, String mediumDisplayName, ZonedDateTime updatedAt) {
-        super(tradeId, tradeTime, state, currency, eventSequenceNo, deleted, mediumDisplayName, updatedAt);
+    public PrivateTradeRow(List<PrivateTradeLeg> legs, Long cancellationFee, String cancellationDeadLine, Long revisionNo, String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Boolean deleted, String mediumDisplayName, Boolean companyTrade, ZonedDateTime updatedAt) {
+        super(tradeId, tradeTime, state, currency, eventSequenceNo, deleted, mediumDisplayName, companyTrade, updatedAt);
         this.legs = legs;
         this.cancellationFee = cancellationFee;
         this.cancellationDeadLine = cancellationDeadLine;
@@ -174,6 +172,12 @@ public class PrivateTradeRow
     @Override
     public PrivateTradeRow withMediumDisplayName(String mediumDisplayName) {
         super.withMediumDisplayName(mediumDisplayName);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeRow withCompanyTrade(Boolean companyTrade) {
+        super.withCompanyTrade(companyTrade);
         return this;
     }
 

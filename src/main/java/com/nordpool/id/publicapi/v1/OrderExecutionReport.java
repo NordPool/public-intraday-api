@@ -1,3 +1,9 @@
+/**
+ * Copyright 2017 Nord Pool.
+ * This library is intended to aid integration with Nord Poolâ€™s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ */
+
 
 package com.nordpool.id.publicapi.v1;
 
@@ -13,10 +19,6 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 
 /**
- * Copyright 2017 Nord Pool.
- * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
- * Please send feedback to idapi@nordpoolgroup.com.
- * <p>
  * In response to an order creation or modification request described in Creating and modifying orders and for any order updates, the Intraday Platform will send an Order Execution Report message.
  * 
  */
