@@ -8,6 +8,7 @@
 package com.nordpool.id.publicapi.v1;
 
 import java.util.List;
+import java.util.Map;
 import com.nordpool.id.publicapi.v1.portfolio.Portfolio;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -20,7 +21,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
  */
 public class ConfigurationRow {
 
-    private String userUUID;
+    private java.lang.String userUUID;
     /**
      * Throttling limits
      * <p>
@@ -35,6 +36,13 @@ public class ConfigurationRow {
      * 
      */
     private List<Portfolio> portfolios = null;
+    /**
+     * Company users
+     * <p>
+     * Map of user name to user UUID relations
+     * 
+     */
+    private Map<String, String> companyUsers;
 
     /**
      * No args constructor for use in serialization
@@ -45,26 +53,28 @@ public class ConfigurationRow {
 
     /**
      * 
+     * @param companyUsers
      * @param portfolios
      * @param userUUID
      * @param throttlingLimit
      */
-    public ConfigurationRow(String userUUID, List<Long> throttlingLimit, List<Portfolio> portfolios) {
+    public ConfigurationRow(java.lang.String userUUID, List<Long> throttlingLimit, List<Portfolio> portfolios, Map<String, String> companyUsers) {
         super();
         this.userUUID = userUUID;
         this.throttlingLimit = throttlingLimit;
         this.portfolios = portfolios;
+        this.companyUsers = companyUsers;
     }
 
-    public String getUserUUID() {
+    public java.lang.String getUserUUID() {
         return userUUID;
     }
 
-    public void setUserUUID(String userUUID) {
+    public void setUserUUID(java.lang.String userUUID) {
         this.userUUID = userUUID;
     }
 
-    public ConfigurationRow withUserUUID(String userUUID) {
+    public ConfigurationRow withUserUUID(java.lang.String userUUID) {
         this.userUUID = userUUID;
         return this;
     }
@@ -119,14 +129,39 @@ public class ConfigurationRow {
         return this;
     }
 
+    /**
+     * Company users
+     * <p>
+     * Map of user name to user UUID relations
+     * 
+     */
+    public Map<String, String> getCompanyUsers() {
+        return companyUsers;
+    }
+
+    /**
+     * Company users
+     * <p>
+     * Map of user name to user UUID relations
+     * 
+     */
+    public void setCompanyUsers(Map<String, String> companyUsers) {
+        this.companyUsers = companyUsers;
+    }
+
+    public ConfigurationRow withCompanyUsers(Map<String, String> companyUsers) {
+        this.companyUsers = companyUsers;
+        return this;
+    }
+
     @Override
-    public String toString() {
-        return new ToStringBuilder(this).append("userUUID", userUUID).append("throttlingLimit", throttlingLimit).append("portfolios", portfolios).toString();
+    public java.lang.String toString() {
+        return new ToStringBuilder(this).append("userUUID", userUUID).append("throttlingLimit", throttlingLimit).append("portfolios", portfolios).append("companyUsers", companyUsers).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(portfolios).append(userUUID).append(throttlingLimit).toHashCode();
+        return new HashCodeBuilder().append(portfolios).append(userUUID).append(companyUsers).append(throttlingLimit).toHashCode();
     }
 
     @Override
@@ -138,7 +173,7 @@ public class ConfigurationRow {
             return false;
         }
         ConfigurationRow rhs = ((ConfigurationRow) other);
-        return new EqualsBuilder().append(portfolios, rhs.portfolios).append(userUUID, rhs.userUUID).append(throttlingLimit, rhs.throttlingLimit).isEquals();
+        return new EqualsBuilder().append(portfolios, rhs.portfolios).append(userUUID, rhs.userUUID).append(companyUsers, rhs.companyUsers).append(throttlingLimit, rhs.throttlingLimit).isEquals();
     }
 
 }
