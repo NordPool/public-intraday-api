@@ -23,7 +23,8 @@ public enum ErrorCode {
     THIRD_PARTY("THIRD_PARTY"),
     INVALID_AREA("INVALID_AREA"),
     PARSING_ERROR("PARSING_ERROR"),
-    REUQEST_OVER_THROTTLING("REUQEST_OVER_THROTTLING");
+    REUQEST_OVER_THROTTLING("REUQEST_OVER_THROTTLING"),
+    INTERNAL_SERVER_ERROR("INTERNAL_SERVER_ERROR");
     private final String value;
     private final static Map<String, ErrorCode> CONSTANTS = new HashMap<String, ErrorCode>();
 
