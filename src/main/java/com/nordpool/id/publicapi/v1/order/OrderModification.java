@@ -55,6 +55,17 @@ public class OrderModification {
     private String text;
     private Long clipSize;
     private Long clipPriceChange;
+    private Long deliveryAreaId;
+    /**
+     * BUY/SELL
+     * 
+     */
+    private OrderSide side;
+    /**
+     * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
+     * 
+     */
+    private OrderState state;
 
     /**
      * No args constructor for use in serialization
@@ -68,6 +79,7 @@ public class OrderModification {
      * @param unitPrice
      * @param orderType
      * @param clipSize
+     * @param side
      * @param quantity
      * @param orderId
      * @param clientOrderId
@@ -77,10 +89,12 @@ public class OrderModification {
      * @param executionRestriction
      * @param expireTime
      * @param revisionNo
+     * @param deliveryAreaId
      * @param text
+     * @param state
      * @param timeInForce
      */
-    public OrderModification(Long revisionNo, UUID clientOrderId, String orderId, String portfolioId, List<String> contractIds, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, Long clipSize, Long clipPriceChange) {
+    public OrderModification(Long revisionNo, UUID clientOrderId, String orderId, String portfolioId, List<String> contractIds, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, Long clipSize, Long clipPriceChange, Long deliveryAreaId, OrderSide side, OrderState state) {
         super();
         this.revisionNo = revisionNo;
         this.clientOrderId = clientOrderId;
@@ -96,6 +110,9 @@ public class OrderModification {
         this.text = text;
         this.clipSize = clipSize;
         this.clipPriceChange = clipPriceChange;
+        this.deliveryAreaId = deliveryAreaId;
+        this.side = side;
+        this.state = state;
     }
 
     public Long getRevisionNo() {
@@ -312,14 +329,69 @@ public class OrderModification {
         return this;
     }
 
+    public Long getDeliveryAreaId() {
+        return deliveryAreaId;
+    }
+
+    public void setDeliveryAreaId(Long deliveryAreaId) {
+        this.deliveryAreaId = deliveryAreaId;
+    }
+
+    public OrderModification withDeliveryAreaId(Long deliveryAreaId) {
+        this.deliveryAreaId = deliveryAreaId;
+        return this;
+    }
+
+    /**
+     * BUY/SELL
+     * 
+     */
+    public OrderSide getSide() {
+        return side;
+    }
+
+    /**
+     * BUY/SELL
+     * 
+     */
+    public void setSide(OrderSide side) {
+        this.side = side;
+    }
+
+    public OrderModification withSide(OrderSide side) {
+        this.side = side;
+        return this;
+    }
+
+    /**
+     * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
+     * 
+     */
+    public OrderState getState() {
+        return state;
+    }
+
+    /**
+     * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
+     * 
+     */
+    public void setState(OrderState state) {
+        this.state = state;
+    }
+
+    public OrderModification withState(OrderState state) {
+        this.state = state;
+        return this;
+    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("revisionNo", revisionNo).append("clientOrderId", clientOrderId).append("orderId", orderId).append("portfolioId", portfolioId).append("contractIds", contractIds).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("executionRestriction", executionRestriction).append("expireTime", expireTime).append("text", text).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).toString();
+        return new ToStringBuilder(this).append("revisionNo", revisionNo).append("clientOrderId", clientOrderId).append("orderId", orderId).append("portfolioId", portfolioId).append("contractIds", contractIds).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("executionRestriction", executionRestriction).append("expireTime", expireTime).append("text", text).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).append("deliveryAreaId", deliveryAreaId).append("side", side).append("state", state).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(unitPrice).append(orderType).append(clipSize).append(quantity).append(orderId).append(clientOrderId).append(contractIds).append(clipPriceChange).append(portfolioId).append(executionRestriction).append(expireTime).append(revisionNo).append(text).append(timeInForce).toHashCode();
+        return new HashCodeBuilder().append(unitPrice).append(orderType).append(clipSize).append(side).append(quantity).append(orderId).append(clientOrderId).append(contractIds).append(clipPriceChange).append(portfolioId).append(executionRestriction).append(expireTime).append(revisionNo).append(deliveryAreaId).append(text).append(state).append(timeInForce).toHashCode();
     }
 
     @Override
@@ -331,7 +403,7 @@ public class OrderModification {
             return false;
         }
         OrderModification rhs = ((OrderModification) other);
-        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(orderType, rhs.orderType).append(clipSize, rhs.clipSize).append(quantity, rhs.quantity).append(orderId, rhs.orderId).append(clientOrderId, rhs.clientOrderId).append(contractIds, rhs.contractIds).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(executionRestriction, rhs.executionRestriction).append(expireTime, rhs.expireTime).append(revisionNo, rhs.revisionNo).append(text, rhs.text).append(timeInForce, rhs.timeInForce).isEquals();
+        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(orderType, rhs.orderType).append(clipSize, rhs.clipSize).append(side, rhs.side).append(quantity, rhs.quantity).append(orderId, rhs.orderId).append(clientOrderId, rhs.clientOrderId).append(contractIds, rhs.contractIds).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(executionRestriction, rhs.executionRestriction).append(expireTime, rhs.expireTime).append(revisionNo, rhs.revisionNo).append(deliveryAreaId, rhs.deliveryAreaId).append(text, rhs.text).append(state, rhs.state).append(timeInForce, rhs.timeInForce).isEquals();
     }
 
 }

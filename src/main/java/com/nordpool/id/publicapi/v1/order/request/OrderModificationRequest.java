@@ -22,7 +22,6 @@ public class OrderModificationRequest {
      */
     private String requestId;
     private OrderModificationType orderModificationType;
-    private String userId;
     private List<OrderModification> orders = null;
 
     /**
@@ -37,13 +36,11 @@ public class OrderModificationRequest {
      * @param requestId
      * @param orders
      * @param orderModificationType
-     * @param userId
      */
-    public OrderModificationRequest(String requestId, OrderModificationType orderModificationType, String userId, List<OrderModification> orders) {
+    public OrderModificationRequest(String requestId, OrderModificationType orderModificationType, List<OrderModification> orders) {
         super();
         this.requestId = requestId;
         this.orderModificationType = orderModificationType;
-        this.userId = userId;
         this.orders = orders;
     }
 
@@ -81,19 +78,6 @@ public class OrderModificationRequest {
         return this;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public OrderModificationRequest withUserId(String userId) {
-        this.userId = userId;
-        return this;
-    }
-
     public List<OrderModification> getOrders() {
         return orders;
     }
@@ -109,12 +93,12 @@ public class OrderModificationRequest {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("requestId", requestId).append("orderModificationType", orderModificationType).append("userId", userId).append("orders", orders).toString();
+        return new ToStringBuilder(this).append("requestId", requestId).append("orderModificationType", orderModificationType).append("orders", orders).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(orders).append(orderModificationType).append(userId).append(requestId).toHashCode();
+        return new HashCodeBuilder().append(orders).append(orderModificationType).append(requestId).toHashCode();
     }
 
     @Override
@@ -126,7 +110,7 @@ public class OrderModificationRequest {
             return false;
         }
         OrderModificationRequest rhs = ((OrderModificationRequest) other);
-        return new EqualsBuilder().append(orders, rhs.orders).append(orderModificationType, rhs.orderModificationType).append(userId, rhs.userId).append(requestId, rhs.requestId).isEquals();
+        return new EqualsBuilder().append(orders, rhs.orders).append(orderModificationType, rhs.orderModificationType).append(requestId, rhs.requestId).isEquals();
     }
 
 }
