@@ -23,7 +23,8 @@ public enum OrderAction {
     SYSTEM_DELETED("SYSTEM_DELETED"),
     PARTIAL_EXECUTION("PARTIAL_EXECUTION"),
     FULL_EXECUTION("FULL_EXECUTION"),
-    ICEBERG_SLICE_ADDED("ICEBERG_SLICE_ADDED");
+    ICEBERG_SLICE_ADDED("ICEBERG_SLICE_ADDED"),
+    SYSTEM_EXPIRED("SYSTEM_EXPIRED");
     private final String value;
     private final static Map<String, OrderAction> CONSTANTS = new HashMap<String, OrderAction>();
 
