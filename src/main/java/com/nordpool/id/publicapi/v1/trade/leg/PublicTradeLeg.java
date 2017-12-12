@@ -37,11 +37,10 @@ public class PublicTradeLeg
      * @param quantity
      * @param ownership
      * @param contractId
-     * @param tenantId
      * @param deliveryAreaId
      */
-    public PublicTradeLeg(LegOwnershipEnum ownership, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String tenantId) {
-        super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor, tenantId);
+    public PublicTradeLeg(LegOwnershipEnum ownership, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor) {
+        super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);
         this.ownership = ownership;
     }
 
@@ -99,12 +98,6 @@ public class PublicTradeLeg
     @Override
     public PublicTradeLeg withAggressor(Boolean aggressor) {
         super.withAggressor(aggressor);
-        return this;
-    }
-
-    @Override
-    public PublicTradeLeg withTenantId(String tenantId) {
-        super.withTenantId(tenantId);
         return this;
     }
 
