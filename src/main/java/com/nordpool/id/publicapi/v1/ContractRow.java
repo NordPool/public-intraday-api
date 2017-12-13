@@ -39,6 +39,11 @@ public class ContractRow
      * 
      */
     private Boolean predefined;
+    /**
+     * If false: update information with the contents received, If true: delete entity indicated in the message.
+     * 
+     */
+    private Boolean deleted;
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
     private ZonedDateTime dlvryStart;
@@ -94,19 +99,21 @@ public class ContractRow
      * @param marketId
      * @param shortDisplayName
      * @param mediumDisplayName
+     * @param deleted
      * @param dlvryEnd
      * @param contractId
      * @param contractName
      * @param productType
      * @param updatedAt
      */
-    public ContractRow(String contractId, String contractName, Long durationSeconds, Long resolutionSeconds, Boolean predefined, ZonedDateTime dlvryStart, ZonedDateTime dlvryEnd, List<DeliveryAreaState> dlvryAreaState, String marketId, String shortDisplayName, String mediumDisplayName, ProductType productType, String productId, ZonedDateTime updatedAt) {
+    public ContractRow(String contractId, String contractName, Long durationSeconds, Long resolutionSeconds, Boolean predefined, Boolean deleted, ZonedDateTime dlvryStart, ZonedDateTime dlvryEnd, List<DeliveryAreaState> dlvryAreaState, String marketId, String shortDisplayName, String mediumDisplayName, ProductType productType, String productId, ZonedDateTime updatedAt) {
         super(updatedAt);
         this.contractId = contractId;
         this.contractName = contractName;
         this.durationSeconds = durationSeconds;
         this.resolutionSeconds = resolutionSeconds;
         this.predefined = predefined;
+        this.deleted = deleted;
         this.dlvryStart = dlvryStart;
         this.dlvryEnd = dlvryEnd;
         this.dlvryAreaState = dlvryAreaState;
@@ -203,6 +210,27 @@ public class ContractRow
 
     public ContractRow withPredefined(Boolean predefined) {
         this.predefined = predefined;
+        return this;
+    }
+
+    /**
+     * If false: update information with the contents received, If true: delete entity indicated in the message.
+     * 
+     */
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    /**
+     * If false: update information with the contents received, If true: delete entity indicated in the message.
+     * 
+     */
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public ContractRow withDeleted(Boolean deleted) {
+        this.deleted = deleted;
         return this;
     }
 
@@ -366,12 +394,12 @@ public class ContractRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("contractId", contractId).append("contractName", contractName).append("durationSeconds", durationSeconds).append("resolutionSeconds", resolutionSeconds).append("predefined", predefined).append("dlvryStart", dlvryStart).append("dlvryEnd", dlvryEnd).append("dlvryAreaState", dlvryAreaState).append("marketId", marketId).append("shortDisplayName", shortDisplayName).append("mediumDisplayName", mediumDisplayName).append("productType", productType).append("productId", productId).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("contractId", contractId).append("contractName", contractName).append("durationSeconds", durationSeconds).append("resolutionSeconds", resolutionSeconds).append("predefined", predefined).append("deleted", deleted).append("dlvryStart", dlvryStart).append("dlvryEnd", dlvryEnd).append("dlvryAreaState", dlvryAreaState).append("marketId", marketId).append("shortDisplayName", shortDisplayName).append("mediumDisplayName", mediumDisplayName).append("productType", productType).append("productId", productId).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(resolutionSeconds).append(productId).append(durationSeconds).append(dlvryAreaState).append(predefined).append(dlvryStart).append(marketId).append(shortDisplayName).append(mediumDisplayName).append(dlvryEnd).append(contractId).append(contractName).append(productType).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(resolutionSeconds).append(productId).append(durationSeconds).append(dlvryAreaState).append(predefined).append(dlvryStart).append(marketId).append(shortDisplayName).append(mediumDisplayName).append(deleted).append(dlvryEnd).append(contractId).append(contractName).append(productType).toHashCode();
     }
 
     @Override
@@ -383,7 +411,7 @@ public class ContractRow
             return false;
         }
         ContractRow rhs = ((ContractRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(resolutionSeconds, rhs.resolutionSeconds).append(productId, rhs.productId).append(durationSeconds, rhs.durationSeconds).append(dlvryAreaState, rhs.dlvryAreaState).append(predefined, rhs.predefined).append(dlvryStart, rhs.dlvryStart).append(marketId, rhs.marketId).append(shortDisplayName, rhs.shortDisplayName).append(mediumDisplayName, rhs.mediumDisplayName).append(dlvryEnd, rhs.dlvryEnd).append(contractId, rhs.contractId).append(contractName, rhs.contractName).append(productType, rhs.productType).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(resolutionSeconds, rhs.resolutionSeconds).append(productId, rhs.productId).append(durationSeconds, rhs.durationSeconds).append(dlvryAreaState, rhs.dlvryAreaState).append(predefined, rhs.predefined).append(dlvryStart, rhs.dlvryStart).append(marketId, rhs.marketId).append(shortDisplayName, rhs.shortDisplayName).append(mediumDisplayName, rhs.mediumDisplayName).append(deleted, rhs.deleted).append(dlvryEnd, rhs.dlvryEnd).append(contractId, rhs.contractId).append(contractName, rhs.contractName).append(productType, rhs.productType).isEquals();
     }
 
 }
