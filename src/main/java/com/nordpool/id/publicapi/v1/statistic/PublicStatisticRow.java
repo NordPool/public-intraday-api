@@ -8,6 +8,7 @@
 package com.nordpool.id.publicapi.v1.statistic;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -38,10 +39,20 @@ public class PublicStatisticRow
     private Long turnover;
     private Long dayAheadPrice;
     /**
+     * If false: update information with the contents received, If true: delete entity indicated in the message
+     * 
+     */
+    private Boolean deleted;
+    /**
      * UP - Last price is higher than a previous price, DOWN - Last price is lower than a previous price, EQUAL - Last price is equal to a previous price
      * 
      */
     private Tendency tendency;
+    /**
+     * List of trade histories
+     * 
+     */
+    private List<TradeHistory> histories = null;
 
     /**
      * No args constructor for use in serialization
@@ -55,8 +66,10 @@ public class PublicStatisticRow
      * @param highestPrice
      * @param lowestPrice
      * @param tendency
-     * @param lastTradeTime
      * @param vwap
+     * @param histories
+     * @param deleted
+     * @param lastTradeTime
      * @param contractId
      * @param dayAheadPrice
      * @param deliveryAreaId
@@ -65,7 +78,7 @@ public class PublicStatisticRow
      * @param lastPrice
      * @param updatedAt
      */
-    public PublicStatisticRow(Long lastPrice, Long lastQuantity, ZonedDateTime lastTradeTime, Long highestPrice, Long lowestPrice, Long vwap, Long turnover, Long dayAheadPrice, Tendency tendency, Long deliveryAreaId, String contractId, ZonedDateTime updatedAt) {
+    public PublicStatisticRow(Long lastPrice, Long lastQuantity, ZonedDateTime lastTradeTime, Long highestPrice, Long lowestPrice, Long vwap, Long turnover, Long dayAheadPrice, Boolean deleted, Tendency tendency, List<TradeHistory> histories, Long deliveryAreaId, String contractId, ZonedDateTime updatedAt) {
         super(deliveryAreaId, contractId, updatedAt);
         this.lastPrice = lastPrice;
         this.lastQuantity = lastQuantity;
@@ -75,7 +88,9 @@ public class PublicStatisticRow
         this.vwap = vwap;
         this.turnover = turnover;
         this.dayAheadPrice = dayAheadPrice;
+        this.deleted = deleted;
         this.tendency = tendency;
+        this.histories = histories;
     }
 
     public Long getLastPrice() {
@@ -191,6 +206,27 @@ public class PublicStatisticRow
     }
 
     /**
+     * If false: update information with the contents received, If true: delete entity indicated in the message
+     * 
+     */
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    /**
+     * If false: update information with the contents received, If true: delete entity indicated in the message
+     * 
+     */
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public PublicStatisticRow withDeleted(Boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
+    /**
      * UP - Last price is higher than a previous price, DOWN - Last price is lower than a previous price, EQUAL - Last price is equal to a previous price
      * 
      */
@@ -208,6 +244,27 @@ public class PublicStatisticRow
 
     public PublicStatisticRow withTendency(Tendency tendency) {
         this.tendency = tendency;
+        return this;
+    }
+
+    /**
+     * List of trade histories
+     * 
+     */
+    public List<TradeHistory> getHistories() {
+        return histories;
+    }
+
+    /**
+     * List of trade histories
+     * 
+     */
+    public void setHistories(List<TradeHistory> histories) {
+        this.histories = histories;
+    }
+
+    public PublicStatisticRow withHistories(List<TradeHistory> histories) {
+        this.histories = histories;
         return this;
     }
 
@@ -231,12 +288,12 @@ public class PublicStatisticRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("lastPrice", lastPrice).append("lastQuantity", lastQuantity).append("lastTradeTime", lastTradeTime).append("highestPrice", highestPrice).append("lowestPrice", lowestPrice).append("vwap", vwap).append("turnover", turnover).append("dayAheadPrice", dayAheadPrice).append("tendency", tendency).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("lastPrice", lastPrice).append("lastQuantity", lastQuantity).append("lastTradeTime", lastTradeTime).append("highestPrice", highestPrice).append("lowestPrice", lowestPrice).append("vwap", vwap).append("turnover", turnover).append("dayAheadPrice", dayAheadPrice).append("deleted", deleted).append("tendency", tendency).append("histories", histories).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(highestPrice).append(lowestPrice).append(tendency).append(lastTradeTime).append(vwap).append(dayAheadPrice).append(lastQuantity).append(turnover).append(lastPrice).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(highestPrice).append(lowestPrice).append(deleted).append(tendency).append(lastTradeTime).append(vwap).append(dayAheadPrice).append(histories).append(lastQuantity).append(turnover).append(lastPrice).toHashCode();
     }
 
     @Override
@@ -248,7 +305,7 @@ public class PublicStatisticRow
             return false;
         }
         PublicStatisticRow rhs = ((PublicStatisticRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(highestPrice, rhs.highestPrice).append(lowestPrice, rhs.lowestPrice).append(tendency, rhs.tendency).append(lastTradeTime, rhs.lastTradeTime).append(vwap, rhs.vwap).append(dayAheadPrice, rhs.dayAheadPrice).append(lastQuantity, rhs.lastQuantity).append(turnover, rhs.turnover).append(lastPrice, rhs.lastPrice).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(highestPrice, rhs.highestPrice).append(lowestPrice, rhs.lowestPrice).append(deleted, rhs.deleted).append(tendency, rhs.tendency).append(lastTradeTime, rhs.lastTradeTime).append(vwap, rhs.vwap).append(dayAheadPrice, rhs.dayAheadPrice).append(histories, rhs.histories).append(lastQuantity, rhs.lastQuantity).append(turnover, rhs.turnover).append(lastPrice, rhs.lastPrice).isEquals();
     }
 
 }
