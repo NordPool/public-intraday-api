@@ -32,11 +32,6 @@ public class OrderExecutionReport
      */
     private String requestId;
     /**
-     * Member ID
-     * 
-     */
-    private String memberId;
-    /**
      * Technical field about message originator.
      * 
      */
@@ -65,13 +60,11 @@ public class OrderExecutionReport
      * @param errorType
      * @param orders
      * @param errors
-     * @param memberId
      * @param updatedAt
      */
-    public OrderExecutionReport(String requestId, String memberId, ErrorType errorType, List<Error> errors, List<OrderExecutionEntry> orders, ZonedDateTime updatedAt) {
+    public OrderExecutionReport(String requestId, ErrorType errorType, List<Error> errors, List<OrderExecutionEntry> orders, ZonedDateTime updatedAt) {
         super(updatedAt);
         this.requestId = requestId;
-        this.memberId = memberId;
         this.errorType = errorType;
         this.errors = errors;
         this.orders = orders;
@@ -95,27 +88,6 @@ public class OrderExecutionReport
 
     public OrderExecutionReport withRequestId(String requestId) {
         this.requestId = requestId;
-        return this;
-    }
-
-    /**
-     * Member ID
-     * 
-     */
-    public String getMemberId() {
-        return memberId;
-    }
-
-    /**
-     * Member ID
-     * 
-     */
-    public void setMemberId(String memberId) {
-        this.memberId = memberId;
-    }
-
-    public OrderExecutionReport withMemberId(String memberId) {
-        this.memberId = memberId;
         return this;
     }
 
@@ -190,12 +162,12 @@ public class OrderExecutionReport
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("requestId", requestId).append("memberId", memberId).append("errorType", errorType).append("errors", errors).append("orders", orders).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("requestId", requestId).append("errorType", errorType).append("errors", errors).append("orders", orders).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(orders).append(requestId).append(errorType).append(errors).append(memberId).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(orders).append(requestId).append(errorType).append(errors).toHashCode();
     }
 
     @Override
@@ -207,7 +179,7 @@ public class OrderExecutionReport
             return false;
         }
         OrderExecutionReport rhs = ((OrderExecutionReport) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(orders, rhs.orders).append(requestId, rhs.requestId).append(errorType, rhs.errorType).append(errors, rhs.errors).append(memberId, rhs.memberId).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(orders, rhs.orders).append(requestId, rhs.requestId).append(errorType, rhs.errorType).append(errors, rhs.errors).isEquals();
     }
 
 }
