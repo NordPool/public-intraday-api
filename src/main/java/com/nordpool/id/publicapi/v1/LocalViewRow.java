@@ -35,11 +35,6 @@ public class LocalViewRow
      */
     private String contractId;
     private Long deliveryAreaId;
-    /**
-     * FOK — Fill or Kill, IOC — Immediate or Cancel, NON — No specific restriction, AON — All or none
-     * 
-     */
-    private String orderExecutionRestriction;
 
     /**
      * No args constructor for use in serialization
@@ -54,16 +49,14 @@ public class LocalViewRow
      * @param contractId
      * @param buyOrders
      * @param deliveryAreaId
-     * @param orderExecutionRestriction
      * @param updatedAt
      */
-    public LocalViewRow(List<Order> buyOrders, List<Order> sellOrders, String contractId, Long deliveryAreaId, String orderExecutionRestriction, ZonedDateTime updatedAt) {
+    public LocalViewRow(List<Order> buyOrders, List<Order> sellOrders, String contractId, Long deliveryAreaId, ZonedDateTime updatedAt) {
         super(updatedAt);
         this.buyOrders = buyOrders;
         this.sellOrders = sellOrders;
         this.contractId = contractId;
         this.deliveryAreaId = deliveryAreaId;
-        this.orderExecutionRestriction = orderExecutionRestriction;
     }
 
     /**
@@ -142,27 +135,6 @@ public class LocalViewRow
         return this;
     }
 
-    /**
-     * FOK — Fill or Kill, IOC — Immediate or Cancel, NON — No specific restriction, AON — All or none
-     * 
-     */
-    public String getOrderExecutionRestriction() {
-        return orderExecutionRestriction;
-    }
-
-    /**
-     * FOK — Fill or Kill, IOC — Immediate or Cancel, NON — No specific restriction, AON — All or none
-     * 
-     */
-    public void setOrderExecutionRestriction(String orderExecutionRestriction) {
-        this.orderExecutionRestriction = orderExecutionRestriction;
-    }
-
-    public LocalViewRow withOrderExecutionRestriction(String orderExecutionRestriction) {
-        this.orderExecutionRestriction = orderExecutionRestriction;
-        return this;
-    }
-
     @Override
     public LocalViewRow withUpdatedAt(ZonedDateTime updatedAt) {
         super.withUpdatedAt(updatedAt);
@@ -171,12 +143,12 @@ public class LocalViewRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("buyOrders", buyOrders).append("sellOrders", sellOrders).append("contractId", contractId).append("deliveryAreaId", deliveryAreaId).append("orderExecutionRestriction", orderExecutionRestriction).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("buyOrders", buyOrders).append("sellOrders", sellOrders).append("contractId", contractId).append("deliveryAreaId", deliveryAreaId).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(contractId).append(buyOrders).append(deliveryAreaId).append(orderExecutionRestriction).append(sellOrders).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(contractId).append(buyOrders).append(deliveryAreaId).append(sellOrders).toHashCode();
     }
 
     @Override
@@ -188,7 +160,7 @@ public class LocalViewRow
             return false;
         }
         LocalViewRow rhs = ((LocalViewRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(contractId, rhs.contractId).append(buyOrders, rhs.buyOrders).append(deliveryAreaId, rhs.deliveryAreaId).append(orderExecutionRestriction, rhs.orderExecutionRestriction).append(sellOrders, rhs.sellOrders).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(contractId, rhs.contractId).append(buyOrders, rhs.buyOrders).append(deliveryAreaId, rhs.deliveryAreaId).append(sellOrders, rhs.sellOrders).isEquals();
     }
 
 }

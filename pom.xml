@@ -12,7 +12,7 @@
     <groupId>com.npspot</groupId>
     <artifactId>public.intraday.api</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.2.40</version>
+    <version>1.0.2.42</version>
     <name>Nord Pool Intraday Public API classes</name>
     <url>http://www.npspot.com</url>
 
