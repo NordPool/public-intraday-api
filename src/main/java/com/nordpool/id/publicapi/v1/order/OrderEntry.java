@@ -47,7 +47,7 @@ public class OrderEntry {
     private Long unitPrice;
     private Long quantity;
     /**
-     * IOC, FOK, AON, NON, GTD, GFS
+     * IOC, FOK, AON, GTD, GFS
      * 
      */
     private TimeInForce timeInForce;
@@ -257,7 +257,7 @@ public class OrderEntry {
     }
 
     /**
-     * IOC, FOK, AON, NON, GTD, GFS
+     * IOC, FOK, AON, GTD, GFS
      * 
      */
     public TimeInForce getTimeInForce() {
@@ -265,7 +265,7 @@ public class OrderEntry {
     }
 
     /**
-     * IOC, FOK, AON, NON, GTD, GFS
+     * IOC, FOK, AON, GTD, GFS
      * 
      */
     public void setTimeInForce(TimeInForce timeInForce) {

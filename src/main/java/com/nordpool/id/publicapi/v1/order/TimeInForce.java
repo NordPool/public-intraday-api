@@ -16,7 +16,6 @@ public enum TimeInForce {
 
     IOC("IOC"),
     FOK("FOK"),
-    NON("NON"),
     GTD("GTD"),
     GFS("GFS");
     private final String value;
