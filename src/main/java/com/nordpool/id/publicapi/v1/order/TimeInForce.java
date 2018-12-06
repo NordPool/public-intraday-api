@@ -7,15 +7,17 @@
 
 package com.nordpool.id.publicapi.v1.order;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public enum TimeInForce {
 
     IOC("IOC"),
     FOK("FOK"),
+    NON("NON"),
     GTD("GTD"),
     GFS("GFS");
     private final String value;
