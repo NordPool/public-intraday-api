@@ -32,7 +32,6 @@ public class BaseTradeLeg {
      * 
      */
     private Boolean aggressor;
-    private String marketId;
     private String tenantId;
 
     /**
@@ -50,10 +49,9 @@ public class BaseTradeLeg {
      * @param quantity
      * @param contractId
      * @param deliveryAreaId
-     * @param marketId
      * @param tenantId
      */
-    public BaseTradeLeg(String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String marketId, String tenantId) {
+    public BaseTradeLeg(String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String tenantId) {
         super();
         this.contractId = contractId;
         this.side = side;
@@ -61,7 +59,6 @@ public class BaseTradeLeg {
         this.quantity = quantity;
         this.deliveryAreaId = deliveryAreaId;
         this.aggressor = aggressor;
-        this.marketId = marketId;
         this.tenantId = tenantId;
     }
 
@@ -167,19 +164,6 @@ public class BaseTradeLeg {
         return this;
     }
 
-    public String getMarketId() {
-        return marketId;
-    }
-
-    public void setMarketId(String marketId) {
-        this.marketId = marketId;
-    }
-
-    public BaseTradeLeg withMarketId(String marketId) {
-        this.marketId = marketId;
-        return this;
-    }
-
     public String getTenantId() {
         return tenantId;
     }
@@ -195,12 +179,12 @@ public class BaseTradeLeg {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("contractId", contractId).append("side", side).append("unitPrice", unitPrice).append("quantity", quantity).append("deliveryAreaId", deliveryAreaId).append("aggressor", aggressor).append("marketId", marketId).append("tenantId", tenantId).toString();
+        return new ToStringBuilder(this).append("contractId", contractId).append("side", side).append("unitPrice", unitPrice).append("quantity", quantity).append("deliveryAreaId", deliveryAreaId).append("aggressor", aggressor).append("tenantId", tenantId).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(unitPrice).append(aggressor).append(side).append(quantity).append(contractId).append(deliveryAreaId).append(tenantId).append(marketId).toHashCode();
+        return new HashCodeBuilder().append(unitPrice).append(aggressor).append(side).append(quantity).append(contractId).append(deliveryAreaId).append(tenantId).toHashCode();
     }
 
     @Override
@@ -212,7 +196,7 @@ public class BaseTradeLeg {
             return false;
         }
         BaseTradeLeg rhs = ((BaseTradeLeg) other);
-        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(aggressor, rhs.aggressor).append(side, rhs.side).append(quantity, rhs.quantity).append(contractId, rhs.contractId).append(deliveryAreaId, rhs.deliveryAreaId).append(marketId, rhs.marketId).append(tenantId, rhs.tenantId).isEquals();
+        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(aggressor, rhs.aggressor).append(side, rhs.side).append(quantity, rhs.quantity).append(contractId, rhs.contractId).append(deliveryAreaId, rhs.deliveryAreaId).append(tenantId, rhs.tenantId).isEquals();
     }
 
 }
