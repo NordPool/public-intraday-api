@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Nord Pool.
+ * Copyright 2019 Nord Pool.
  * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
  * Please send feedback to idapi@nordpoolgroup.com.
  */
@@ -74,9 +74,11 @@ public class PrivateTradeLeg
      * @param deliveryAreaId
      * @param text
      * @param timeInForce
+     * @param marketId
+     * @param tenantId
      */
-    public PrivateTradeLeg(String portfolioId, String refOrderId, String userId, Long deliveryStart, Long deliveryEnd, OrderState orderState, OrderType orderType, String text, OrderAction orderAction, TimeInForce timeInForce, String clientOrderId, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor) {
-        super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);
+    public PrivateTradeLeg(String portfolioId, String refOrderId, String userId, Long deliveryStart, Long deliveryEnd, OrderState orderState, OrderType orderType, String text, OrderAction orderAction, TimeInForce timeInForce, String clientOrderId, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String marketId, String tenantId) {
+        super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor, marketId, tenantId);
         this.portfolioId = portfolioId;
         this.refOrderId = refOrderId;
         this.userId = userId;
@@ -298,6 +300,18 @@ public class PrivateTradeLeg
     @Override
     public PrivateTradeLeg withAggressor(Boolean aggressor) {
         super.withAggressor(aggressor);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeLeg withMarketId(String marketId) {
+        super.withMarketId(marketId);
+        return this;
+    }
+
+    @Override
+    public PrivateTradeLeg withTenantId(String tenantId) {
+        super.withTenantId(tenantId);
         return this;
     }
 

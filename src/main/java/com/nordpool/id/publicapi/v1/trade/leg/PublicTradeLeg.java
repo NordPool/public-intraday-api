@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Nord Pool.
+ * Copyright 2019 Nord Pool.
  * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
  * Please send feedback to idapi@nordpoolgroup.com.
  */
@@ -38,9 +38,11 @@ public class PublicTradeLeg
      * @param ownership
      * @param contractId
      * @param deliveryAreaId
+     * @param marketId
+     * @param tenantId
      */
-    public PublicTradeLeg(LegOwnershipEnum ownership, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor) {
-        super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);
+    public PublicTradeLeg(LegOwnershipEnum ownership, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String marketId, String tenantId) {
+        super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor, marketId, tenantId);
         this.ownership = ownership;
     }
 
@@ -98,6 +100,18 @@ public class PublicTradeLeg
     @Override
     public PublicTradeLeg withAggressor(Boolean aggressor) {
         super.withAggressor(aggressor);
+        return this;
+    }
+
+    @Override
+    public PublicTradeLeg withMarketId(String marketId) {
+        super.withMarketId(marketId);
+        return this;
+    }
+
+    @Override
+    public PublicTradeLeg withTenantId(String tenantId) {
+        super.withTenantId(tenantId);
         return this;
     }
 

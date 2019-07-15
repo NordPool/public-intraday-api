@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Nord Pool.
+ * Copyright 2019 Nord Pool.
  * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
  * Please send feedback to idapi@nordpoolgroup.com.
  */
@@ -32,6 +32,8 @@ public class BaseTradeLeg {
      * 
      */
     private Boolean aggressor;
+    private String marketId;
+    private String tenantId;
 
     /**
      * No args constructor for use in serialization
@@ -48,8 +50,10 @@ public class BaseTradeLeg {
      * @param quantity
      * @param contractId
      * @param deliveryAreaId
+     * @param marketId
+     * @param tenantId
      */
-    public BaseTradeLeg(String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor) {
+    public BaseTradeLeg(String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String marketId, String tenantId) {
         super();
         this.contractId = contractId;
         this.side = side;
@@ -57,6 +61,8 @@ public class BaseTradeLeg {
         this.quantity = quantity;
         this.deliveryAreaId = deliveryAreaId;
         this.aggressor = aggressor;
+        this.marketId = marketId;
+        this.tenantId = tenantId;
     }
 
     /**
@@ -161,14 +167,40 @@ public class BaseTradeLeg {
         return this;
     }
 
+    public String getMarketId() {
+        return marketId;
+    }
+
+    public void setMarketId(String marketId) {
+        this.marketId = marketId;
+    }
+
+    public BaseTradeLeg withMarketId(String marketId) {
+        this.marketId = marketId;
+        return this;
+    }
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public BaseTradeLeg withTenantId(String tenantId) {
+        this.tenantId = tenantId;
+        return this;
+    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("contractId", contractId).append("side", side).append("unitPrice", unitPrice).append("quantity", quantity).append("deliveryAreaId", deliveryAreaId).append("aggressor", aggressor).toString();
+        return new ToStringBuilder(this).append("contractId", contractId).append("side", side).append("unitPrice", unitPrice).append("quantity", quantity).append("deliveryAreaId", deliveryAreaId).append("aggressor", aggressor).append("marketId", marketId).append("tenantId", tenantId).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(unitPrice).append(aggressor).append(side).append(quantity).append(contractId).append(deliveryAreaId).toHashCode();
+        return new HashCodeBuilder().append(unitPrice).append(aggressor).append(side).append(quantity).append(contractId).append(deliveryAreaId).append(tenantId).append(marketId).toHashCode();
     }
 
     @Override
@@ -180,7 +212,7 @@ public class BaseTradeLeg {
             return false;
         }
         BaseTradeLeg rhs = ((BaseTradeLeg) other);
-        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(aggressor, rhs.aggressor).append(side, rhs.side).append(quantity, rhs.quantity).append(contractId, rhs.contractId).append(deliveryAreaId, rhs.deliveryAreaId).isEquals();
+        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(aggressor, rhs.aggressor).append(side, rhs.side).append(quantity, rhs.quantity).append(contractId, rhs.contractId).append(deliveryAreaId, rhs.deliveryAreaId).append(marketId, rhs.marketId).append(tenantId, rhs.tenantId).isEquals();
     }
 
 }
