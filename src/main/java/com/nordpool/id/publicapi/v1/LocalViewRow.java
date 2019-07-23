@@ -35,8 +35,6 @@ public class LocalViewRow
      */
     private String contractId;
     private Long deliveryAreaId;
-    private String marketId;
-    private String tenantId;
 
     /**
      * No args constructor for use in serialization
@@ -52,17 +50,13 @@ public class LocalViewRow
      * @param buyOrders
      * @param deliveryAreaId
      * @param updatedAt
-     * @param marketId
-     * @param tenantId
      */
-    public LocalViewRow(List<Order> buyOrders, List<Order> sellOrders, String contractId, Long deliveryAreaId, ZonedDateTime updatedAt, String marketId, String tenantId) {
+    public LocalViewRow(List<Order> buyOrders, List<Order> sellOrders, String contractId, Long deliveryAreaId, ZonedDateTime updatedAt) {
         super(updatedAt);
         this.buyOrders = buyOrders;
         this.sellOrders = sellOrders;
         this.contractId = contractId;
         this.deliveryAreaId = deliveryAreaId;
-        this.marketId = marketId;
-        this.tenantId = tenantId;
     }
 
     /**
@@ -141,32 +135,6 @@ public class LocalViewRow
         return this;
     }
 
-    public String getMarketId() {
-        return marketId;
-    }
-
-    public void setMarketId(String marketId) {
-        this.marketId = marketId;
-    }
-
-    public LocalViewRow withMarketId(String marketId) {
-        this.marketId = marketId;
-        return this;
-    }
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
-
-    public LocalViewRow withTenantId(String tenantId) {
-        this.tenantId = tenantId;
-        return this;
-    }
-
     @Override
     public LocalViewRow withUpdatedAt(ZonedDateTime updatedAt) {
         super.withUpdatedAt(updatedAt);
@@ -175,12 +143,12 @@ public class LocalViewRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("buyOrders", buyOrders).append("sellOrders", sellOrders).append("contractId", contractId).append("deliveryAreaId", deliveryAreaId).append("tenantId", tenantId).append("marketId", marketId).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("buyOrders", buyOrders).append("sellOrders", sellOrders).append("contractId", contractId).append("deliveryAreaId", deliveryAreaId).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(contractId).append(buyOrders).append(deliveryAreaId).append(sellOrders).append(marketId).append(tenantId).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(contractId).append(buyOrders).append(deliveryAreaId).append(sellOrders).toHashCode();
     }
 
     @Override
@@ -192,7 +160,7 @@ public class LocalViewRow
             return false;
         }
         LocalViewRow rhs = ((LocalViewRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(contractId, rhs.contractId).append(buyOrders, rhs.buyOrders).append(deliveryAreaId, rhs.deliveryAreaId).append(sellOrders, rhs.sellOrders).append(marketId, rhs.marketId).append(tenantId, rhs.tenantId).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(contractId, rhs.contractId).append(buyOrders, rhs.buyOrders).append(deliveryAreaId, rhs.deliveryAreaId).append(sellOrders, rhs.sellOrders).isEquals();
     }
 
 }

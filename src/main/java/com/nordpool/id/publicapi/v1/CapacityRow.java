@@ -39,8 +39,6 @@ public class CapacityRow
     private Long deliveryEnd;
     private Integer inCapacity;
     private Integer outCapacity;
-    private String marketId;
-    private String tenantId;
 
     /**
      * No args constructor for use in serialization
@@ -61,10 +59,8 @@ public class CapacityRow
      * @param eventSequenceNo
      * @param deliveryAreaTo
      * @param updatedAt
-     * @param marketId
-     * @param tenantId
      */
-    public CapacityRow(Integer eventSequenceNo, Boolean internal, ZonedDateTime publicationTime, Long deliveryAreaFrom, Long deliveryAreaTo, Long deliveryStart, Long deliveryEnd, Integer inCapacity, Integer outCapacity, ZonedDateTime updatedAt, String marketId, String tenantId) {
+    public CapacityRow(Integer eventSequenceNo, Boolean internal, ZonedDateTime publicationTime, Long deliveryAreaFrom, Long deliveryAreaTo, Long deliveryStart, Long deliveryEnd, Integer inCapacity, Integer outCapacity, ZonedDateTime updatedAt) {
         super(updatedAt);
         this.eventSequenceNo = eventSequenceNo;
         this.internal = internal;
@@ -75,8 +71,6 @@ public class CapacityRow
         this.deliveryEnd = deliveryEnd;
         this.inCapacity = inCapacity;
         this.outCapacity = outCapacity;
-        this.marketId = marketId;
-        this.tenantId = tenantId;
     }
 
     public Integer getEventSequenceNo() {
@@ -204,32 +198,6 @@ public class CapacityRow
         return this;
     }
 
-    public String getMarketId() {
-        return marketId;
-    }
-
-    public void setMarketId(String marketId) {
-        this.marketId = marketId;
-    }
-
-    public CapacityRow withMarketId(String marketId) {
-        this.marketId = marketId;
-        return this;
-    }
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
-
-    public CapacityRow withTenantId(String tenantId) {
-        this.tenantId = tenantId;
-        return this;
-    }
-
     @Override
     public CapacityRow withUpdatedAt(ZonedDateTime updatedAt) {
         super.withUpdatedAt(updatedAt);
@@ -238,12 +206,12 @@ public class CapacityRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("eventSequenceNo", eventSequenceNo).append("internal", internal).append("publicationTime", publicationTime).append("deliveryAreaFrom", deliveryAreaFrom).append("deliveryAreaTo", deliveryAreaTo).append("deliveryStart", deliveryStart).append("deliveryEnd", deliveryEnd).append("inCapacity", inCapacity).append("outCapacity", outCapacity).append("marketId", marketId).append("tenantId", tenantId).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("eventSequenceNo", eventSequenceNo).append("internal", internal).append("publicationTime", publicationTime).append("deliveryAreaFrom", deliveryAreaFrom).append("deliveryAreaTo", deliveryAreaTo).append("deliveryStart", deliveryStart).append("deliveryEnd", deliveryEnd).append("inCapacity", inCapacity).append("outCapacity", outCapacity).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(internal).append(deliveryAreaFrom).append(outCapacity).append(deliveryStart).append(deliveryEnd).append(publicationTime).append(inCapacity).append(eventSequenceNo).append(deliveryAreaTo).append(marketId).append(tenantId).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(internal).append(deliveryAreaFrom).append(outCapacity).append(deliveryStart).append(deliveryEnd).append(publicationTime).append(inCapacity).append(eventSequenceNo).append(deliveryAreaTo).toHashCode();
     }
 
     @Override
@@ -255,7 +223,7 @@ public class CapacityRow
             return false;
         }
         CapacityRow rhs = ((CapacityRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(internal, rhs.internal).append(deliveryAreaFrom, rhs.deliveryAreaFrom).append(outCapacity, rhs.outCapacity).append(deliveryStart, rhs.deliveryStart).append(deliveryEnd, rhs.deliveryEnd).append(publicationTime, rhs.publicationTime).append(inCapacity, rhs.inCapacity).append(eventSequenceNo, rhs.eventSequenceNo).append(deliveryAreaTo, rhs.deliveryAreaTo).append(marketId, rhs.marketId).append(tenantId, rhs.tenantId).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(internal, rhs.internal).append(deliveryAreaFrom, rhs.deliveryAreaFrom).append(outCapacity, rhs.outCapacity).append(deliveryStart, rhs.deliveryStart).append(deliveryEnd, rhs.deliveryEnd).append(publicationTime, rhs.publicationTime).append(inCapacity, rhs.inCapacity).append(eventSequenceNo, rhs.eventSequenceNo).append(deliveryAreaTo, rhs.deliveryAreaTo).isEquals();
     }
 
 }

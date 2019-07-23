@@ -74,10 +74,9 @@ public class PrivateTradeLeg
      * @param deliveryAreaId
      * @param text
      * @param timeInForce
-     * @param tenantId
      */
-    public PrivateTradeLeg(String portfolioId, String refOrderId, String userId, Long deliveryStart, Long deliveryEnd, OrderState orderState, OrderType orderType, String text, OrderAction orderAction, TimeInForce timeInForce, String clientOrderId, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String tenantId) {
-        super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor, tenantId);
+    public PrivateTradeLeg(String portfolioId, String refOrderId, String userId, Long deliveryStart, Long deliveryEnd, OrderState orderState, OrderType orderType, String text, OrderAction orderAction, TimeInForce timeInForce, String clientOrderId, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor) {
+        super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);
         this.portfolioId = portfolioId;
         this.refOrderId = refOrderId;
         this.userId = userId;
@@ -299,12 +298,6 @@ public class PrivateTradeLeg
     @Override
     public PrivateTradeLeg withAggressor(Boolean aggressor) {
         super.withAggressor(aggressor);
-        return this;
-    }
-
-    @Override
-    public PrivateTradeLeg withTenantId(String tenantId) {
-        super.withTenantId(tenantId);
         return this;
     }
 

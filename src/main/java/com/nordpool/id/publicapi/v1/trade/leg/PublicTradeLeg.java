@@ -21,7 +21,6 @@ public class PublicTradeLeg
      * 
      */
     private LegOwnershipEnum ownership;
-    private String marketId;
 
     /**
      * No args constructor for use in serialization
@@ -42,10 +41,9 @@ public class PublicTradeLeg
      * @param marketId
      * @param tenantId
      */
-    public PublicTradeLeg(LegOwnershipEnum ownership, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String marketId, String tenantId) {
-        super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor, tenantId);
+    public PublicTradeLeg(LegOwnershipEnum ownership, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor) {
+        super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);
         this.ownership = ownership;
-        this.marketId = marketId;
     }
 
     /**
@@ -105,25 +103,14 @@ public class PublicTradeLeg
         return this;
     }
 
-    public PublicTradeLeg withMarketId(String marketId) {
-        this.marketId = marketId;
-        return this;
-    }
-
-    @Override
-    public PublicTradeLeg withTenantId(String tenantId) {
-        super.withTenantId(tenantId);
-        return this;
-    }
-
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("ownership", ownership).append("marketId", marketId).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("ownership", ownership).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(ownership).append(marketId).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(ownership).toHashCode();
     }
 
     @Override
@@ -135,7 +122,7 @@ public class PublicTradeLeg
             return false;
         }
         PublicTradeLeg rhs = ((PublicTradeLeg) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(ownership, rhs.ownership).append(marketId, rhs.marketId).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(ownership, rhs.ownership).isEquals();
     }
 
 }
