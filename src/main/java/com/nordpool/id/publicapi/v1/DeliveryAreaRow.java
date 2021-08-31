@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Nord Pool.
+ * Copyright 2021 Nord Pool.
  * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
  * Please send feedback to idapi@nordpoolgroup.com.
  */
@@ -9,11 +9,14 @@ package com.nordpool.id.publicapi.v1;
 
 import java.time.ZonedDateTime;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.nordpool.id.publicapi.v1.base.BaseRow;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+@JsonIgnoreProperties({"updatedAt"})
 public class DeliveryAreaRow
     extends BaseRow
 {
