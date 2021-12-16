@@ -25,35 +25,38 @@ public class OrderEntryRequest {
      * 
      */
     private Boolean rejectPartially;
+
+    private Boolean linkedBasket;
     /**
      * List of orders
-     * 
+     *
      */
     private List<OrderEntry> orders = null;
 
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public OrderEntryRequest() {
     }
 
     /**
-     * 
+     *
      * @param requestId
      * @param rejectPartially
      * @param orders
      */
-    public OrderEntryRequest(String requestId, Boolean rejectPartially, List<OrderEntry> orders) {
+    public OrderEntryRequest(String requestId, Boolean rejectPartially, Boolean linkedBasket, List<OrderEntry> orders) {
         super();
         this.requestId = requestId;
         this.rejectPartially = rejectPartially;
         this.orders = orders;
+        this.linkedBasket = linkedBasket;
     }
 
     /**
      * Unique identifier for this request, provided by the client to track their own requests
-     * 
+     *
      */
     public String getRequestId() {
         return requestId;
@@ -61,7 +64,7 @@ public class OrderEntryRequest {
 
     /**
      * Unique identifier for this request, provided by the client to track their own requests
-     * 
+     *
      */
     public void setRequestId(String requestId) {
         this.requestId = requestId;
@@ -74,7 +77,7 @@ public class OrderEntryRequest {
 
     /**
      * Should the message be completely rejected if only some of the entered orders cause errors.
-     * 
+     *
      */
     public Boolean getRejectPartially() {
         return rejectPartially;
@@ -82,7 +85,7 @@ public class OrderEntryRequest {
 
     /**
      * Should the message be completely rejected if only some of the entered orders cause errors.
-     * 
+     *
      */
     public void setRejectPartially(Boolean rejectPartially) {
         this.rejectPartially = rejectPartially;
@@ -93,9 +96,22 @@ public class OrderEntryRequest {
         return this;
     }
 
+    public Boolean getLinkedBasket() {
+        return linkedBasket;
+    }
+
+    public void setLinkedBasket(Boolean linkedBasket) {
+        this.linkedBasket = linkedBasket;
+    }
+
+    public OrderEntryRequest withLinkedBasket(Boolean linkedBasket) {
+        this.linkedBasket = linkedBasket;
+        return this;
+    }
+
     /**
      * List of orders
-     * 
+     *
      */
     public List<OrderEntry> getOrders() {
         return orders;
@@ -103,7 +119,7 @@ public class OrderEntryRequest {
 
     /**
      * List of orders
-     * 
+     *
      */
     public void setOrders(List<OrderEntry> orders) {
         this.orders = orders;
@@ -116,12 +132,12 @@ public class OrderEntryRequest {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("requestId", requestId).append("rejectPartially", rejectPartially).append("orders", orders).toString();
+        return new ToStringBuilder(this).append("requestId", requestId).append("rejectPartially", rejectPartially).append("linkedBasked", linkedBasket).append("orders", orders).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(rejectPartially).append(orders).append(requestId).toHashCode();
+        return new HashCodeBuilder().append(rejectPartially).append(linkedBasket).append(orders).append(requestId).toHashCode();
     }
 
     @Override
@@ -133,7 +149,7 @@ public class OrderEntryRequest {
             return false;
         }
         OrderEntryRequest rhs = ((OrderEntryRequest) other);
-        return new EqualsBuilder().append(rejectPartially, rhs.rejectPartially).append(orders, rhs.orders).append(requestId, rhs.requestId).isEquals();
+        return new EqualsBuilder().append(rejectPartially, rhs.rejectPartially).append(linkedBasket, rhs.linkedBasket).append(orders, rhs.orders).append(requestId, rhs.requestId).isEquals();
     }
 
 }
