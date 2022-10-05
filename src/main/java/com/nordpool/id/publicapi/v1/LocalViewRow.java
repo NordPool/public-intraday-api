@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Nord Pool.
+ * Copyright 2022 Nord Pool.
  * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
  * Please send feedback to idapi@nordpoolgroup.com.
  */
@@ -35,6 +35,7 @@ public class LocalViewRow
      */
     private String contractId;
     private Long deliveryAreaId;
+    private Long revisionNo;
 
     /**
      * No args constructor for use in serialization
@@ -51,12 +52,13 @@ public class LocalViewRow
      * @param deliveryAreaId
      * @param updatedAt
      */
-    public LocalViewRow(List<Order> buyOrders, List<Order> sellOrders, String contractId, Long deliveryAreaId, ZonedDateTime updatedAt) {
+    public LocalViewRow(List<Order> buyOrders, List<Order> sellOrders, String contractId, Long deliveryAreaId, ZonedDateTime updatedAt, Long revisionNo) {
         super(updatedAt);
         this.buyOrders = buyOrders;
         this.sellOrders = sellOrders;
         this.contractId = contractId;
         this.deliveryAreaId = deliveryAreaId;
+        this.revisionNo = revisionNo;
     }
 
     /**
@@ -135,6 +137,19 @@ public class LocalViewRow
         return this;
     }
 
+    public Long getRevisionNo() {
+        return revisionNo;
+    }
+
+    public void setRevisionNo(Long revisionNo) {
+        this.revisionNo = revisionNo;
+    }
+
+    public LocalViewRow withRevisionNo(Long revisionNo) {
+        this.revisionNo = revisionNo;
+        return this;
+    }
+
     @Override
     public LocalViewRow withUpdatedAt(ZonedDateTime updatedAt) {
         super.withUpdatedAt(updatedAt);
@@ -143,12 +158,12 @@ public class LocalViewRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("buyOrders", buyOrders).append("sellOrders", sellOrders).append("contractId", contractId).append("deliveryAreaId", deliveryAreaId).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("buyOrders", buyOrders).append("sellOrders", sellOrders).append("contractId", contractId).append("deliveryAreaId", deliveryAreaId).append("revisionNo").toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(contractId).append(buyOrders).append(deliveryAreaId).append(sellOrders).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(contractId).append(buyOrders).append(deliveryAreaId).append(sellOrders).append(revisionNo).toHashCode();
     }
 
     @Override
@@ -160,7 +175,7 @@ public class LocalViewRow
             return false;
         }
         LocalViewRow rhs = ((LocalViewRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(contractId, rhs.contractId).append(buyOrders, rhs.buyOrders).append(deliveryAreaId, rhs.deliveryAreaId).append(sellOrders, rhs.sellOrders).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(contractId, rhs.contractId).append(buyOrders, rhs.buyOrders).append(deliveryAreaId, rhs.deliveryAreaId).append(sellOrders, rhs.sellOrders).append(revisionNo, rhs.revisionNo).isEquals();
     }
 
 }
