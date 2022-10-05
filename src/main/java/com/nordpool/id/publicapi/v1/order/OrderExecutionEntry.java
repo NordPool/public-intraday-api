@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Nord Pool.
+ * Copyright 2022 Nord Pool.
  * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
  * Please send feedback to idapi@nordpoolgroup.com.
  */
@@ -46,6 +46,11 @@ public class OrderExecutionEntry {
      * 
      */
     private UUID clientOrderId;
+    /**
+     * Basket id for the order
+     *
+     */
+    private UUID linkedBasketId;
     /**
      * The portfolio id of the current order
      * 
@@ -129,6 +134,7 @@ public class OrderExecutionEntry {
      * @param side
      * @param quantity
      * @param clientOrderId
+     * @param linkedBasketId
      * @param contractIds
      * @param eventSequenceNo
      * @param userId
@@ -140,7 +146,7 @@ public class OrderExecutionEntry {
      * @param previousOrderId
      * @param errors
      */
-    public OrderExecutionEntry(Long eventSequenceNo, String marketId, String tenantId, String userId, String orderId, Long revisionNo, String previousOrderId, String originalOrderId, ZonedDateTime createdAt, ZonedDateTime updatedAt, UUID clientOrderId, String portfolioId, List<String> contractIds, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ZonedDateTime expireTime, String text, OrderState state, OrderAction action, Long clipSize, Long clipPriceChange, Long remainingQuantity, List<Error> errors, ExecutionRestriction executionRestriction) {
+    public OrderExecutionEntry(Long eventSequenceNo, String marketId, String tenantId, String userId, String orderId, Long revisionNo, String previousOrderId, String originalOrderId, ZonedDateTime createdAt, ZonedDateTime updatedAt, UUID clientOrderId, UUID linkedBasketId, String portfolioId, List<String> contractIds, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ZonedDateTime expireTime, String text, OrderState state, OrderAction action, Long clipSize, Long clipPriceChange, Long remainingQuantity, List<Error> errors, ExecutionRestriction executionRestriction) {
         super();
         this.eventSequenceNo = eventSequenceNo;
         this.marketId = marketId;
@@ -153,6 +159,7 @@ public class OrderExecutionEntry {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.clientOrderId = clientOrderId;
+        this.linkedBasketId = linkedBasketId;
         this.portfolioId = portfolioId;
         this.contractIds = contractIds;
         this.deliveryAreaId = deliveryAreaId;
@@ -328,7 +335,7 @@ public class OrderExecutionEntry {
 
     /**
      * UUID for the order, provided by the client to track their own orders
-     * 
+     *
      */
     public void setClientOrderId(UUID clientOrderId) {
         this.clientOrderId = clientOrderId;
@@ -336,6 +343,19 @@ public class OrderExecutionEntry {
 
     public OrderExecutionEntry withClientOrderId(UUID clientOrderId) {
         this.clientOrderId = clientOrderId;
+        return this;
+    }
+
+    public UUID getLinkedBasketId() {
+        return linkedBasketId;
+    }
+
+    public void setLinkedBasketId(UUID linkedBasketId) {
+        this.linkedBasketId = linkedBasketId;
+    }
+
+    public OrderExecutionEntry withLinkedBasketId(UUID linkedBasketId) {
+        this.linkedBasketId = linkedBasketId;
         return this;
     }
 

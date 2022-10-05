@@ -16,7 +16,7 @@ This will place the library in your local maven repository.
 
 ## Test client ##
 
-A code sample using this library can be found at [https://bitbucket.org/nordpoolspot/public-intraday-api-example](https://bitbucket.org/nordpoolspot/public-intraday-api-example).
+A code sample using this library can be found at [https://github.com/NordPool/public-intraday-api-example](https://github.com/NordPool/public-intraday-api-example).
 
 ## Questions, comments and error reporting ##
 

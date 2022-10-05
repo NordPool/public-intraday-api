@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 Nord Pool.
+ * Copyright 2022 Nord Pool.
  * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
  * Please send feedback to idapi@nordpoolgroup.com.
  */
@@ -25,7 +25,9 @@ public enum ErrorCode {
     PARSING_ERROR("PARSING_ERROR"),
     REQUEST_OVER_THROTTLING("REQUEST_OVER_THROTTLING"),
     INTERNAL_SERVER_ERROR("INTERNAL_SERVER_ERROR"),
-    TRADING_IS_NOT_AVAILABLE("TRADING_IS_NOT_AVAILABLE");
+    TRADING_IS_NOT_AVAILABLE("TRADING_IS_NOT_AVAILABLE"),
+    INVALID_CONTRACT_FOR_BASKET_ORDER("INVALID_CONTRACT_FOR_BASKET_ORDER"),
+    INVALID_TIME_IN_FORCE_FOR_BASKET_ORDER("INVALID_TIME_IN_FORCE_FOR_BASKET_ORDER");
     private final String value;
     private final static Map<String, ErrorCode> CONSTANTS = new HashMap<String, ErrorCode>();
 
