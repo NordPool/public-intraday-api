@@ -110,6 +110,8 @@ public class OrderExecutionEntry {
      */
     private ExecutionRestriction executionRestriction;
 
+    private String mediumProductName;
+
     /**
      * No args constructor for use in serialization
      * 
@@ -146,8 +148,9 @@ public class OrderExecutionEntry {
      * @param expireTime
      * @param deliveryAreaId
      * @param previousOrderId
+     * @param mediumProductName
      */
-    public OrderExecutionEntry(Long eventSequenceNo, String marketId, String userId, String orderId, Long revisionNo, String previousOrderId, String originalOrderId, ZonedDateTime createdAt, ZonedDateTime updatedAt, UUID clientOrderId, UUID linkedBasketId, String portfolioId, String contractId, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ZonedDateTime expireTime, String text, OrderState state, OrderAction action, Long clipSize, Long clipPriceChange, Long remainingQuantity, ExecutionRestriction executionRestriction) {
+    public OrderExecutionEntry(Long eventSequenceNo, String marketId, String userId, String orderId, Long revisionNo, String previousOrderId, String originalOrderId, ZonedDateTime createdAt, ZonedDateTime updatedAt, UUID clientOrderId, UUID linkedBasketId, String portfolioId, String contractId, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ZonedDateTime expireTime, String text, OrderState state, OrderAction action, Long clipSize, Long clipPriceChange, Long remainingQuantity, ExecutionRestriction executionRestriction, String mediumProductName) {
         super();
         this.eventSequenceNo = eventSequenceNo;
         this.marketId = marketId;
@@ -176,6 +179,7 @@ public class OrderExecutionEntry {
         this.clipPriceChange = clipPriceChange;
         this.remainingQuantity = remainingQuantity;
         this.executionRestriction = executionRestriction;
+        this.mediumProductName = mediumProductName;
     }
 
     public Long getEventSequenceNo() {
@@ -625,14 +629,23 @@ public class OrderExecutionEntry {
         return this;
     }
 
+    public String getMediumProductName() {
+        return this.mediumProductName;
+    }
+
+    public void setMediumProductName(String mediumProductName) {
+        this.mediumProductName = mediumProductName;
+    }
+
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("eventSequenceNo", eventSequenceNo).append("marketId", marketId).append("userId", userId).append("orderId", orderId).append("revisionNo", revisionNo).append("previousOrderId", previousOrderId).append("originalOrderId", originalOrderId).append("createdAt", createdAt).append("updatedAt", updatedAt).append("clientOrderId", clientOrderId).append("portfolioId", portfolioId).append("contractId", contractId).append("deliveryAreaId", deliveryAreaId).append("side", side).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("expireTime", expireTime).append("text", text).append("state", state).append("action", action).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).append("remainingQuantity", remainingQuantity).append("executionRestriction", executionRestriction).toString();
+        return new ToStringBuilder(this).append("eventSequenceNo", eventSequenceNo).append("marketId", marketId).append("userId", userId).append("orderId", orderId).append("revisionNo", revisionNo).append("previousOrderId", previousOrderId).append("originalOrderId", originalOrderId).append("createdAt", createdAt).append("updatedAt", updatedAt).append("clientOrderId", clientOrderId).append("portfolioId", portfolioId).append("contractId", contractId).append("deliveryAreaId", deliveryAreaId).append("side", side).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("expireTime", expireTime).append("text", text).append("state", state).append("action", action).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).append("remainingQuantity", remainingQuantity).append("executionRestriction", executionRestriction).append("mediumProductName", mediumProductName).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(remainingQuantity).append(orderType).append(clipSize).append(orderId).append(marketId).append(createdAt).append(executionRestriction).append(originalOrderId).append(action).append(revisionNo).append(text).append(state).append(timeInForce).append(updatedAt).append(unitPrice).append(side).append(quantity).append(clientOrderId).append(contractId).append(eventSequenceNo).append(userId).append(clipPriceChange).append(portfolioId).append(expireTime).append(deliveryAreaId).append(previousOrderId).toHashCode();
+        return new HashCodeBuilder().append(mediumProductName).append(remainingQuantity).append(orderType).append(clipSize).append(orderId).append(marketId).append(createdAt).append(executionRestriction).append(originalOrderId).append(action).append(revisionNo).append(text).append(state).append(timeInForce).append(updatedAt).append(unitPrice).append(side).append(quantity).append(clientOrderId).append(contractId).append(eventSequenceNo).append(userId).append(clipPriceChange).append(portfolioId).append(expireTime).append(deliveryAreaId).append(previousOrderId).toHashCode();
     }
 
     @Override
@@ -644,7 +657,7 @@ public class OrderExecutionEntry {
             return false;
         }
         OrderExecutionEntry rhs = ((OrderExecutionEntry) other);
-        return new EqualsBuilder().append(remainingQuantity, rhs.remainingQuantity).append(orderType, rhs.orderType).append(clipSize, rhs.clipSize).append(orderId, rhs.orderId).append(marketId, rhs.marketId).append(createdAt, rhs.createdAt).append(executionRestriction, rhs.executionRestriction).append(originalOrderId, rhs.originalOrderId).append(action, rhs.action).append(revisionNo, rhs.revisionNo).append(text, rhs.text).append(state, rhs.state).append(timeInForce, rhs.timeInForce).append(updatedAt, rhs.updatedAt).append(unitPrice, rhs.unitPrice).append(side, rhs.side).append(quantity, rhs.quantity).append(clientOrderId, rhs.clientOrderId).append(contractId, rhs.contractId).append(eventSequenceNo, rhs.eventSequenceNo).append(userId, rhs.userId).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(expireTime, rhs.expireTime).append(deliveryAreaId, rhs.deliveryAreaId).append(previousOrderId, rhs.previousOrderId).isEquals();
+        return new EqualsBuilder().append(mediumProductName, rhs.mediumProductName).append(remainingQuantity, rhs.remainingQuantity).append(orderType, rhs.orderType).append(clipSize, rhs.clipSize).append(orderId, rhs.orderId).append(marketId, rhs.marketId).append(createdAt, rhs.createdAt).append(executionRestriction, rhs.executionRestriction).append(originalOrderId, rhs.originalOrderId).append(action, rhs.action).append(revisionNo, rhs.revisionNo).append(text, rhs.text).append(state, rhs.state).append(timeInForce, rhs.timeInForce).append(updatedAt, rhs.updatedAt).append(unitPrice, rhs.unitPrice).append(side, rhs.side).append(quantity, rhs.quantity).append(clientOrderId, rhs.clientOrderId).append(contractId, rhs.contractId).append(eventSequenceNo, rhs.eventSequenceNo).append(userId, rhs.userId).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(expireTime, rhs.expireTime).append(deliveryAreaId, rhs.deliveryAreaId).append(previousOrderId, rhs.previousOrderId).isEquals();
     }
 
 }
