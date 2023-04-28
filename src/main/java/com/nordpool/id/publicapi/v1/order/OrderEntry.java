@@ -10,6 +10,7 @@ package com.nordpool.id.publicapi.v1.order;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
+import com.nordpool.id.publicapi.v1.trade.Currency;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -67,7 +68,7 @@ public class OrderEntry {
     private OrderState state;
     private Long clipSize;
     private Long clipPriceChange;
-    private String portfolioCurrency;
+    private Currency portfolioCurrency;
 
     /**
      * No args constructor for use in serialization
@@ -94,7 +95,7 @@ public class OrderEntry {
      * @param state
      * @param timeInForce
      */
-    public OrderEntry(UUID clientOrderId, String portfolioId, List<String> contractIds, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, OrderState state, Long clipSize, Long clipPriceChange, String portfolioCurrency) {
+    public OrderEntry(UUID clientOrderId, String portfolioId, List<String> contractIds, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, OrderState state, Long clipSize, Long clipPriceChange, Currency portfolioCurrency) {
         super();
         this.clientOrderId = clientOrderId;
         this.portfolioId = portfolioId;
@@ -373,15 +374,15 @@ public class OrderEntry {
         return this;
     }
 
-    public String getPortfolioCurrency() {
+    public Currency getPortfolioCurrency() {
         return portfolioCurrency;
     }
 
-    public void setPortfolioCurrency(String portfolioCurrency) {
+    public void setPortfolioCurrency(Currency portfolioCurrency) {
         this.portfolioCurrency = portfolioCurrency;
     }
 
-    public OrderEntry withPortfolioCurrency(String portfolioCurrency) {
+    public OrderEntry withPortfolioCurrency(Currency portfolioCurrency) {
         this.portfolioCurrency = portfolioCurrency;
         return this;
     }

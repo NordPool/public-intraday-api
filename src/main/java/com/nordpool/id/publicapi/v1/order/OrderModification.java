@@ -10,6 +10,7 @@ package com.nordpool.id.publicapi.v1.order;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
+import com.nordpool.id.publicapi.v1.trade.Currency;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -55,7 +56,7 @@ public class OrderModification {
     private String text;
     private Long clipSize;
     private Long clipPriceChange;
-    private String portfolioCurrency;
+    private Currency portfolioCurrency;
 
     /**
      * No args constructor for use in serialization
@@ -81,7 +82,7 @@ public class OrderModification {
      * @param text
      * @param timeInForce
      */
-    public OrderModification(Long revisionNo, UUID clientOrderId, String orderId, String portfolioId, List<String> contractIds, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, Long clipSize, Long clipPriceChange) {
+    public OrderModification(Long revisionNo, UUID clientOrderId, String orderId, String portfolioId, List<String> contractIds, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, Long clipSize, Long clipPriceChange, Currency portfolioCurrency) {
         super();
         this.revisionNo = revisionNo;
         this.clientOrderId = clientOrderId;
@@ -313,15 +314,15 @@ public class OrderModification {
         return this;
     }
 
-    public String getPortfolioCurrency() {
+    public Currency getPortfolioCurrency() {
         return portfolioCurrency;
     }
 
-    public void setPortfolioCurrency(String portfolioCurrency) {
+    public void setPortfolioCurrency(Currency portfolioCurrency) {
         this.portfolioCurrency = portfolioCurrency;
     }
 
-    public OrderModification withPortfolioCurrency(String portfolioCurrency) {
+    public OrderModification withPortfolioCurrency(Currency portfolioCurrency) {
         this.portfolioCurrency = portfolioCurrency;
         return this;
     }
