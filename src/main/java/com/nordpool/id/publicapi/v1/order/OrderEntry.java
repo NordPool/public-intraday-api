@@ -67,6 +67,7 @@ public class OrderEntry {
     private OrderState state;
     private Long clipSize;
     private Long clipPriceChange;
+    private String portfolioCurrency;
 
     /**
      * No args constructor for use in serialization
@@ -93,7 +94,7 @@ public class OrderEntry {
      * @param state
      * @param timeInForce
      */
-    public OrderEntry(UUID clientOrderId, String portfolioId, List<String> contractIds, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, OrderState state, Long clipSize, Long clipPriceChange) {
+    public OrderEntry(UUID clientOrderId, String portfolioId, List<String> contractIds, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, OrderState state, Long clipSize, Long clipPriceChange, String portfolioCurrency) {
         super();
         this.clientOrderId = clientOrderId;
         this.portfolioId = portfolioId;
@@ -110,6 +111,7 @@ public class OrderEntry {
         this.state = state;
         this.clipSize = clipSize;
         this.clipPriceChange = clipPriceChange;
+        this.portfolioCurrency = portfolioCurrency;
     }
 
     /**
@@ -371,14 +373,27 @@ public class OrderEntry {
         return this;
     }
 
+    public String getPortfolioCurrency() {
+        return portfolioCurrency;
+    }
+
+    public void setPortfolioCurrency(String portfolioCurrency) {
+        this.portfolioCurrency = portfolioCurrency;
+    }
+
+    public OrderEntry withPortfolioCurrency(String portfolioCurrency) {
+        this.portfolioCurrency = portfolioCurrency;
+        return this;
+    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("clientOrderId", clientOrderId).append("portfolioId", portfolioId).append("contractIds", contractIds).append("deliveryAreaId", deliveryAreaId).append("side", side).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("executionRestriction", executionRestriction).append("expireTime", expireTime).append("text", text).append("state", state).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).toString();
+        return new ToStringBuilder(this).append("clientOrderId", clientOrderId).append("portfolioId", portfolioId).append("contractIds", contractIds).append("deliveryAreaId", deliveryAreaId).append("side", side).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("executionRestriction", executionRestriction).append("expireTime", expireTime).append("text", text).append("state", state).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).append("portfolioCurrency", portfolioCurrency).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(unitPrice).append(orderType).append(side).append(clipSize).append(quantity).append(clientOrderId).append(contractIds).append(clipPriceChange).append(portfolioId).append(executionRestriction).append(expireTime).append(deliveryAreaId).append(text).append(state).append(timeInForce).toHashCode();
+        return new HashCodeBuilder().append(unitPrice).append(orderType).append(side).append(clipSize).append(quantity).append(clientOrderId).append(contractIds).append(clipPriceChange).append(portfolioId).append(executionRestriction).append(expireTime).append(deliveryAreaId).append(text).append(state).append(timeInForce).append(portfolioCurrency).toHashCode();
     }
 
     @Override
@@ -390,7 +405,7 @@ public class OrderEntry {
             return false;
         }
         OrderEntry rhs = ((OrderEntry) other);
-        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(orderType, rhs.orderType).append(side, rhs.side).append(clipSize, rhs.clipSize).append(quantity, rhs.quantity).append(clientOrderId, rhs.clientOrderId).append(contractIds, rhs.contractIds).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(executionRestriction, rhs.executionRestriction).append(expireTime, rhs.expireTime).append(deliveryAreaId, rhs.deliveryAreaId).append(text, rhs.text).append(state, rhs.state).append(timeInForce, rhs.timeInForce).isEquals();
+        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(orderType, rhs.orderType).append(side, rhs.side).append(clipSize, rhs.clipSize).append(quantity, rhs.quantity).append(clientOrderId, rhs.clientOrderId).append(contractIds, rhs.contractIds).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(executionRestriction, rhs.executionRestriction).append(expireTime, rhs.expireTime).append(deliveryAreaId, rhs.deliveryAreaId).append(text, rhs.text).append(state, rhs.state).append(timeInForce, rhs.timeInForce).append(portfolioCurrency, rhs.portfolioCurrency).isEquals();
     }
 
 }

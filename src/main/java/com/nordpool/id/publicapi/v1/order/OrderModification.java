@@ -55,6 +55,7 @@ public class OrderModification {
     private String text;
     private Long clipSize;
     private Long clipPriceChange;
+    private String portfolioCurrency;
 
     /**
      * No args constructor for use in serialization
@@ -312,14 +313,27 @@ public class OrderModification {
         return this;
     }
 
+    public String getPortfolioCurrency() {
+        return portfolioCurrency;
+    }
+
+    public void setPortfolioCurrency(String portfolioCurrency) {
+        this.portfolioCurrency = portfolioCurrency;
+    }
+
+    public OrderModification withPortfolioCurrency(String portfolioCurrency) {
+        this.portfolioCurrency = portfolioCurrency;
+        return this;
+    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("revisionNo", revisionNo).append("clientOrderId", clientOrderId).append("orderId", orderId).append("portfolioId", portfolioId).append("contractIds", contractIds).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("executionRestriction", executionRestriction).append("expireTime", expireTime).append("text", text).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).toString();
+        return new ToStringBuilder(this).append("revisionNo", revisionNo).append("clientOrderId", clientOrderId).append("orderId", orderId).append("portfolioId", portfolioId).append("contractIds", contractIds).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("executionRestriction", executionRestriction).append("expireTime", expireTime).append("text", text).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).append("portfolioCurrency", portfolioCurrency).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(unitPrice).append(orderType).append(clipSize).append(quantity).append(orderId).append(clientOrderId).append(contractIds).append(clipPriceChange).append(portfolioId).append(executionRestriction).append(expireTime).append(revisionNo).append(text).append(timeInForce).toHashCode();
+        return new HashCodeBuilder().append(unitPrice).append(orderType).append(clipSize).append(quantity).append(orderId).append(clientOrderId).append(contractIds).append(clipPriceChange).append(portfolioId).append(executionRestriction).append(expireTime).append(revisionNo).append(text).append(timeInForce).append(portfolioCurrency).toHashCode();
     }
 
     @Override
@@ -331,7 +345,7 @@ public class OrderModification {
             return false;
         }
         OrderModification rhs = ((OrderModification) other);
-        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(orderType, rhs.orderType).append(clipSize, rhs.clipSize).append(quantity, rhs.quantity).append(orderId, rhs.orderId).append(clientOrderId, rhs.clientOrderId).append(contractIds, rhs.contractIds).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(executionRestriction, rhs.executionRestriction).append(expireTime, rhs.expireTime).append(revisionNo, rhs.revisionNo).append(text, rhs.text).append(timeInForce, rhs.timeInForce).isEquals();
+        return new EqualsBuilder().append(unitPrice, rhs.unitPrice).append(orderType, rhs.orderType).append(clipSize, rhs.clipSize).append(quantity, rhs.quantity).append(orderId, rhs.orderId).append(clientOrderId, rhs.clientOrderId).append(contractIds, rhs.contractIds).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(executionRestriction, rhs.executionRestriction).append(expireTime, rhs.expireTime).append(revisionNo, rhs.revisionNo).append(text, rhs.text).append(timeInForce, rhs.timeInForce).append(portfolioCurrency, rhs.portfolioCurrency).isEquals();
     }
 
 }

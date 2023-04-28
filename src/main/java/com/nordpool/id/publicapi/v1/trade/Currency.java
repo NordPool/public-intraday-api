@@ -16,7 +16,9 @@ public enum Currency {
 
     EUR("EUR"),
     GBP("GBP"),
-    GEL("GEL");
+    GEL("GEL"),
+    BGN("BGN"),
+    UNKNOWN("UNKNOWN");
     private final String value;
     private final static Map<String, Currency> CONSTANTS = new HashMap<String, Currency>();
 
