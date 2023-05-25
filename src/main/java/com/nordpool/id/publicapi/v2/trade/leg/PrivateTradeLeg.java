@@ -1,9 +1,19 @@
+/**
+ * Copyright 2023 Nord Pool.
+ * This library is intended to aid integration with Nord Pool’s Intraday API and comes without any warranty. Users of this library are responsible for separately testing and ensuring that it works according to their own standards.
+ * Please send feedback to idapi@nordpoolgroup.com.
+ */
+
 package com.nordpool.id.publicapi.v2.trade.leg;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.nordpool.id.publicapi.v1.order.*;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+
+import java.time.ZonedDateTime;
 
 public class PrivateTradeLeg
     extends BaseTradeLeg
@@ -11,8 +21,12 @@ public class PrivateTradeLeg
     private String portfolioId;
     private String orderId;
     private String userId;
-    private Long deliveryStart;
-    private Long deliveryEnd;
+    @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
+    @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
+    private ZonedDateTime deliveryStart;
+    @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
+    @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
+    private ZonedDateTime deliveryEnd;
 
     /**
      * LIMIT, ICEBERG, USER_DEFINED_BLOCK
@@ -44,7 +58,7 @@ public class PrivateTradeLeg
      * @param orderType
      * @param clientOrderId
      */
-    public PrivateTradeLeg(String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String portfolioId, String orderId, String userId, Long deliveryStart, Long deliveryEnd, OrderType orderType, String clientOrderId) {
+    public PrivateTradeLeg(String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String portfolioId, String orderId, String userId, ZonedDateTime deliveryStart, ZonedDateTime deliveryEnd, OrderType orderType, String clientOrderId) {
         super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);
         this.portfolioId = portfolioId;
         this.orderId = orderId;
@@ -79,19 +93,19 @@ public class PrivateTradeLeg
         this.userId = userId;
     }
 
-    public Long getDeliveryStart() {
+    public ZonedDateTime getDeliveryStart() {
         return deliveryStart;
     }
 
-    public void setDeliveryStart(Long deliveryStart) {
+    public void setDeliveryStart(ZonedDateTime deliveryStart) {
         this.deliveryStart = deliveryStart;
     }
 
-    public Long getDeliveryEnd() {
+    public ZonedDateTime getDeliveryEnd() {
         return deliveryEnd;
     }
 
-    public void setDeliveryEnd(Long deliveryEnd) {
+    public void setDeliveryEnd(ZonedDateTime deliveryEnd) {
         this.deliveryEnd = deliveryEnd;
     }
 
