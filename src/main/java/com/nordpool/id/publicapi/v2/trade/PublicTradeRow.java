@@ -20,6 +20,9 @@ import com.nordpool.id.publicapi.v2.trade.leg.PublicTradeLeg;
 public class PublicTradeRow
     extends BaseTradeRow
 {
+
+    private Boolean selfTrade;
+
     /**
      * Basic data about orders participated in the trade
      * 
@@ -34,7 +37,6 @@ public class PublicTradeRow
     }
 
     /**
-     * 
      * @param tradeId
      * @param tradeTime
      * @param state
@@ -47,8 +49,21 @@ public class PublicTradeRow
      * @param legs
      */
     public PublicTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Long revisionNo, String mediumDisplayName, Boolean selfTrade, ZonedDateTime updatedAt, List<PublicTradeLeg> legs) {
-        super(tradeId, tradeTime, state, currency, eventSequenceNo, revisionNo, mediumDisplayName, selfTrade, updatedAt);
+        super(tradeId, tradeTime, state, currency, eventSequenceNo, revisionNo, mediumDisplayName, updatedAt);
+        this.selfTrade = selfTrade;
         this.legs = legs;
+    }
+
+    public Boolean isSelfTrade() {
+        return this.selfTrade;
+    }
+
+    public Boolean getSelfTrade() {
+        return this.selfTrade;
+    }
+
+    public void setSelfTrade(Boolean selfTrade) {
+        this.selfTrade = selfTrade;
     }
 
     public List<PublicTradeLeg> getLegs() {
@@ -61,7 +76,7 @@ public class PublicTradeRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("legs", legs).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("selfTrade", selfTrade).append("legs", legs).toString();
     }
 
     @Override
@@ -75,11 +90,11 @@ public class PublicTradeRow
         }
 
         PublicTradeRow rhs = (PublicTradeRow) other;
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(legs, rhs.legs).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(legs, rhs.legs).append(selfTrade, rhs.selfTrade).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(legs).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(legs).append(selfTrade).toHashCode();
     }
 }
