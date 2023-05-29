@@ -58,11 +58,9 @@ public class BaseTradeRow
      */
     private String mediumDisplayName;
 
-    private Boolean selfTrade;
-    
     /**
      * No args constructor for use in serialization
-     * 
+     *
      */
     public BaseTradeRow() {
     }
@@ -76,11 +74,10 @@ public class BaseTradeRow
      * @param eventSequenceNo
      * @param revisionNo
      * @param mediumDisplayName
-     * @param selfTrade
      * @param updatedAt
      */
 
-    public BaseTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Long revisionNo, String mediumDisplayName, Boolean selfTrade, ZonedDateTime updatedAt) {
+    public BaseTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Long revisionNo, String mediumDisplayName, ZonedDateTime updatedAt) {
         super(updatedAt);
         this.tradeId = tradeId;
         this.tradeTime = tradeTime;
@@ -89,7 +86,6 @@ public class BaseTradeRow
         this.eventSequenceNo = eventSequenceNo;
         this.revisionNo = revisionNo;
         this.mediumDisplayName = mediumDisplayName;
-        this.selfTrade = selfTrade;
     }
 
     public String getTradeId() {
@@ -148,18 +144,6 @@ public class BaseTradeRow
         this.mediumDisplayName = mediumDisplayName;
     }
 
-    public Boolean isSelfTrade() {
-        return this.selfTrade;
-    }
-
-    public Boolean getSelfTrade() {
-        return this.selfTrade;
-    }
-
-    public void setSelfTrade(Boolean selfTrade) {
-        this.selfTrade = selfTrade;
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -171,16 +155,16 @@ public class BaseTradeRow
         }
 
         BaseTradeRow rhs = (BaseTradeRow) other;
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(mediumDisplayName, rhs.mediumDisplayName).append(tradeTime, rhs.tradeTime).append(selfTrade, rhs.selfTrade).append(currency, rhs.currency).append(eventSequenceNo, rhs.eventSequenceNo).append(state, rhs.state).append(tradeId, rhs.tradeId).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(mediumDisplayName, rhs.mediumDisplayName).append(tradeTime, rhs.tradeTime).append(currency, rhs.currency).append(eventSequenceNo, rhs.eventSequenceNo).append(state, rhs.state).append(tradeId, rhs.tradeId).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(mediumDisplayName).append(tradeTime).append(selfTrade).append(currency).append(eventSequenceNo).append(state).append(tradeId).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(mediumDisplayName).append(tradeTime).append(currency).append(eventSequenceNo).append(state).append(tradeId).toHashCode();
     }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("tradeId", tradeId).append("tradeTime", tradeTime).append("state", state).append("currency", currency).append("eventSequenceNo", eventSequenceNo).append("selfTrade", selfTrade).append("mediumDisplayName", mediumDisplayName).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("tradeId", tradeId).append("tradeTime", tradeTime).append("state", state).append("currency", currency).append("eventSequenceNo", eventSequenceNo).append("mediumDisplayName", mediumDisplayName).toString();
     }
 }
