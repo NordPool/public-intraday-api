@@ -48,6 +48,8 @@ public class PrivateTradeLeg
     private TimeInForce timeInForce;
     private String clientOrderId;
 
+    private Long revisionNo;
+
     /**
      * No args constructor for use in serialization
      * 
@@ -75,7 +77,7 @@ public class PrivateTradeLeg
      * @param text
      * @param timeInForce
      */
-    public PrivateTradeLeg(String portfolioId, String refOrderId, String userId, Long deliveryStart, Long deliveryEnd, OrderState orderState, OrderType orderType, String text, OrderAction orderAction, TimeInForce timeInForce, String clientOrderId, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor) {
+    public PrivateTradeLeg(String portfolioId, String refOrderId, String userId, Long deliveryStart, Long deliveryEnd, OrderState orderState, OrderType orderType, String text, OrderAction orderAction, TimeInForce timeInForce, String clientOrderId, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, Long revisionNo) {
         super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);
         this.portfolioId = portfolioId;
         this.refOrderId = refOrderId;
@@ -88,6 +90,7 @@ public class PrivateTradeLeg
         this.orderAction = orderAction;
         this.timeInForce = timeInForce;
         this.clientOrderId = clientOrderId;
+        this.revisionNo = revisionNo;
     }
 
     public String getPortfolioId() {
@@ -265,6 +268,14 @@ public class PrivateTradeLeg
         return this;
     }
 
+    public Long getRevisionNo() {
+        return revisionNo;
+    }
+
+    public void setRevisionNo(Long revisionNo) {
+        this.revisionNo = revisionNo;
+    }
+
     @Override
     public PrivateTradeLeg withContractId(String contractId) {
         super.withContractId(contractId);
@@ -303,12 +314,12 @@ public class PrivateTradeLeg
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("portfolioId", portfolioId).append("refOrderId", refOrderId).append("userId", userId).append("deliveryStart", deliveryStart).append("deliveryEnd", deliveryEnd).append("orderState", orderState).append("orderType", orderType).append("text", text).append("orderAction", orderAction).append("timeInForce", timeInForce).append("clientOrderId", clientOrderId).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("portfolioId", portfolioId).append("refOrderId", refOrderId).append("userId", userId).append("deliveryStart", deliveryStart).append("deliveryEnd", deliveryEnd).append("orderState", orderState).append("orderType", orderType).append("text", text).append("orderAction", orderAction).append("timeInForce", timeInForce).append("clientOrderId", clientOrderId).append("revisionNo", revisionNo).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(orderType).append(portfolioId).append(deliveryStart).append(deliveryEnd).append(refOrderId).append(clientOrderId).append(text).append(userId).append(timeInForce).append(orderAction).append(orderState).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(orderType).append(portfolioId).append(deliveryStart).append(deliveryEnd).append(refOrderId).append(clientOrderId).append(text).append(userId).append(timeInForce).append(orderAction).append(orderState).append(revisionNo).toHashCode();
     }
 
     @Override
@@ -320,7 +331,7 @@ public class PrivateTradeLeg
             return false;
         }
         PrivateTradeLeg rhs = ((PrivateTradeLeg) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(orderType, rhs.orderType).append(portfolioId, rhs.portfolioId).append(deliveryStart, rhs.deliveryStart).append(deliveryEnd, rhs.deliveryEnd).append(refOrderId, rhs.refOrderId).append(clientOrderId, rhs.clientOrderId).append(text, rhs.text).append(userId, rhs.userId).append(timeInForce, rhs.timeInForce).append(orderAction, rhs.orderAction).append(orderState, rhs.orderState).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(orderType, rhs.orderType).append(portfolioId, rhs.portfolioId).append(deliveryStart, rhs.deliveryStart).append(deliveryEnd, rhs.deliveryEnd).append(refOrderId, rhs.refOrderId).append(clientOrderId, rhs.clientOrderId).append(text, rhs.text).append(userId, rhs.userId).append(timeInForce, rhs.timeInForce).append(orderAction, rhs.orderAction).append(orderState, rhs.orderState).append(revisionNo, rhs.revisionNo).isEquals();
     }
 
 }
