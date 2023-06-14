@@ -18,6 +18,7 @@
 
     <properties>
         <copyrightOwner>Nord Pool</copyrightOwner>
+        <currentYear>2023</currentYear>
     </properties>
 
     <dependencies>
@@ -61,30 +62,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.3</version>
-            </plugin>
-
-            <!-- Creating current year element -->
-            <plugin>
-                <groupId>org.codehaus.groovy.maven</groupId>
-                <artifactId>gmaven-plugin</artifactId>
-                <version>1.0</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <source>
-                                import java.util.Date
-                                import java.text.MessageFormat
-
-                                def vartimestamp = MessageFormat.format("{0,date,yyyy}", new Date())
-                                project.properties['currentYear'] = vartimestamp
-                            </source>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
             <plugin>
