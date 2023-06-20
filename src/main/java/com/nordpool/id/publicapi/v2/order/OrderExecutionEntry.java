@@ -46,10 +46,10 @@ public class OrderExecutionEntry {
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
     private ZonedDateTime updatedAt;
     /**
-     * UUID for the order, provided by the client to track their own orders
+     * Id for the order, provided by the client to track their own orders
      * 
      */
-    private UUID clientOrderId;
+    private String clientOrderId;
     /**
      * Basket id for the order
      *
@@ -150,7 +150,7 @@ public class OrderExecutionEntry {
      * @param previousOrderId
      * @param mediumProductName
      */
-    public OrderExecutionEntry(Long eventSequenceNo, String marketId, String userId, String orderId, Long revisionNo, String previousOrderId, String originalOrderId, ZonedDateTime createdAt, ZonedDateTime updatedAt, UUID clientOrderId, UUID linkedBasketId, String portfolioId, String contractId, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ZonedDateTime expireTime, String text, OrderState state, OrderAction action, Long clipSize, Long clipPriceChange, Long remainingQuantity, ExecutionRestriction executionRestriction, String mediumProductName) {
+    public OrderExecutionEntry(Long eventSequenceNo, String marketId, String userId, String orderId, Long revisionNo, String previousOrderId, String originalOrderId, ZonedDateTime createdAt, ZonedDateTime updatedAt, String clientOrderId, UUID linkedBasketId, String portfolioId, String contractId, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ZonedDateTime expireTime, String text, OrderState state, OrderAction action, Long clipSize, Long clipPriceChange, Long remainingQuantity, ExecutionRestriction executionRestriction, String mediumProductName) {
         super();
         this.eventSequenceNo = eventSequenceNo;
         this.marketId = marketId;
@@ -316,22 +316,22 @@ public class OrderExecutionEntry {
     }
 
     /**
-     * UUID for the order, provided by the client to track their own orders
+     * Id for the order, provided by the client to track their own orders
      * 
      */
-    public UUID getClientOrderId() {
+    public String getClientOrderId() {
         return clientOrderId;
     }
 
     /**
-     * UUID for the order, provided by the client to track their own orders
+     * Id for the order, provided by the client to track their own orders
      *
      */
-    public void setClientOrderId(UUID clientOrderId) {
+    public void setClientOrderId(String clientOrderId) {
         this.clientOrderId = clientOrderId;
     }
 
-    public OrderExecutionEntry withClientOrderId(UUID clientOrderId) {
+    public OrderExecutionEntry withClientOrderId(String clientOrderId) {
         this.clientOrderId = clientOrderId;
         return this;
     }

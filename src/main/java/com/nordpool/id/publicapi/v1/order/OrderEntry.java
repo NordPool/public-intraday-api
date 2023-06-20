@@ -9,7 +9,6 @@ package com.nordpool.id.publicapi.v1.order;
 
 import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.UUID;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -19,10 +18,10 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class OrderEntry {
 
     /**
-     * UUID for the order, provided by the client to track their own orders
+     * Id for the order, provided by the client to track their own orders
      * 
      */
-    private UUID clientOrderId;
+    private String clientOrderId;
     /**
      * The portfolio id of the current order
      * 
@@ -93,7 +92,7 @@ public class OrderEntry {
      * @param state
      * @param timeInForce
      */
-    public OrderEntry(UUID clientOrderId, String portfolioId, List<String> contractIds, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, OrderState state, Long clipSize, Long clipPriceChange) {
+    public OrderEntry(String clientOrderId, String portfolioId, List<String> contractIds, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ExecutionRestriction executionRestriction, ZonedDateTime expireTime, String text, OrderState state, Long clipSize, Long clipPriceChange) {
         super();
         this.clientOrderId = clientOrderId;
         this.portfolioId = portfolioId;
@@ -113,22 +112,22 @@ public class OrderEntry {
     }
 
     /**
-     * UUID for the order, provided by the client to track their own orders
+     * Id for the order, provided by the client to track their own orders
      * 
      */
-    public UUID getClientOrderId() {
+    public String getClientOrderId() {
         return clientOrderId;
     }
 
     /**
-     * UUID for the order, provided by the client to track their own orders
+     * Id for the order, provided by the client to track their own orders
      * 
      */
-    public void setClientOrderId(UUID clientOrderId) {
+    public void setClientOrderId(String clientOrderId) {
         this.clientOrderId = clientOrderId;
     }
 
-    public OrderEntry withClientOrderId(UUID clientOrderId) {
+    public OrderEntry withClientOrderId(String clientOrderId) {
         this.clientOrderId = clientOrderId;
         return this;
     }
