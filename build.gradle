@@ -23,8 +23,14 @@ dependencies {
 }
 
 group = 'com.npspot'
-version = '1.1.0.0'
 description = 'Nord Pool Intraday Public API classes'
+
+if (System.getenv("VERSION")) {
+    version = System.getenv("VERSION")
+} else {
+    version = '1.1.0.0'
+}
+
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 publishing {

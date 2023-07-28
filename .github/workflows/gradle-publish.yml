@@ -47,8 +47,8 @@ jobs:
       uses: gradle/gradle-build-action@a4cf152f482c7ca97ef56ead29bf08bcd953284c # v2.7.0
       with:
         gradle-version: 7.4
-        arguments: -Pversion=${{env.version}} publish
+        arguments: publish
       env:
-        version: "${{ steps.gitversion.outputs.MajorMinorPatch }}-${{ steps.gitversion.outputs.PreReleaseTag }}-${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
+        VERSION: "${{ steps.gitversion.outputs.MajorMinorPatch }}-${{ steps.gitversion.outputs.PreReleaseTag }}-${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
         GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
