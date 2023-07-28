@@ -1,24 +1,28 @@
 name: Gradle Package
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - "main"
+      - master
 jobs:
   build:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
       with:
+        ref: ${{ github.event.pull_request.merge_commit_sha }}
         fetch-depth: 0
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.15
-      with:
-        versionSpec: '5.x'
-    - name: Determine Version
-      uses: gittools/actions/gitversion/execute@v0.9.15
-      id: gitversion
 
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.67.0
+      id: tagging
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
+        PRERELEASE: true
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
@@ -37,6 +41,6 @@ jobs:
         gradle-version: 7.4
         arguments: publish
       env:
-        VERSION: "${{ steps.gitversion.outputs.MajorMinorPatch }}-${{ steps.gitversion.outputs.PreReleaseTag }}-${{ steps.gitversion.outputs.CommitsSinceVersionSource }}"
+        VERSION: "${{ steps.tagging.outputs.new_tag  }}"
         GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
