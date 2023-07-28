@@ -8,9 +8,11 @@ We offer the data transfer object code and client code examples to aid the devel
 
 ## Building ##
 
-This is a Maven project that can be built using command
+This is a Gradle project that can be built using command
 
-**mvn clean install**.
+```shell
+gradle publishToMavenLocal
+```
 
 This will place the library in your local maven repository. 
 
