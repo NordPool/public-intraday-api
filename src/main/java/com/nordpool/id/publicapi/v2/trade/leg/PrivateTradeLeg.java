@@ -34,6 +34,7 @@ public class PrivateTradeLeg
      */
     private OrderType orderType;
     private String clientOrderId;
+    private String text;
 
     /**
      * No args constructor for use in serialization
@@ -57,8 +58,9 @@ public class PrivateTradeLeg
      * @param deliveryEnd
      * @param orderType
      * @param clientOrderId
+     * @param text
      */
-    public PrivateTradeLeg(String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String portfolioId, String orderId, String userId, ZonedDateTime deliveryStart, ZonedDateTime deliveryEnd, OrderType orderType, String clientOrderId) {
+    public PrivateTradeLeg(String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor, String portfolioId, String orderId, String userId, ZonedDateTime deliveryStart, ZonedDateTime deliveryEnd, OrderType orderType, String clientOrderId, String text) {
         super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);
         this.portfolioId = portfolioId;
         this.orderId = orderId;
@@ -67,6 +69,7 @@ public class PrivateTradeLeg
         this.deliveryEnd = deliveryEnd;
         this.orderType = orderType;
         this.clientOrderId = clientOrderId;
+        this.text = text;
     }
 
     public String getPortfolioId() {
@@ -125,14 +128,22 @@ public class PrivateTradeLeg
         this.clientOrderId = clientOrderId;
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("portfolioId", portfolioId).append("orderId", orderId).append("userId", userId).append("deliveryStart", deliveryStart).append("deliveryEnd", deliveryEnd).append("orderType", orderType).append("clientOrderId", clientOrderId).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("portfolioId", portfolioId).append("orderId", orderId).append("userId", userId).append("deliveryStart", deliveryStart).append("deliveryEnd", deliveryEnd).append("orderType", orderType).append("clientOrderId", clientOrderId).append("text", text).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(orderType).append(portfolioId).append(deliveryStart).append(deliveryEnd).append(orderId).append(clientOrderId).append(userId).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(orderType).append(portfolioId).append(deliveryStart).append(deliveryEnd).append(orderId).append(clientOrderId).append(userId).append(text).toHashCode();
     }
 
     @Override
@@ -144,6 +155,6 @@ public class PrivateTradeLeg
             return false;
         }
         com.nordpool.id.publicapi.v2.trade.leg.PrivateTradeLeg rhs = ((com.nordpool.id.publicapi.v2.trade.leg.PrivateTradeLeg) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(orderType, rhs.orderType).append(portfolioId, rhs.portfolioId).append(deliveryStart, rhs.deliveryStart).append(deliveryEnd, rhs.deliveryEnd).append(orderId, rhs.orderId).append(clientOrderId, rhs.clientOrderId).append(userId, rhs.userId).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(orderType, rhs.orderType).append(portfolioId, rhs.portfolioId).append(deliveryStart, rhs.deliveryStart).append(deliveryEnd, rhs.deliveryEnd).append(orderId, rhs.orderId).append(clientOrderId, rhs.clientOrderId).append(userId, rhs.userId).append(text, rhs.text).isEquals();
     }
 }
