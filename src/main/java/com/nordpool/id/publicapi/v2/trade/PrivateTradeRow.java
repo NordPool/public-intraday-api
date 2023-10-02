@@ -44,8 +44,8 @@ public class PrivateTradeRow
      * @param updatedAt
      * @param legs
      */
-    public PrivateTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Long revisionNo, String mediumDisplayName, Boolean companyTrade, ZonedDateTime updatedAt, List<PrivateTradeLeg> legs) {
-        super(tradeId, tradeTime, state, currency, eventSequenceNo, revisionNo, mediumDisplayName, updatedAt, companyTrade);
+    public PrivateTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Long revisionNo, String mediumDisplayName, Boolean selfTrade, ZonedDateTime updatedAt, List<PrivateTradeLeg> legs) {
+        super(tradeId, tradeTime, state, currency, eventSequenceNo, revisionNo, mediumDisplayName, updatedAt, selfTrade);
         this.legs = legs;
     }
 

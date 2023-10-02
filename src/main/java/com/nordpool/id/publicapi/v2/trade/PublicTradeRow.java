@@ -41,8 +41,8 @@ public class PublicTradeRow
      * @param updatedAt
      * @param legs
      */
-    public PublicTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Long revisionNo, String mediumDisplayName, Boolean companyTrade, ZonedDateTime updatedAt, List<PublicTradeLeg> legs) {
-        super(tradeId, tradeTime, state, currency, eventSequenceNo, revisionNo, mediumDisplayName, updatedAt, companyTrade);
+    public PublicTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Long revisionNo, String mediumDisplayName, Boolean selfTrade, ZonedDateTime updatedAt, List<PublicTradeLeg> legs) {
+        super(tradeId, tradeTime, state, currency, eventSequenceNo, revisionNo, mediumDisplayName, updatedAt, selfTrade);
         this.legs = legs;
     }
 
