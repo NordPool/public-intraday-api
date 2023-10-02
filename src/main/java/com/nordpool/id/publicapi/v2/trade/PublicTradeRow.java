@@ -18,8 +18,7 @@ import com.nordpool.id.publicapi.v1.trade.TradeState;
 import com.nordpool.id.publicapi.v2.trade.leg.PublicTradeLeg;
 
 public class PublicTradeRow
-    extends BaseTradeRow
-{
+        extends BaseTradeRow {
     /**
      * Basic data about orders participated in the trade
      */
@@ -42,8 +41,8 @@ public class PublicTradeRow
      * @param updatedAt
      * @param legs
      */
-    public PublicTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Long revisionNo, String mediumDisplayName, Boolean companyTrade, ZonedDateTime updatedAt, List<PublicTradeLeg> legs) {
-        super(tradeId, tradeTime, state, currency, eventSequenceNo, revisionNo, mediumDisplayName, updatedAt, companyTrade);
+    public PublicTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Long revisionNo, String mediumDisplayName, Boolean selfTrade, ZonedDateTime updatedAt, List<PublicTradeLeg> legs) {
+        super(tradeId, tradeTime, state, currency, eventSequenceNo, revisionNo, mediumDisplayName, updatedAt, selfTrade);
         this.legs = legs;
     }
 
