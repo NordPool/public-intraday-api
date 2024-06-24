@@ -97,6 +97,7 @@ public class OrderExecutionEntry {
      * 
      */
     private OrderAction action;
+    private OrderActionIssuer actionIssuer;
     private Long clipSize;
     private Long clipPriceChange;
     private Long remainingQuantity;
@@ -125,6 +126,7 @@ public class OrderExecutionEntry {
      * @param executionRestriction
      * @param originalOrderId
      * @param action
+     * @param actionIssuer
      * @param revisionNo
      * @param text
      * @param state
@@ -146,7 +148,7 @@ public class OrderExecutionEntry {
      * @param previousOrderId
      * @param errors
      */
-    public OrderExecutionEntry(Long eventSequenceNo, String marketId, String tenantId, String userId, String orderId, Long revisionNo, String previousOrderId, String originalOrderId, ZonedDateTime createdAt, ZonedDateTime updatedAt, String clientOrderId, UUID linkedBasketId, String portfolioId, List<String> contractIds, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ZonedDateTime expireTime, String text, OrderState state, OrderAction action, Long clipSize, Long clipPriceChange, Long remainingQuantity, List<Error> errors, ExecutionRestriction executionRestriction) {
+    public OrderExecutionEntry(Long eventSequenceNo, String marketId, String tenantId, String userId, String orderId, Long revisionNo, String previousOrderId, String originalOrderId, ZonedDateTime createdAt, ZonedDateTime updatedAt, String clientOrderId, UUID linkedBasketId, String portfolioId, List<String> contractIds, Long deliveryAreaId, OrderSide side, OrderType orderType, Long unitPrice, Long quantity, TimeInForce timeInForce, ZonedDateTime expireTime, String text, OrderState state, OrderAction action, OrderActionIssuer actionIssuer, Long clipSize, Long clipPriceChange, Long remainingQuantity, List<Error> errors, ExecutionRestriction executionRestriction) {
         super();
         this.eventSequenceNo = eventSequenceNo;
         this.marketId = marketId;
@@ -579,6 +581,19 @@ public class OrderExecutionEntry {
         return this;
     }
 
+    public OrderActionIssuer getActionIssuer() {
+        return actionIssuer;
+    }
+
+    public void setActionIssuer(OrderActionIssuer actionIssuer) {
+        this.actionIssuer = actionIssuer;
+    }
+
+    public OrderActionIssuer withActionIssuer(OrderActionIssuer actionIssuer) {
+        this.actionIssuer = actionIssuer;
+        return actionIssuer;
+    }
+
     public Long getClipSize() {
         return clipSize;
     }
@@ -654,12 +669,12 @@ public class OrderExecutionEntry {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("eventSequenceNo", eventSequenceNo).append("marketId", marketId).append("tenantId", tenantId).append("userId", userId).append("orderId", orderId).append("revisionNo", revisionNo).append("previousOrderId", previousOrderId).append("originalOrderId", originalOrderId).append("createdAt", createdAt).append("updatedAt", updatedAt).append("clientOrderId", clientOrderId).append("portfolioId", portfolioId).append("contractIds", contractIds).append("deliveryAreaId", deliveryAreaId).append("side", side).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("expireTime", expireTime).append("text", text).append("state", state).append("action", action).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).append("remainingQuantity", remainingQuantity).append("errors", errors).append("executionRestriction", executionRestriction).toString();
+        return new ToStringBuilder(this).append("eventSequenceNo", eventSequenceNo).append("marketId", marketId).append("tenantId", tenantId).append("userId", userId).append("orderId", orderId).append("revisionNo", revisionNo).append("previousOrderId", previousOrderId).append("originalOrderId", originalOrderId).append("createdAt", createdAt).append("updatedAt", updatedAt).append("clientOrderId", clientOrderId).append("portfolioId", portfolioId).append("contractIds", contractIds).append("deliveryAreaId", deliveryAreaId).append("side", side).append("orderType", orderType).append("unitPrice", unitPrice).append("quantity", quantity).append("timeInForce", timeInForce).append("expireTime", expireTime).append("text", text).append("state", state).append("action", action).append("actionIssuer", actionIssuer).append("clipSize", clipSize).append("clipPriceChange", clipPriceChange).append("remainingQuantity", remainingQuantity).append("errors", errors).append("executionRestriction", executionRestriction).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(remainingQuantity).append(orderType).append(clipSize).append(orderId).append(marketId).append(createdAt).append(executionRestriction).append(originalOrderId).append(action).append(revisionNo).append(text).append(state).append(timeInForce).append(updatedAt).append(unitPrice).append(side).append(quantity).append(clientOrderId).append(contractIds).append(eventSequenceNo).append(userId).append(clipPriceChange).append(portfolioId).append(expireTime).append(tenantId).append(deliveryAreaId).append(previousOrderId).append(errors).toHashCode();
+        return new HashCodeBuilder().append(remainingQuantity).append(orderType).append(clipSize).append(orderId).append(marketId).append(createdAt).append(executionRestriction).append(originalOrderId).append(action).append(actionIssuer).append(revisionNo).append(text).append(state).append(timeInForce).append(updatedAt).append(unitPrice).append(side).append(quantity).append(clientOrderId).append(contractIds).append(eventSequenceNo).append(userId).append(clipPriceChange).append(portfolioId).append(expireTime).append(tenantId).append(deliveryAreaId).append(previousOrderId).append(errors).toHashCode();
     }
 
     @Override
@@ -671,7 +686,7 @@ public class OrderExecutionEntry {
             return false;
         }
         OrderExecutionEntry rhs = ((OrderExecutionEntry) other);
-        return new EqualsBuilder().append(remainingQuantity, rhs.remainingQuantity).append(orderType, rhs.orderType).append(clipSize, rhs.clipSize).append(orderId, rhs.orderId).append(marketId, rhs.marketId).append(createdAt, rhs.createdAt).append(executionRestriction, rhs.executionRestriction).append(originalOrderId, rhs.originalOrderId).append(action, rhs.action).append(revisionNo, rhs.revisionNo).append(text, rhs.text).append(state, rhs.state).append(timeInForce, rhs.timeInForce).append(updatedAt, rhs.updatedAt).append(unitPrice, rhs.unitPrice).append(side, rhs.side).append(quantity, rhs.quantity).append(clientOrderId, rhs.clientOrderId).append(contractIds, rhs.contractIds).append(eventSequenceNo, rhs.eventSequenceNo).append(userId, rhs.userId).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(expireTime, rhs.expireTime).append(tenantId, rhs.tenantId).append(deliveryAreaId, rhs.deliveryAreaId).append(previousOrderId, rhs.previousOrderId).append(errors, rhs.errors).isEquals();
+        return new EqualsBuilder().append(remainingQuantity, rhs.remainingQuantity).append(orderType, rhs.orderType).append(clipSize, rhs.clipSize).append(orderId, rhs.orderId).append(marketId, rhs.marketId).append(createdAt, rhs.createdAt).append(executionRestriction, rhs.executionRestriction).append(originalOrderId, rhs.originalOrderId).append(action, rhs.action).append(actionIssuer, rhs.actionIssuer).append(revisionNo, rhs.revisionNo).append(text, rhs.text).append(state, rhs.state).append(timeInForce, rhs.timeInForce).append(updatedAt, rhs.updatedAt).append(unitPrice, rhs.unitPrice).append(side, rhs.side).append(quantity, rhs.quantity).append(clientOrderId, rhs.clientOrderId).append(contractIds, rhs.contractIds).append(eventSequenceNo, rhs.eventSequenceNo).append(userId, rhs.userId).append(clipPriceChange, rhs.clipPriceChange).append(portfolioId, rhs.portfolioId).append(expireTime, rhs.expireTime).append(tenantId, rhs.tenantId).append(deliveryAreaId, rhs.deliveryAreaId).append(previousOrderId, rhs.previousOrderId).append(errors, rhs.errors).isEquals();
     }
 
 }
