@@ -11,11 +11,10 @@ plugins {
 
 repositories {
     mavenLocal()
-    maven {
+    mavenCentral {
         url = uri('https://repo.maven.apache.org/maven2/')
     }
 }
-
 dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.8.8'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.8'
@@ -28,24 +27,31 @@ description = 'Nord Pool Intraday Public API classes'
 if (System.getenv("VERSION")) {
     version = System.getenv("VERSION")
 } else {
-    version = '1.1.0.0'
+    version = '1.1.8'
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_1_8
-
+java.sourceCompatibility = JavaVersion.VERSION_17
+tasks.register('sourceJar', Jar) {
+    from sourceSets.main.allSource
+    archiveClassifier.set('sources')
+}
 publishing {
     publications {
-        maven(MavenPublication) {
+        esamLibrary(MavenPublication){
             from(components.java)
+            artifact tasks.named("sourceJar").get() // This line is added to include source code in the publication
         }
     }
-    repositories{
+    repositories {
         maven {
-            name = "GitHubPackages"
-            url = "https://maven.pkg.github.com/NordPool/public-intraday-api"
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+            name = "EsamS3MavenRepo"
+            authentication {
+                awsIm(AwsImAuthentication)  // takes the credentials from the ~/.aws/credentials
+            }
+            if (project.version.endsWith('-SNAPSHOT')) {
+                url "s3://esamtrade-maven-repo/snapshots"
+            } else {
+                url "s3://esamtrade-maven-repo/releases"
             }
         }
     }
