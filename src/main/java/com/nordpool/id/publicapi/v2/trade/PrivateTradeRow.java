@@ -7,6 +7,7 @@
 package com.nordpool.id.publicapi.v2.trade;
 
 import com.nordpool.id.publicapi.v1.trade.Currency;
+import com.nordpool.id.publicapi.v1.trade.TradeContractPhase;
 import com.nordpool.id.publicapi.v1.trade.TradeState;
 import com.nordpool.id.publicapi.v2.trade.leg.PrivateTradeLeg;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -24,6 +25,8 @@ public class PrivateTradeRow
      *
      */
     private List<PrivateTradeLeg> legs = null;
+
+    private TradeContractPhase contractPhase;
 
     /**
      * No args constructor for use in serialization
@@ -43,10 +46,12 @@ public class PrivateTradeRow
      * @param mediumDisplayName
      * @param updatedAt
      * @param legs
+     * @param contractPhase
      */
-    public PrivateTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Long revisionNo, String mediumDisplayName, Boolean companyTrade, ZonedDateTime updatedAt, List<PrivateTradeLeg> legs) {
+    public PrivateTradeRow(String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Long revisionNo, String mediumDisplayName, Boolean companyTrade, ZonedDateTime updatedAt, List<PrivateTradeLeg> legs, TradeContractPhase contractPhase) {
         super(tradeId, tradeTime, state, currency, eventSequenceNo, revisionNo, mediumDisplayName, updatedAt, companyTrade);
         this.legs = legs;
+        this.contractPhase = contractPhase;
     }
 
     public List<PrivateTradeLeg> getLegs() {
@@ -57,9 +62,17 @@ public class PrivateTradeRow
         this.legs = legs;
     }
 
+    public TradeContractPhase getContractPhase() {
+        return contractPhase;
+    }
+
+    public void setContractPhase(TradeContractPhase contractPhase) {
+        this.contractPhase = contractPhase;
+    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("legs", legs).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("legs", legs).append("contractPhase", contractPhase).toString();
     }
 
     @Override
@@ -73,12 +86,12 @@ public class PrivateTradeRow
         }
 
         PrivateTradeRow rhs = (PrivateTradeRow) other;
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(legs, rhs.legs).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(legs, rhs.legs).append(contractPhase, rhs.contractPhase).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(legs).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(legs).append(contractPhase).toHashCode();
     }
 
 }
