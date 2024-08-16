@@ -7,6 +7,7 @@
 
 package com.nordpool.id.publicapi.v1;
 
+import com.nordpool.id.publicapi.v1.trade.TradeContractPhase;
 import java.time.ZonedDateTime;
 import java.util.List;
 import com.nordpool.id.publicapi.v1.base.BaseTradeRow;
@@ -33,7 +34,7 @@ public class PrivateTradeRow
      */
     private String cancellationDeadLine;
     private Long revisionNo;
-
+    private TradeContractPhase contractPhase;
     /**
      * No args constructor for use in serialization
      * 
@@ -52,17 +53,19 @@ public class PrivateTradeRow
      * @param legs
      * @param cancellationFee
      * @param revisionNo
+     * @param contractPhase
      * @param currency
      * @param state
      * @param tradeId
      * @param updatedAt
      */
-    public PrivateTradeRow(List<PrivateTradeLeg> legs, Long cancellationFee, String cancellationDeadLine, Long revisionNo, String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Boolean deleted, String mediumDisplayName, Boolean companyTrade, ZonedDateTime updatedAt) {
+    public PrivateTradeRow(List<PrivateTradeLeg> legs, Long cancellationFee, String cancellationDeadLine, Long revisionNo, TradeContractPhase contractPhase, String tradeId, ZonedDateTime tradeTime, TradeState state, Currency currency, Long eventSequenceNo, Boolean deleted, String mediumDisplayName, Boolean companyTrade, ZonedDateTime updatedAt) {
         super(tradeId, tradeTime, state, currency, eventSequenceNo, deleted, mediumDisplayName, companyTrade, updatedAt);
         this.legs = legs;
         this.cancellationFee = cancellationFee;
         this.cancellationDeadLine = cancellationDeadLine;
         this.revisionNo = revisionNo;
+        this.contractPhase = contractPhase;
     }
 
     /**
@@ -133,6 +136,19 @@ public class PrivateTradeRow
         return this;
     }
 
+    public TradeContractPhase getContractPhase() {
+        return contractPhase;
+    }
+
+    public void setContractPhase(TradeContractPhase contractPhase) {
+        this.contractPhase = contractPhase;
+    }
+
+    public PrivateTradeRow withContractPhase(TradeContractPhase contractPhase) {
+        this.contractPhase = contractPhase;
+        return this;
+    }
+
     @Override
     public PrivateTradeRow withTradeId(String tradeId) {
         super.withTradeId(tradeId);
@@ -189,12 +205,12 @@ public class PrivateTradeRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("legs", legs).append("cancellationFee", cancellationFee).append("cancellationDeadLine", cancellationDeadLine).append("revisionNo", revisionNo).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("legs", legs).append("cancellationFee", cancellationFee).append("cancellationDeadLine", cancellationDeadLine).append("revisionNo", revisionNo).append("contractPhase", contractPhase).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(cancellationFee).append(revisionNo).append(cancellationDeadLine).append(legs).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(cancellationFee).append(revisionNo).append(cancellationDeadLine).append(legs).append(contractPhase).toHashCode();
     }
 
     @Override
@@ -206,7 +222,7 @@ public class PrivateTradeRow
             return false;
         }
         PrivateTradeRow rhs = ((PrivateTradeRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(cancellationFee, rhs.cancellationFee).append(revisionNo, rhs.revisionNo).append(cancellationDeadLine, rhs.cancellationDeadLine).append(legs, rhs.legs).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(cancellationFee, rhs.cancellationFee).append(revisionNo, rhs.revisionNo).append(cancellationDeadLine, rhs.cancellationDeadLine).append(legs, rhs.legs).append(contractPhase, rhs.contractPhase).isEquals();
     }
 
 }
