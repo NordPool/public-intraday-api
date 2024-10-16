@@ -14,6 +14,7 @@ import java.util.Map;
 
 public enum TradeContractPhase {
 
+    NONE("NONE"),
     CONT("CONT"),
     AUCT("AUCT");
     private final String value;
