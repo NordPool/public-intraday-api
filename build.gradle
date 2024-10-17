@@ -27,7 +27,7 @@ description = 'Nord Pool Intraday Public API classes'
 if (System.getenv("VERSION")) {
     version = System.getenv("VERSION")
 } else {
-    version = '1.1.8'
+    version = '1.1.10'
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_17
