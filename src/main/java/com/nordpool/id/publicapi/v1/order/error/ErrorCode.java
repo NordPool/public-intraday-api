@@ -65,5 +65,4 @@ public enum ErrorCode {
             return constant;
         }
     }
-
 }
