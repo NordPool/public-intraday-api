@@ -174,6 +174,7 @@ public class OrderExecutionEntry {
         this.text = text;
         this.state = state;
         this.action = action;
+        this.actionIssuer = actionIssuer;
         this.clipSize = clipSize;
         this.clipPriceChange = clipPriceChange;
         this.remainingQuantity = remainingQuantity;
@@ -589,9 +590,9 @@ public class OrderExecutionEntry {
         this.actionIssuer = actionIssuer;
     }
 
-    public OrderActionIssuer withActionIssuer(OrderActionIssuer actionIssuer) {
+    public OrderExecutionEntry withActionIssuer(OrderActionIssuer actionIssuer) {
         this.actionIssuer = actionIssuer;
-        return actionIssuer;
+        return this;
     }
 
     public Long getClipSize() {
