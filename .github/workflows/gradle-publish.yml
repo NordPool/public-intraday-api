@@ -1,11 +1,10 @@
 name: Gradle Package
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
-      - main
+      - "main"
+  workflow_dispatch:
 jobs:
   build:
     if: github.event.pull_request.merged == true
