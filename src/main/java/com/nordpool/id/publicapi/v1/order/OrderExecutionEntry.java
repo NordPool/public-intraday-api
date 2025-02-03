@@ -16,12 +16,14 @@ import com.nordpool.id.publicapi.v1.order.error.Error;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 public class OrderExecutionEntry {
 
     private Long eventSequenceNo;
     private String marketId;
     private String tenantId;
+    @Nullable
     private String userId;
     private String orderId;
     private Long revisionNo;
@@ -29,6 +31,7 @@ public class OrderExecutionEntry {
      * Id of the previous order in this modification chain. When an order is modified and its priority changes, or partially matched, a new order Id is assigned.
      * 
      */
+    @Nullable
     private String previousOrderId;
     /**
      * The original order id in this modification chain.
@@ -45,22 +48,26 @@ public class OrderExecutionEntry {
      * Id for the order, provided by the client to track their own orders
      * 
      */
+    @Nullable
     private String clientOrderId;
     /**
      * Basket id for the order
      *
      */
+    @Nullable
     private UUID linkedBasketId;
     /**
      * The portfolio id of the current order
      * 
      */
+    @Nullable
     private String portfolioId;
     /**
      * The contract ids for current order
      * 
      */
     private List<String> contractIds = null;
+    @Nullable
     private Long deliveryAreaId;
     /**
      * BUY/SELL
@@ -85,7 +92,9 @@ public class OrderExecutionEntry {
      */
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
+    @Nullable
     private ZonedDateTime expireTime;
+    @Nullable
     private String text;
     /**
      * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
@@ -98,14 +107,18 @@ public class OrderExecutionEntry {
      */
     private OrderAction action;
     private OrderActionIssuer actionIssuer;
+    @Nullable
     private Long clipSize;
+    @Nullable
     private Long clipPriceChange;
+    @Nullable
     private Long remainingQuantity;
     private List<Error> errors = null;
     /**
      * 'AON' (All or None): The order must be filled completely or not at all. The order stays in the order book until it is executed or removed by the system or user. This execution restriction can be used only in combination with User Defined Block Orders. 'NON': No restrictions.
      * 
      */
+    @Nullable
     private ExecutionRestriction executionRestriction;
 
     /**

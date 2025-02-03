@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 public class Order {
 
@@ -22,6 +23,7 @@ public class Order {
      * The portfolio id of the current order
      * 
      */
+    @Nullable
     private String portfolioId;
     private Long price;
     private Long qty;
@@ -31,6 +33,7 @@ public class Order {
      */
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
+    @Nullable
     private ZonedDateTime createdAt;
     /**
      * Last modification time (status change) of data
@@ -46,8 +49,9 @@ public class Order {
     private Boolean deleted;
     /**
      * OWN, COMPANY, OTHER
-     * 
+     *
      */
+    @Nullable
     private OrderOwnershipEnum ownership;
 
     /**

@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 
 /**
@@ -29,6 +30,7 @@ public class OrderModification {
      */
     private String clientOrderId;
     private String orderId;
+    @Nullable
     private String portfolioId;
     private List<String> contractIds = null;
     /**
@@ -47,12 +49,17 @@ public class OrderModification {
      * 'AON' (All or None): The order must be filled completely or not at all. The order stays in the order book until it is executed or removed by the system or user. This execution restriction can be used only in combination with User Defined Block Orders. 'NON': No restrictions.
      * 
      */
+    @Nullable
     private ExecutionRestriction executionRestriction;
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
+    @Nullable
     private ZonedDateTime expireTime;
+    @Nullable
     private String text;
+    @Nullable
     private Long clipSize;
+    @Nullable
     private Long clipPriceChange;
 
     /**

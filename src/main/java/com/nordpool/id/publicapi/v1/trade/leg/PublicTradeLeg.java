@@ -11,6 +11,7 @@ import com.nordpool.id.publicapi.v1.order.OrderSide;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 public class PublicTradeLeg
     extends BaseTradeLeg
@@ -18,8 +19,9 @@ public class PublicTradeLeg
 
     /**
      * OWN_BUY, OWN_SELL - the leg (order) is placed by current user and is on Buy or Sell side, respectively. COMPANY_BUY, COMPANY_SELL - the order was placed by different user from same Company.Order is on Buy or Sell side, respectively. OTHER - the order was placed by different company than user's.
-     * 
+     *
      */
+    @Nullable
     private LegOwnershipEnum ownership;
 
     /**
@@ -38,8 +40,6 @@ public class PublicTradeLeg
      * @param ownership
      * @param contractId
      * @param deliveryAreaId
-     * @param marketId
-     * @param tenantId
      */
     public PublicTradeLeg(LegOwnershipEnum ownership, String contractId, OrderSide side, Long unitPrice, Long quantity, Long deliveryAreaId, Boolean aggressor) {
         super(contractId, side, unitPrice, quantity, deliveryAreaId, aggressor);

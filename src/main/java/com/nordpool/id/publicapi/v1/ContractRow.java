@@ -17,6 +17,7 @@ import com.nordpool.id.publicapi.v1.contract.ProductType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 public class ContractRow
     extends BaseRow
@@ -32,6 +33,7 @@ public class ContractRow
      * 
      */
     private String contractName;
+    @Nullable
     private Long durationSeconds;
     private Long resolutionSeconds;
     /**

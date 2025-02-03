@@ -15,37 +15,44 @@ import com.nordpool.id.publicapi.v1.order.TimeInForce;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 public class PrivateTradeLeg
     extends BaseTradeLeg
 {
-
     private String portfolioId;
     private String refOrderId;
     private String userId;
+    @Nullable
     private Long deliveryStart;
+    @Nullable
     private Long deliveryEnd;
     /**
      * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
      * 
      */
+    @Nullable
     private OrderState orderState;
     /**
      * LIMIT, ICEBERG, USER_DEFINED_BLOCK
      * 
      */
     private OrderType orderType;
+    @Nullable
     private String text;
     /**
      * Action
      * 
      */
+    @Nullable
     private OrderAction orderAction;
     /**
      * IOC, FOK, AON, GTD, GFS
      * 
      */
+    @Nullable
     private TimeInForce timeInForce;
+    @Nullable
     private String clientOrderId;
 
     /**

@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 public class OrderEntry {
 
@@ -21,11 +22,13 @@ public class OrderEntry {
      * Id for the order, provided by the client to track their own orders
      * 
      */
+    @Nullable
     private String clientOrderId;
     /**
      * The portfolio id of the current order
      * 
      */
+    @Nullable
     private String portfolioId;
     /**
      * The contract ids that the current order should be placed on. For limit orders, only one value is allowed, for custom block orders all the contracts that the block spans should be included
@@ -54,17 +57,23 @@ public class OrderEntry {
      * 'AON' (All or None): The order must be filled completely or not at all. The order stays in the order book until it is executed or removed by the system or user. This execution restriction can be used only in combination with User Defined Block Orders. 'NON': No restrictions.
      * 
      */
+    @Nullable
     private ExecutionRestriction executionRestriction;
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
+    @Nullable
     private ZonedDateTime expireTime;
+    @Nullable
     private String text;
     /**
      * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
      * 
      */
+    @Nullable
     private OrderState state;
+    @Nullable
     private Long clipSize;
+    @Nullable
     private Long clipPriceChange;
 
     /**
