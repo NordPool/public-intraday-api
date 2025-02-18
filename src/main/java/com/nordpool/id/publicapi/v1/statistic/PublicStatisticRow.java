@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 
 /**
@@ -37,6 +38,7 @@ public class PublicStatisticRow
     private Long lowestPrice;
     private Long vwap;
     private Long turnover;
+    @Nullable
     private Long dayAheadPrice;
     /**
      * If false: update information with the contents received, If true: delete entity indicated in the message
@@ -47,6 +49,7 @@ public class PublicStatisticRow
      * UP - Last price is higher than a previous price, DOWN - Last price is lower than a previous price, EQUAL - Last price is equal to a previous price
      * 
      */
+    @Nullable
     private Tendency tendency;
     /**
      * List of trade histories
