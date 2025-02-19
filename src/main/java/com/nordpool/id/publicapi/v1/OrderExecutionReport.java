@@ -31,6 +31,7 @@ public class OrderExecutionReport
      * Unique identifier for this request, provided by the client to track their own requests
      * 
      */
+    @Nullable
     private String requestId;
     /**
      * Technical field about message originator.
