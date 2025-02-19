@@ -30,7 +30,6 @@ public class OrderModification {
      */
     private String clientOrderId;
     private String orderId;
-    @Nullable
     private String portfolioId;
     private List<String> contractIds = null;
     /**
@@ -44,6 +43,7 @@ public class OrderModification {
      * IOC, FOK, AON, GTD, GFS
      * 
      */
+    @Nullable
     private TimeInForce timeInForce;
     /**
      * 'AON' (All or None): The order must be filled completely or not at all. The order stays in the order book until it is executed or removed by the system or user. This execution restriction can be used only in combination with User Defined Block Orders. 'NON': No restrictions.
