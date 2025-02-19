@@ -16,6 +16,7 @@ import com.nordpool.id.publicapi.v1.order.error.ErrorType;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 
 /**
@@ -30,11 +31,13 @@ public class OrderExecutionReport
      * Unique identifier for this request, provided by the client to track their own requests
      * 
      */
+    @Nullable
     private String requestId;
     /**
      * Technical field about message originator.
      * 
      */
+    @Nullable
     private ErrorType errorType;
     /**
      * An array of objects that contain fields errorCode and errorMessage.
