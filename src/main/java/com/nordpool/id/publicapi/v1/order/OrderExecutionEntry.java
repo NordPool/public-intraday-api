@@ -23,7 +23,6 @@ public class OrderExecutionEntry {
     private Long eventSequenceNo;
     private String marketId;
     private String tenantId;
-    @Nullable
     private String userId;
     private String orderId;
     private Long revisionNo;
@@ -60,7 +59,6 @@ public class OrderExecutionEntry {
      * The portfolio id of the current order
      * 
      */
-    @Nullable
     private String portfolioId;
     /**
      * The contract ids for current order
