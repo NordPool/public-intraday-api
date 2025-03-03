@@ -8,9 +8,9 @@
 package com.nordpool.id.publicapi.v1.trade.leg;
 
 import com.nordpool.id.publicapi.v1.order.OrderSide;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.jetbrains.annotations.Nullable;
 
 public class BaseTradeLeg {
@@ -27,7 +27,6 @@ public class BaseTradeLeg {
     private OrderSide side;
     private Long unitPrice;
     private Long quantity;
-    @Nullable
     private Long deliveryAreaId;
     /**
      * true if leg is the aggressor, null if the information is unavailable (for XBID trades)

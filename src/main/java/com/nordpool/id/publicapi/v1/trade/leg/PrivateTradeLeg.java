@@ -12,9 +12,9 @@ import com.nordpool.id.publicapi.v1.order.OrderSide;
 import com.nordpool.id.publicapi.v1.order.OrderState;
 import com.nordpool.id.publicapi.v1.order.OrderType;
 import com.nordpool.id.publicapi.v1.order.TimeInForce;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.jetbrains.annotations.Nullable;
 
 public class PrivateTradeLeg
@@ -23,9 +23,7 @@ public class PrivateTradeLeg
     private String portfolioId;
     private String refOrderId;
     private String userId;
-    @Nullable
     private Long deliveryStart;
-    @Nullable
     private Long deliveryEnd;
     /**
      * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
@@ -38,7 +36,7 @@ public class PrivateTradeLeg
      * 
      */
     private OrderType orderType;
-    @Nullable
+
     private String text;
     /**
      * Action
@@ -52,7 +50,6 @@ public class PrivateTradeLeg
      */
     @Nullable
     private TimeInForce timeInForce;
-    @Nullable
     private String clientOrderId;
 
     /**

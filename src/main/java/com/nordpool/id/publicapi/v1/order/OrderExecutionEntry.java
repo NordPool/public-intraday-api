@@ -13,9 +13,9 @@ import java.util.UUID;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.nordpool.id.publicapi.v1.order.error.Error;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.jetbrains.annotations.Nullable;
 
 public class OrderExecutionEntry {
@@ -47,7 +47,6 @@ public class OrderExecutionEntry {
      * Id for the order, provided by the client to track their own orders
      * 
      */
-    @Nullable
     private String clientOrderId;
     /**
      * Basket id for the order
@@ -65,7 +64,7 @@ public class OrderExecutionEntry {
      * 
      */
     private List<String> contractIds = null;
-    @Nullable
+
     private Long deliveryAreaId;
     /**
      * BUY/SELL
@@ -90,9 +89,8 @@ public class OrderExecutionEntry {
      */
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
-    @Nullable
     private ZonedDateTime expireTime;
-    @Nullable
+
     private String text;
     /**
      * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
