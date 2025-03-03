@@ -33,7 +33,6 @@ public class Order {
      */
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
-    @Nullable
     private ZonedDateTime createdAt;
     /**
      * Last modification time (status change) of data
@@ -51,7 +50,6 @@ public class Order {
      * OWN, COMPANY, OTHER
      *
      */
-    @Nullable
     private OrderOwnershipEnum ownership;
 
     /**
