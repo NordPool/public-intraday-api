@@ -14,9 +14,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.nordpool.id.publicapi.v1.area.DeliveryAreaPortfolio;
 import com.nordpool.id.publicapi.v1.contract.ContractState;
 import com.nordpool.id.publicapi.v1.market.MarketPortfolio;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Portfolio {
 
