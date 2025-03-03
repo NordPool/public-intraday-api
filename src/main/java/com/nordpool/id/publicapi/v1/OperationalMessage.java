@@ -39,6 +39,12 @@ public class OperationalMessage {
     private String messageBody;
 
     /**
+     * is read
+     *
+     */
+    private boolean isRead;
+
+    /**
      * valid from
      *
      */
@@ -74,15 +80,17 @@ public class OperationalMessage {
      * @param id
      * @param messageTitle
      * @param messageBody
+     * @param isRead
      * @param validFrom
      * @param validTo
      * @param created
      */
-    public OperationalMessage(UUID id, String messageTitle, String messageBody, ZonedDateTime validFrom, ZonedDateTime validTo, ZonedDateTime created) {
+    public OperationalMessage(UUID id, String messageTitle, String messageBody, boolean isRead, ZonedDateTime validFrom, ZonedDateTime validTo, ZonedDateTime created) {
         super();
         this.id = id;
         this.messageTitle = messageTitle;
         this.messageBody = messageBody;
+        this.isRead = isRead;
         this.validFrom = validFrom;
         this.validTo = validTo;
         this.created = created;
@@ -124,6 +132,19 @@ public class OperationalMessage {
 
     public OperationalMessage withMessageBody(String messageBody) {
         this.messageBody = messageBody;
+        return this;
+    }
+
+    public boolean getIsRead() {
+        return isRead;
+    }
+
+    public void setIsRead(boolean isRead) {
+        this.isRead = isRead;
+    }
+
+    public OperationalMessage withIsRead(boolean isRead) {
+        this.isRead = isRead;
         return this;
     }
 
@@ -172,6 +193,7 @@ public class OperationalMessage {
                 .append("id", id)
                 .append("messageTitle", messageTitle)
                 .append("messageBody", messageBody)
+                .append("isRead", isRead)
                 .append("validFrom", validFrom)
                 .append("validTo", validTo)
                 .append("created", created)
@@ -186,6 +208,7 @@ public class OperationalMessage {
                 .append(validFrom)
                 .append(messageTitle)
                 .append(messageBody)
+                .append(isRead)
                 .append(validTo)
                 .toHashCode();
     }
@@ -205,6 +228,7 @@ public class OperationalMessage {
                 .append(validFrom, rhs.validFrom)
                 .append(messageTitle, rhs.messageTitle)
                 .append(messageBody, rhs.messageBody)
+                .append(isRead, rhs.isRead)
                 .append(validTo, rhs.validTo)
                 .isEquals();
     }
