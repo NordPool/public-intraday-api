@@ -4,18 +4,15 @@
  * Please send feedback to idapi@nordpoolgroup.com.
  */
 
-
 package com.nordpool.id.publicapi.v1;
 
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.UUID;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
 
 /**
  * Operational Message
@@ -25,37 +22,48 @@ public class OperationalMessage {
 
     /**
      * id
-     * 
+     *
      */
     private UUID id;
+
     /**
-     * tenant
-     * 
+     * message title
+     *
      */
-    private String tenant;
+    private String messageTitle;
+
     /**
-     * Delivery areas
-     * <p>
-     * Delivery areas
-     * 
+     * message body
+     *
      */
-    private List<String> areas = null;
+    private String messageBody;
+
     /**
-     * message
-     * 
+     * is read
+     *
      */
-    private String message;
+    private boolean isRead;
+
     /**
-     * Is active
-     * 
+     * valid from
+     *
      */
-    private Boolean isActive;
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
     private ZonedDateTime validFrom;
+
+    /**
+     * valid to
+     *
+     */
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
     private ZonedDateTime validTo;
+
+    /**
+     * created
+     *
+     */
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
     private ZonedDateTime created;
@@ -69,39 +77,29 @@ public class OperationalMessage {
 
     /**
      * 
-     * @param created
-     * @param areas
      * @param id
+     * @param messageTitle
+     * @param messageBody
+     * @param isRead
      * @param validFrom
-     * @param message
-     * @param isActive
-     * @param tenant
      * @param validTo
+     * @param created
      */
-    public OperationalMessage(UUID id, String tenant, List<String> areas, String message, Boolean isActive, ZonedDateTime validFrom, ZonedDateTime validTo, ZonedDateTime created) {
+    public OperationalMessage(UUID id, String messageTitle, String messageBody, boolean isRead, ZonedDateTime validFrom, ZonedDateTime validTo, ZonedDateTime created) {
         super();
         this.id = id;
-        this.tenant = tenant;
-        this.areas = areas;
-        this.message = message;
-        this.isActive = isActive;
+        this.messageTitle = messageTitle;
+        this.messageBody = messageBody;
+        this.isRead = isRead;
         this.validFrom = validFrom;
         this.validTo = validTo;
         this.created = created;
     }
 
-    /**
-     * id
-     * 
-     */
     public UUID getId() {
         return id;
     }
 
-    /**
-     * id
-     * 
-     */
     public void setId(UUID id) {
         this.id = id;
     }
@@ -111,91 +109,42 @@ public class OperationalMessage {
         return this;
     }
 
-    /**
-     * tenant
-     * 
-     */
-    public String getTenant() {
-        return tenant;
+    public String getMessageTitle() {
+        return messageTitle;
     }
 
-    /**
-     * tenant
-     * 
-     */
-    public void setTenant(String tenant) {
-        this.tenant = tenant;
+    public void setMessageTitle(String messageTitle) {
+        this.messageTitle = messageTitle;
     }
 
-    public OperationalMessage withTenant(String tenant) {
-        this.tenant = tenant;
+    public OperationalMessage withMessageTitle(String messageTitle) {
+        this.messageTitle = messageTitle;
         return this;
     }
 
-    /**
-     * Delivery areas
-     * <p>
-     * Delivery areas
-     * 
-     */
-    public List<String> getAreas() {
-        return areas;
+    public String getMessageBody() {
+        return messageBody;
     }
 
-    /**
-     * Delivery areas
-     * <p>
-     * Delivery areas
-     * 
-     */
-    public void setAreas(List<String> areas) {
-        this.areas = areas;
+    public void setMessageBody(String messageBody) {
+        this.messageBody = messageBody;
     }
 
-    public OperationalMessage withAreas(List<String> areas) {
-        this.areas = areas;
+    public OperationalMessage withMessageBody(String messageBody) {
+        this.messageBody = messageBody;
         return this;
     }
 
-    /**
-     * message
-     * 
-     */
-    public String getMessage() {
-        return message;
+    public boolean getIsRead() {
+        return isRead;
     }
 
-    /**
-     * message
-     * 
-     */
-    public void setMessage(String message) {
-        this.message = message;
+    public void setIsRead(boolean isRead) {
+        this.isRead = isRead;
     }
 
-    public OperationalMessage withMessage(String message) {
-        this.message = message;
-        return this;
-    }
-
-    /**
-     * Is active
-     * 
-     */
-    public Boolean getIsActive() {
-        return isActive;
-    }
-
-    /**
-     * Is active
-     * 
-     */
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
-
-    public OperationalMessage withIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public OperationalMessage withIsRead(boolean isRead) {
+        this.isRead = isRead;
         return this;
     }
 
@@ -240,12 +189,28 @@ public class OperationalMessage {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("id", id).append("tenant", tenant).append("areas", areas).append("message", message).append("isActive", isActive).append("validFrom", validFrom).append("validTo", validTo).append("created", created).toString();
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("messageTitle", messageTitle)
+                .append("messageBody", messageBody)
+                .append("isRead", isRead)
+                .append("validFrom", validFrom)
+                .append("validTo", validTo)
+                .append("created", created)
+                .toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(created).append(areas).append(id).append(validFrom).append(message).append(isActive).append(tenant).append(validTo).toHashCode();
+        return new HashCodeBuilder()
+                .append(created)
+                .append(id)
+                .append(validFrom)
+                .append(messageTitle)
+                .append(messageBody)
+                .append(isRead)
+                .append(validTo)
+                .toHashCode();
     }
 
     @Override
@@ -253,11 +218,18 @@ public class OperationalMessage {
         if (other == this) {
             return true;
         }
-        if ((other instanceof OperationalMessage) == false) {
+        if (!(other instanceof OperationalMessage)) {
             return false;
         }
-        OperationalMessage rhs = ((OperationalMessage) other);
-        return new EqualsBuilder().append(created, rhs.created).append(areas, rhs.areas).append(id, rhs.id).append(validFrom, rhs.validFrom).append(message, rhs.message).append(isActive, rhs.isActive).append(tenant, rhs.tenant).append(validTo, rhs.validTo).isEquals();
+        OperationalMessage rhs = (OperationalMessage) other;
+        return new EqualsBuilder()
+                .append(created, rhs.created)
+                .append(id, rhs.id)
+                .append(validFrom, rhs.validFrom)
+                .append(messageTitle, rhs.messageTitle)
+                .append(messageBody, rhs.messageBody)
+                .append(isRead, rhs.isRead)
+                .append(validTo, rhs.validTo)
+                .isEquals();
     }
-
 }
