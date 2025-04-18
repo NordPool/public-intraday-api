@@ -15,22 +15,25 @@ repositories {
         url = uri('https://repo.maven.apache.org/maven2/')
     }
 }
+
 dependencies {
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.8.8'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.8'
-    implementation 'commons-lang:commons-lang:2.6'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.18.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
+    implementation 'org.apache.commons:commons-lang3:3.17.0'
+    implementation 'org.jetbrains:annotations:26.0.2'
 }
 
 group = 'com.npspot'
 description = 'Nord Pool Intraday Public API classes'
 
+
 if (System.getenv("VERSION")) {
     version = System.getenv("VERSION")
 } else {
-    version = '1.1.13'
+    version = '1.1.23'
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_21
 tasks.register('sourceJar', Jar) {
     from sourceSets.main.allSource
     archiveClassifier.set('sources')

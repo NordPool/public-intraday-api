@@ -11,9 +11,9 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import com.nordpool.id.publicapi.v1.base.BaseRow;
 import com.nordpool.id.publicapi.v1.order.Order;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class LocalViewRow
     extends BaseRow

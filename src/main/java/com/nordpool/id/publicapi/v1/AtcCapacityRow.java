@@ -10,30 +10,22 @@ package com.nordpool.id.publicapi.v1;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.nordpool.id.publicapi.v1.base.BaseRow;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.time.ZonedDateTime;
 
 
 /**
  * Capacity information between areas
- *
+ * 
  */
 public class AtcCapacityRow
-        extends BaseRow
+    extends BaseRow
 {
 
     private Integer eventSequenceNo;
-    /**
-     * true - capacity data produced by internal Nord Pool Matcher. false - capacity data came
-     *
-     */
-    private Boolean internal;
-    @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
-    @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
-    private ZonedDateTime publicationTime;
     private Long deliveryAreaFrom;
     private Long deliveryAreaTo;
     private Long deliveryStart;
@@ -49,23 +41,18 @@ public class AtcCapacityRow
     }
 
     /**
-     *
-     * @param internal
      * @param deliveryAreaFrom
      * @param border
      * @param deliveryStart
      * @param deliveryEnd
-     * @param publicationTime
      * @param capacity
      * @param eventSequenceNo
      * @param deliveryAreaTo
      * @param updatedAt
      */
-    public AtcCapacityRow(Integer eventSequenceNo, Boolean internal, ZonedDateTime publicationTime, Long deliveryAreaFrom, Long deliveryAreaTo, Long deliveryStart, Long deliveryEnd, Integer capacity, String border, ZonedDateTime updatedAt) {
+    public AtcCapacityRow(Integer eventSequenceNo, Long deliveryAreaFrom, Long deliveryAreaTo, Long deliveryStart, Long deliveryEnd, Integer capacity, String border, ZonedDateTime updatedAt) {
         super(updatedAt);
         this.eventSequenceNo = eventSequenceNo;
-        this.internal = internal;
-        this.publicationTime = publicationTime;
         this.deliveryAreaFrom = deliveryAreaFrom;
         this.deliveryAreaTo = deliveryAreaTo;
         this.deliveryStart = deliveryStart;
@@ -84,40 +71,6 @@ public class AtcCapacityRow
 
     public AtcCapacityRow withEventSequenceNo(Integer eventSequenceNo) {
         this.eventSequenceNo = eventSequenceNo;
-        return this;
-    }
-
-    /**
-     * true - capacity data produced by internal Nord Pool Matcher. false - capacity data came
-     *
-     */
-    public Boolean getInternal() {
-        return internal;
-    }
-
-    /**
-     * true - capacity data produced by internal Nord Pool Matcher. false - capacity data came
-     *
-     */
-    public void setInternal(Boolean internal) {
-        this.internal = internal;
-    }
-
-    public AtcCapacityRow withInternal(Boolean internal) {
-        this.internal = internal;
-        return this;
-    }
-
-    public ZonedDateTime getPublicationTime() {
-        return publicationTime;
-    }
-
-    public void setPublicationTime(ZonedDateTime publicationTime) {
-        this.publicationTime = publicationTime;
-    }
-
-    public AtcCapacityRow withPublicationTime(ZonedDateTime publicationTime) {
-        this.publicationTime = publicationTime;
         return this;
     }
 
@@ -207,12 +160,12 @@ public class AtcCapacityRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("eventSequenceNo", eventSequenceNo).append("internal", internal).append("publicationTime", publicationTime).append("deliveryAreaFrom", deliveryAreaFrom).append("deliveryAreaTo", deliveryAreaTo).append("deliveryStart", deliveryStart).append("deliveryEnd", deliveryEnd).append("capacity", capacity).append("border", border).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("eventSequenceNo", eventSequenceNo).append("deliveryAreaFrom", deliveryAreaFrom).append("deliveryAreaTo", deliveryAreaTo).append("deliveryStart", deliveryStart).append("deliveryEnd", deliveryEnd).append("capacity", capacity).append("border", border).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(internal).append(deliveryAreaFrom).append(border).append(deliveryStart).append(deliveryEnd).append(publicationTime).append(capacity).append(eventSequenceNo).append(deliveryAreaTo).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(deliveryAreaFrom).append(border).append(deliveryStart).append(deliveryEnd).append(capacity).append(eventSequenceNo).append(deliveryAreaTo).toHashCode();
     }
 
     @Override
@@ -224,7 +177,7 @@ public class AtcCapacityRow
             return false;
         }
         AtcCapacityRow rhs = ((AtcCapacityRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(internal, rhs.internal).append(deliveryAreaFrom, rhs.deliveryAreaFrom).append(border, rhs.border).append(deliveryStart, rhs.deliveryStart).append(deliveryEnd, rhs.deliveryEnd).append(publicationTime, rhs.publicationTime).append(capacity, rhs.capacity).append(eventSequenceNo, rhs.eventSequenceNo).append(deliveryAreaTo, rhs.deliveryAreaTo).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(deliveryAreaFrom, rhs.deliveryAreaFrom).append(border, rhs.border).append(deliveryStart, rhs.deliveryStart).append(deliveryEnd, rhs.deliveryEnd).append(capacity, rhs.capacity).append(eventSequenceNo, rhs.eventSequenceNo).append(deliveryAreaTo, rhs.deliveryAreaTo).isEquals();
     }
 
 }

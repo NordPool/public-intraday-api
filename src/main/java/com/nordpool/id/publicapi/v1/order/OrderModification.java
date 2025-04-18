@@ -11,9 +11,10 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 
 /**
@@ -42,17 +43,23 @@ public class OrderModification {
      * IOC, FOK, AON, GTD, GFS
      * 
      */
+    @Nullable
     private TimeInForce timeInForce;
     /**
      * 'AON' (All or None): The order must be filled completely or not at all. The order stays in the order book until it is executed or removed by the system or user. This execution restriction can be used only in combination with User Defined Block Orders. 'NON': No restrictions.
      * 
      */
+    @Nullable
     private ExecutionRestriction executionRestriction;
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
+    @Nullable
     private ZonedDateTime expireTime;
+    @Nullable
     private String text;
+    @Nullable
     private Long clipSize;
+    @Nullable
     private Long clipPriceChange;
 
     /**

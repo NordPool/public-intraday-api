@@ -12,14 +12,14 @@ import com.nordpool.id.publicapi.v1.order.OrderSide;
 import com.nordpool.id.publicapi.v1.order.OrderState;
 import com.nordpool.id.publicapi.v1.order.OrderType;
 import com.nordpool.id.publicapi.v1.order.TimeInForce;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 public class PrivateTradeLeg
     extends BaseTradeLeg
 {
-
     private String portfolioId;
     private String refOrderId;
     private String userId;
@@ -29,22 +29,26 @@ public class PrivateTradeLeg
      * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
      * 
      */
+    @Nullable
     private OrderState orderState;
     /**
      * LIMIT, ICEBERG, USER_DEFINED_BLOCK
      * 
      */
     private OrderType orderType;
+
     private String text;
     /**
      * Action
      * 
      */
+    @Nullable
     private OrderAction orderAction;
     /**
      * IOC, FOK, AON, GTD, GFS
      * 
      */
+    @Nullable
     private TimeInForce timeInForce;
     private String clientOrderId;
 
