@@ -15,6 +15,7 @@ public class TradeRecallRequest {
 
     private String tradeId;
     private String revisionNo;
+    private String requestId;
 
     /**
      * No args constructor for use in serialization
@@ -28,10 +29,11 @@ public class TradeRecallRequest {
      * @param revisionNo
      * @param tradeId
      */
-    public TradeRecallRequest(String tradeId, String revisionNo) {
+    public TradeRecallRequest(String tradeId, String revisionNo, String requestId) {
         super();
         this.tradeId = tradeId;
         this.revisionNo = revisionNo;
+        this.requestId = requestId;
     }
 
     public String getTradeId() {
@@ -60,14 +62,23 @@ public class TradeRecallRequest {
         return this;
     }
 
+    public String getRequestId() { return requestId; }
+
+    public void setRequestId(String requestId) { this.requestId = requestId; }
+
+    public TradeRecallRequest withRequestId(String requestId) {
+        this.requestId = requestId;
+        return this;
+    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("tradeId", tradeId).append("revisionNo", revisionNo).toString();
+        return new ToStringBuilder(this).append("tradeId", tradeId).append("revisionNo", revisionNo).append("requestId", requestId).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().append(tradeId).append(revisionNo).toHashCode();
+        return new HashCodeBuilder().append(tradeId).append(revisionNo).append(requestId).toHashCode();
     }
 
     @Override
@@ -79,7 +90,7 @@ public class TradeRecallRequest {
             return false;
         }
         TradeRecallRequest rhs = ((TradeRecallRequest) other);
-        return new EqualsBuilder().append(tradeId, rhs.tradeId).append(revisionNo, rhs.revisionNo).isEquals();
+        return new EqualsBuilder().append(tradeId, rhs.tradeId).append(revisionNo, rhs.revisionNo).append(requestId, rhs.requestId).isEquals();
     }
 
 }
