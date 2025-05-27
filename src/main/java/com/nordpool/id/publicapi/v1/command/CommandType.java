@@ -15,7 +15,14 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum CommandType {
 
     LOGOUT("LOGOUT"),
-    TOKEN_REFRESH("TOKEN_REFRESH");
+    TOKEN_REFRESH("TOKEN_REFRESH"),
+    DEAC_USER_ORDERS("DEAC_USER_ORDERS"),
+    DEAC_COMPANY_ORDERS("DEAC_COMPANY_ORDERS"),
+    ACTI_USER_ORDERS("ACTI_USER_ORDERS"),
+    ACTI_COMPANY_ORDERS("ACTI_COMPANY_ORDERS"),
+    DELETE_USER_ORDERS("DELETE_USER_ORDERS"),
+    DELETE_COMPANY_ORDERS("DELETE_COMPANY_ORDERS");
+
     private final String value;
     private final static Map<String, CommandType> CONSTANTS = new HashMap<String, CommandType>();
 
