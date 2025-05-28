@@ -10,9 +10,10 @@ package com.nordpool.id.publicapi.v1.order;
 import java.time.ZonedDateTime;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 public class Order {
 
@@ -22,6 +23,7 @@ public class Order {
      * The portfolio id of the current order
      * 
      */
+    @Nullable
     private String portfolioId;
     private Long price;
     private Long qty;
@@ -46,7 +48,7 @@ public class Order {
     private Boolean deleted;
     /**
      * OWN, COMPANY, OTHER
-     * 
+     *
      */
     private OrderOwnershipEnum ownership;
 

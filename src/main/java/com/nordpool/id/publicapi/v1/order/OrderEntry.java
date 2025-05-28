@@ -11,9 +11,10 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.jetbrains.annotations.Nullable;
 
 public class OrderEntry {
 
@@ -58,13 +59,16 @@ public class OrderEntry {
     @JsonDeserialize(using = com.nordpool.id.publicapi.v1.serialize.DateDeserializer.class)
     @JsonSerialize(using = com.nordpool.id.publicapi.v1.serialize.DateSerializer.class)
     private ZonedDateTime expireTime;
+    @Nullable
     private String text;
     /**
      * ACTI - Active, IACT - Closed, matched(will never be reopened), HIBE - Deactivated(can be reopened)
      * 
      */
     private OrderState state;
+    @Nullable
     private Long clipSize;
+    @Nullable
     private Long clipPriceChange;
 
     /**
