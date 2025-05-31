@@ -28,10 +28,10 @@ description = 'Nord Pool Intraday Public API classes'
 if (System.getenv("VERSION")) {
     version = System.getenv("VERSION")
 } else {
-    version = '1.1.10'
+    version = '1.1.27'
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_23
 tasks.register('sourceJar', Jar) {
     from sourceSets.main.allSource
     archiveClassifier.set('sources')
