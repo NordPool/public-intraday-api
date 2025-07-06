@@ -18,10 +18,9 @@ import com.nordpool.id.publicapi.v1.order.TimeInForce;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-
+import org.jspecify.annotations.Nullable;
 import java.time.ZonedDateTime;
 import java.util.UUID;
-import org.jetbrains.annotations.Nullable;
 
 public class OrderExecutionEntry {
 
