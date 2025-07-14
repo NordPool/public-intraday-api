@@ -20,7 +20,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.18.3'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.3'
     implementation 'org.apache.commons:commons-lang3:3.17.0'
-    implementation 'org.jetbrains:annotations:26.0.2'
+    implementation 'org.jspecify:jspecify:1.0.0'
 }
 
 group = 'com.npspot'
