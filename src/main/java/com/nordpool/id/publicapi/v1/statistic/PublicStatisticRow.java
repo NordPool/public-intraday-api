@@ -8,7 +8,6 @@
 package com.nordpool.id.publicapi.v1.statistic;
 
 import java.time.ZonedDateTime;
-import java.util.List;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -51,11 +50,6 @@ public class PublicStatisticRow
      */
     @Nullable
     private Tendency tendency;
-    /**
-     * List of trade histories
-     * 
-     */
-    private List<TradeHistory> histories = null;
 
     /**
      * No args constructor for use in serialization
@@ -70,7 +64,6 @@ public class PublicStatisticRow
      * @param lowestPrice
      * @param tendency
      * @param vwap
-     * @param histories
      * @param deleted
      * @param lastTradeTime
      * @param contractId
@@ -81,7 +74,7 @@ public class PublicStatisticRow
      * @param lastPrice
      * @param updatedAt
      */
-    public PublicStatisticRow(Long lastPrice, Long lastQuantity, ZonedDateTime lastTradeTime, Long highestPrice, Long lowestPrice, Long vwap, Long turnover, Long dayAheadPrice, Boolean deleted, Tendency tendency, List<TradeHistory> histories, Long deliveryAreaId, String contractId, ZonedDateTime updatedAt) {
+    public PublicStatisticRow(Long lastPrice, Long lastQuantity, ZonedDateTime lastTradeTime, Long highestPrice, Long lowestPrice, Long vwap, Long turnover, Long dayAheadPrice, Boolean deleted, Tendency tendency, Long deliveryAreaId, String contractId, ZonedDateTime updatedAt) {
         super(deliveryAreaId, contractId, updatedAt);
         this.lastPrice = lastPrice;
         this.lastQuantity = lastQuantity;
@@ -93,7 +86,6 @@ public class PublicStatisticRow
         this.dayAheadPrice = dayAheadPrice;
         this.deleted = deleted;
         this.tendency = tendency;
-        this.histories = histories;
     }
 
     public Long getLastPrice() {
@@ -250,27 +242,6 @@ public class PublicStatisticRow
         return this;
     }
 
-    /**
-     * List of trade histories
-     * 
-     */
-    public List<TradeHistory> getHistories() {
-        return histories;
-    }
-
-    /**
-     * List of trade histories
-     * 
-     */
-    public void setHistories(List<TradeHistory> histories) {
-        this.histories = histories;
-    }
-
-    public PublicStatisticRow withHistories(List<TradeHistory> histories) {
-        this.histories = histories;
-        return this;
-    }
-
     @Override
     public PublicStatisticRow withDeliveryAreaId(Long deliveryAreaId) {
         super.withDeliveryAreaId(deliveryAreaId);
@@ -291,12 +262,12 @@ public class PublicStatisticRow
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).appendSuper(super.toString()).append("lastPrice", lastPrice).append("lastQuantity", lastQuantity).append("lastTradeTime", lastTradeTime).append("highestPrice", highestPrice).append("lowestPrice", lowestPrice).append("vwap", vwap).append("turnover", turnover).append("dayAheadPrice", dayAheadPrice).append("deleted", deleted).append("tendency", tendency).append("histories", histories).toString();
+        return new ToStringBuilder(this).appendSuper(super.toString()).append("lastPrice", lastPrice).append("lastQuantity", lastQuantity).append("lastTradeTime", lastTradeTime).append("highestPrice", highestPrice).append("lowestPrice", lowestPrice).append("vwap", vwap).append("turnover", turnover).append("dayAheadPrice", dayAheadPrice).append("deleted", deleted).append("tendency", tendency).toString();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder().appendSuper(super.hashCode()).append(highestPrice).append(lowestPrice).append(deleted).append(tendency).append(lastTradeTime).append(vwap).append(dayAheadPrice).append(histories).append(lastQuantity).append(turnover).append(lastPrice).toHashCode();
+        return new HashCodeBuilder().appendSuper(super.hashCode()).append(highestPrice).append(lowestPrice).append(deleted).append(tendency).append(lastTradeTime).append(vwap).append(dayAheadPrice).append(lastQuantity).append(turnover).append(lastPrice).toHashCode();
     }
 
     @Override
@@ -308,7 +279,7 @@ public class PublicStatisticRow
             return false;
         }
         PublicStatisticRow rhs = ((PublicStatisticRow) other);
-        return new EqualsBuilder().appendSuper(super.equals(other)).append(highestPrice, rhs.highestPrice).append(lowestPrice, rhs.lowestPrice).append(deleted, rhs.deleted).append(tendency, rhs.tendency).append(lastTradeTime, rhs.lastTradeTime).append(vwap, rhs.vwap).append(dayAheadPrice, rhs.dayAheadPrice).append(histories, rhs.histories).append(lastQuantity, rhs.lastQuantity).append(turnover, rhs.turnover).append(lastPrice, rhs.lastPrice).isEquals();
+        return new EqualsBuilder().appendSuper(super.equals(other)).append(highestPrice, rhs.highestPrice).append(lowestPrice, rhs.lowestPrice).append(deleted, rhs.deleted).append(tendency, rhs.tendency).append(lastTradeTime, rhs.lastTradeTime).append(vwap, rhs.vwap).append(dayAheadPrice, rhs.dayAheadPrice).append(lastQuantity, rhs.lastQuantity).append(turnover, rhs.turnover).append(lastPrice, rhs.lastPrice).isEquals();
     }
 
 }
