@@ -14,7 +14,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * Provides a list of contracts available in the area with id <deliveryAreaId> and aggregated statistical data for each contract.
+ * Represents aggregated private statistical data for a specific contract in a delivery area,
+ * including portfolio, buy/sell quantities and prices, net position, and last trade information.
  *
  */
 public class PrivateStatisticRow extends BaseStatisticRow {
